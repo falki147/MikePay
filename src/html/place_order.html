@@ -1,22 +1,48 @@
 ---
 layout: default
-title: Place Order
+title: Bestellen
 ---
 
-<form class="login-form text-center">
-  <h1 class="h3 mb-3 font-weight-normal">Please enter desired item</h1>
-  <p>
-    Here is a super cool description
-  </p>
-  <p>
-    <a href="https://www.google.at/" target="_blank">Link to Shop</a>
-  </p>
-  <label for="inputItem" class="sr-only">Item</label>
-  <input type="text" id="inputItem" class="form-control hard-bottom" placeholder="Item" required autofocus>
-  <label for="inputPrice" class="sr-only">Price</label>
-  <input type="text" id="inputPrice" class="form-control hard-top hard-bottom" placeholder="Price" required>
-  <label for="inputGuest" class="sr-only">Email address</label>
-  <input type="user" id="inputGuest" class="form-control hard-top" placeholder="Guestname">
 
-  <button class="btn btn-lg btn-primary btn-block mt-3" type="submit">Order</button>
-</form>
+<div class="container">
+  <div class="vh-100 d-flex justify-content-center align-items-center">
+    <div class="shadow p-3 mb-5 bg-white rounded">
+      <div class="m-4">
+        <form id="create-form" action="" autocomplete="off">
+          <div class="form-group">
+            <h1 class="mb-5">Bestellen</h1>
+            <p>
+              Here is a super cool description
+            </p>
+            <p>
+              <a href="https://www.google.at/" target="_blank">Link to Shop</a>
+            </p>
+
+            <div class="form-group my-2">
+              <label for="item" class="form-label mb-0">Artikel</label>
+              <input type="text" class="form-control" id="item" placeholder="Wurstsemmel" name="item" required>
+            </div>
+
+            <div class="form-group my-2">
+              <label for="price" class="form-label mb-0">Preis</label>
+              <input type="text" class="form-control" id="price" placeholder="1,50" name="price" required>
+            </div>
+
+            <div class="form-group my-2">
+              <label for="guest" class="form-label mb-0">Gast</label>
+              <input type="text" class="form-control" id="guest" placeholder="Gast XY" name="guest">
+            </div>
+
+            <div class="form-group mt-4">
+              <button type="submit" class="btn btn-lg btn-primary w-100">Bestellen</button>
+            </div>
+
+            <div class="form-group text-center">
+              <label>&copy MikePay Inc.</label>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

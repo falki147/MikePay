@@ -1,53 +1,45 @@
 ---
 layout: default
-title: Login
+title: Benutzer erstellen
 ---
 
 <div class="container">
-  <div class="row align-items-center justify-content-center vh-100"> 
+  <div class="vh-100 d-flex justify-content-center align-items-center">
     <div class="shadow p-3 mb-5 bg-white rounded">
-      <div class="">
-        <div class="m-4">
+      <div class="m-4">
+        <form id="create-form" action="" autocomplete="off">
+          <div class="form-group">
+            <h1 class="mb-5">Benutzer erstellen</h1>
 
-          <form id="create-form" class="" action="" autocomplete="off">
-            <div class="form-group">
-              <div class="">
-              
-                <h1 class="mb-5">Benutzer erstellen</h1>
-
-                <div class="form-group">
-                  <label for="firstname" class="form-label">Vorname :</label>
-                  <input type="text" class="form-control" id="firstname" placeholder="Vorname" name="firstname" required>
-                </div>
-
-                <div class="form-group">
-                  <label for="lastname">Nachname :</label>
-                  <input type="text" class="form-control" id="lastname" placeholder="Nachname" name="lastname" required>
-                </div>
-
-                <div class="form-group">
-                  <label for="username">Benutzername :</label>
-                  <input type="text" class="form-control" id="username" placeholder="Benutzername (optional)" name="username" required>
-                </div>
-
-                <div class="form-group">
-                  <label for="username">Passwort :</label>
-                  <input type="password" class="form-control" id="password" placeholder="Passwort" name="password" required>
-                </div>
-
-                <div class="form-group">
-                  <button type="submit" class="btn btn-primary w-100">Erstellen</button>
-                </div>
-
-                <div class="form-group text-center">
-                  <label>&copy MikePay Inc.</label>
-                </div>
-
-              </div>
+            <div class="form-group my-2">
+              <label for="firstname" class="form-label mb-0">Vorname</label>
+              <input type="text" class="form-control" id="firstname" placeholder="Max" name="firstname" required>
             </div>
-          </form>
 
-        </div>
+            <div class="form-group my-2">
+              <label for="lastname" class="form-label mb-0">Nachname</label>
+              <input type="text" class="form-control" id="lastname" placeholder="Mustermann" name="lastname" required>
+            </div>
+
+            <div class="form-group my-2">
+              <label for="username" class="form-label mb-0">Benutzername</label>
+              <input type="text" class="form-control" id="username" placeholder="maxi12" name="username" required>
+            </div>
+
+            <div class="form-group my-2">
+              <label for="username" class="form-label mb-0">Passwort</label>
+              <input type="password" class="form-control" id="password" placeholder="********" name="password" required>
+            </div>
+
+            <div class="form-group mt-4">
+              <button type="submit" class="btn btn-lg btn-primary w-100">Erstellen</button>
+            </div>
+
+            <div class="form-group text-center">
+              <label>&copy MikePay Inc.</label>
+            </div>
+          </div>
+        </form>
       </div>
     </div>
   </div>

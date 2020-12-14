@@ -3,19 +3,34 @@ layout: default
 title: Login
 ---
 
-<form class="login-form text-center">
-  <!-- TODO: Add icon -->
-  <!--<img class="mb-4" src="/docs/4.5/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">-->
-  <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-  <label for="inputUser" class="sr-only">Email address</label>
-  <input type="user" id="inputUser" class="form-control hard-bottom" placeholder="Username or full name" required autofocus>
-  <label for="inputPassword" class="sr-only">Password</label>
-  <input type="password" id="inputPassword" class="form-control hard-top" placeholder="Password" required>
-  <div class="checkbox mt-3 mb-3">
-	<label>
-	  <input type="checkbox" value="remember-me"> Remember me
-	</label>
+<div class="container">
+  <div class="vh-100 d-flex justify-content-center align-items-center">
+    <div class="shadow p-3 mb-5 bg-white rounded">
+      <div class="m-4">
+        <form id="create-form" action="" autocomplete="off">
+          <div class="form-group">
+            <h1 class="mb-5">Login</h1>
+
+            <div class="form-group my-2">
+              <label for="username" class="form-label mb-0">Username oder voller Name</label>
+              <input type="text" class="form-control" id="username" placeholder="maxi12" name="username" required>
+            </div>
+
+            <div class="form-group my-2">
+              <label for="username" class="form-label mb-0">Passwort</label>
+              <input type="password" class="form-control" id="password" placeholder="********" name="password" required>
+            </div>
+
+            <div class="form-group mt-4">
+              <button type="submit" class="btn btn-lg btn-primary w-100">Login</button>
+            </div>
+
+            <div class="form-group text-center">
+              <label>&copy MikePay Inc.</label>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
   </div>
-  <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-  <p class="mt-5 mb-3 text-muted">&copy; 2020</p>
-</form>
+</div>
