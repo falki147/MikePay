@@ -1,3 +1,2 @@
 import "bootstrap";
-
-console.log("Hello World!");
+import "./forms/login-form";
