@@ -3,43 +3,18 @@ layout: default
 title: Debtors
 ---
 
-<table class="table">
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Debt</th>
-      <th>Paid</th>
-      <th>Total</th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Florian Preinfalk</td>
-      <td>100,00€</td>
-      <td>20,00€</td>
-      <td>120,00€</td>
-      <td>
-        <a href="#">Details</a>
-      </td>
-    </tr>
-    <tr>
-      <td>Benjamin Burglechner</td>
-      <td>50,00€</td>
-      <td>10,00€</td>
-      <td>60,00€</td>
-      <td>
-        <a href="#">Details</a>
-      </td>
-    </tr>
-  </tbody>
-</table>
-<nav aria-label="Page navigation example">
-  <ul class="pagination">
-    <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-    <li class="page-item"><a class="page-link" href="#">1</a></li>
-    <li class="page-item"><a class="page-link" href="#">2</a></li>
-    <li class="page-item"><a class="page-link" href="#">3</a></li>
-    <li class="page-item"><a class="page-link" href="#">Next</a></li>
-  </ul>
-</nav>
+<div class="container">
+  <table id="debtor-table" class="table">
+    <thead>
+      <tr>
+        <th><a class="sort-link disable-link-style" data-sort="name" href="#">Name</a></th>
+        <th><a class="sort-link disable-link-style" data-sort="debt" href="#">Schulden</a></th>
+        <th><a class="sort-link disable-link-style" data-sort="paid" href="#">Bezahlt</a></th>
+        <th><a class="sort-link disable-link-style" data-sort="total" href="#">Gesamt</a></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+  <nav id="debtor-pagination" aria-label="Page navigation example"></nav>
+</div>

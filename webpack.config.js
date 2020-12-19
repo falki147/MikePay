@@ -10,6 +10,7 @@ module.exports = {
     './src/css/index.css'
   ],
   output: {
+    publicPath: '',
     path: path.resolve(__dirname, 'dist')
   },
   module: {
@@ -17,6 +18,10 @@ module.exports = {
       {
         test: /\.css$/i,
         use: [ MiniCssExtractPlugin.loader, 'css-loader' ]
+      },
+      {
+        test: /\.woff2?$/i,
+        loader: 'file-loader'
       }
     ]
   }

@@ -29,6 +29,12 @@ export default class Api {
     return await JSONHttpClient.get(`${config.apiBaseURL}/order/${id}`);
   }
 
+  static async debts(page, sort, ascending) {
+    return await JSONHttpClient.get(
+      `${config.apiBaseURL}/user/debts?page=${page}&sort=${sort || ''}&asc=${!!ascending}`
+    );
+  }
+
   /**
    * Create a new order
    * @param {Object} data
