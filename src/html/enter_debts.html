@@ -1,0 +1,43 @@
+---
+layout: default
+title: Schulden eintragen
+---
+
+<div class="container">
+  <div class="vh-100 d-flex justify-content-center align-items-center">
+    <div class="shadow p-3 mb-5 bg-white rounded">
+      <div class="m-4">
+        <form id="enterDebts-form" class="needs-validation" action="" autocomplete="off" novalidate>
+          <div class="form-group">
+            <h1 class="mb-5">Schulden eintragen</h1>
+
+            <div class="form-group my-2">
+              <label for="debtors" class="form-label mb-0">Schuldner auswählen</label>
+              <select class="form-select" name="debtors" id="debtors">
+                <option selected>Schuldner ...</option>
+              </select>
+            </div>
+
+            <div class="form-group my-2">
+              <label for="amount" class="form-label mb-0">Offener Betrag</label>
+              <input type="text" class="form-control" id="amount" placeholder="amount" name="amount">
+            </div>
+
+            <div class="form-group my-2">
+              <label for="settle" class="form-label mb-0">zu begleichender Betrag</label>
+              <input type="text" class="form-control" id="settle" placeholder="...€" name="settle" required>
+            </div>
+
+            <div class="form-group mt-4">
+              <button type="submit" class="btn btn-lg btn-primary w-100">Bestätigen</button>
+            </div>
+
+            <div class="form-group text-center">
+              <label>&copy MikePay Inc.</label>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
