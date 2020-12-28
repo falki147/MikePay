@@ -35,6 +35,12 @@ export default class Api {
     );
   }
 
+  static async allDebts(sort, ascending) {
+    return await JSONHttpClient.get(
+      `${config.apiBaseURL}/user/alldebts?sort=${sort || ''}&asc=${!!ascending}`
+    );
+  }
+
   /**
    * Create a new order
    * @param {Object} data
