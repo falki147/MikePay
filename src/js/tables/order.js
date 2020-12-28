@@ -28,7 +28,7 @@ if (debtorTable) {
       html += "<tr>";
       html += `  <td>${encode(item.item)}</td>`;
       html += `  <td>${encode(item.price)}</td>`;
-      html += `  <td>${encode(item.firstname)} ${encode(item.lastname)}</td>`;
+      html += `  <td><a href="/debtor/?user_id=${item.user_id}">${encode(item.firstname)} ${encode(item.lastname)}</a></td>`;
       html += `  <td>${encode(item.date)}</td>`;
       html += "</tr>";
     }

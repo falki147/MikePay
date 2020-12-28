@@ -19,8 +19,13 @@ if (debtorTable) {
 
     let html = "";
     for (const item of data.items) {
+      let itemName = "";
+      if (item.order_id) {
+        itemName = `<a href="/order/?order_id=${item.order_id}">${encode(item.item)}</a>`;
+      }
+
       html += "<tr>";
-      html += `  <td>${encode(item.item)}</td>`;
+      html += `  <td>${itemName}</td>`;
       html += `  <td>${encode(item.amount)}</td>`;
       html += `  <td>${encode(item.date)}</td>`;
       html += "</tr>";
