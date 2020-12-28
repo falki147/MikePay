@@ -1,7 +1,9 @@
 import Api from "../api/api";
 
 window.addEventListener("load", function () {
-  document.getElementById("createOrder-form").addEventListener("submit", validateCreateOrderForm);
+  if(document.getElementById("createOrder-form")){
+    document.getElementById("createOrder-form").addEventListener("submit", validateCreateOrderForm);
+  }
 });
 
 function validateCreateOrderForm(e){
