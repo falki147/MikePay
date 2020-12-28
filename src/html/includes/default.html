@@ -10,9 +10,70 @@
   </head>
   <body>
     <!-- header -->
-    
+    <header>
+      <nav class="bg-white">
+        <div class="border-bottom border-2">
+          <div class="row align-items-center ms-0 me-0">
+            <div class="col">
+              <ul class="nav py-3 border-0">
+                <li class="nav-item">
+                  <a href="/create_user/" class="nav-link active">Benutzer erstellen</a>
+                </li>
+                <li class="nav-item">
+                  <a href="/create_order/" class="nav-link">Bestellung erstellen</a>
+                </li>
+                <li class="nav-item">
+                  <a href="/debtors/" class="nav-link">Schuldnerliste</a>
+                </li>
+              </ul>
+            </div>
+            <div class="col-2">
+              <ul class="nav py-3 border-0">
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Mein Profil
+                  </a>
+                  <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <li><a href="#" class="dropdown-item">Profil anzeigen</a></li>
+                    <li><a href="#" class="dropdown-item">Schulden anzeigen</a></li>
+                  </ul>
+                </li>
+                <li class="nav-item">
+                  <button class="btn btn-primary nav-item">Abmelden</button>
+                </li>
+              </ul>
+            </div>
+          </div>
+        <div>
+      </nav>
+    </header>
+
     {{ content | safe }}
 
     <!-- footer -->
+    <footer class="">
+      <div class="container">
+        
+        <div class="row text-center d-flex justify-content-center pt-5 mb-3">
+          <div class="col-md-2 mb-3">            
+            <a href="#">Impressum</a>
+          </div>
+          <div class="col-md-2 mb-3">
+           <a href="#">About us</a>
+          </div>
+          <div class="col-md-2 mb-3">
+            <a href="#">Help</a>
+          </div>
+          <div class="col-md-2 mb-3">
+            <a href="#">Contact</a>
+          </div>
+        </div>
+        <hr>
+      </div>
+      
+      <div class="footer-copyright text-center py-3">
+        © 2020 Copyright: MikePay Inc.
+      </div>
+    </footer>
   </body>
 </html>

@@ -3,7 +3,7 @@ import "./forms/login-form";
 import "./forms/place-order-form";
 import "./forms/create-user";
 import "./forms/create-order";
-// import "./tables/load_enter_debts";
+import "./tables/load_enter_debts";
 import "./tables/debtor";
 import "./tables/debtors";
 import "./tables/order";
