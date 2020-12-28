@@ -31,8 +31,21 @@ export default class Api {
     );
   }
 
-  static async getOrderInfo(id) {
+  static async orderInfo(id) {
     return await JSONHttpClient.get(`${config.apiBaseURL}/order/${id}`);
+  }
+
+  /**
+   * @deprecated
+   */
+  static async getOrderInfo(id) {
+    return await this.orderInfo(id);
+  }
+
+  static async orderPositions(id, page, sort, ascending) {
+    return await JSONHttpClient.get(
+      `${config.apiBaseURL}/order/${id}/positions?page=${page}&sort=${sort || ''}&asc=${!!ascending}`
+    );
   }
 
   static async debts(page, sort, ascending) {

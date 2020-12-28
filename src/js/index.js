@@ -6,6 +6,7 @@ import "./forms/create-order";
 // import "./tables/load_enter_debts";
 import "./tables/debtor";
 import "./tables/debtors";
+import "./tables/order";
 import "./tables/orders";
 
 import Session from "./api/session";
