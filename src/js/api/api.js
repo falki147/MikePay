@@ -1,5 +1,6 @@
 import config from "../config";
 import JSONHttpClient from "./json-http-client";
+import Session from "./session";
 
 export default class Api {
   /**
@@ -8,10 +9,12 @@ export default class Api {
    * @param {String} password
    */
   static async login(username, password) {
-    await JSONHttpClient.post(
+    const userdata = await JSONHttpClient.post(
       `${config.apiBaseURL}/login`,
       { username: username, password: password }
     );
+
+    Session.login(userdata);
   }
 
   /**
@@ -19,6 +22,7 @@ export default class Api {
    */
   static async logout() {
     await JSONHttpClient.post(`${config.apiBaseURL}/logout`);
+    Session.logout();
   }
 
   static async orders() {
