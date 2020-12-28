@@ -56,7 +56,7 @@ export default class Pagination {
   }
 
   _render() {
-    if (this._pages < 1) {
+    if (this._pages <= 1) {
       this._element.innerHTML = "";
       return;
     }
