@@ -25,8 +25,10 @@ export default class Api {
     Session.logout();
   }
 
-  static async orders() {
-    return await JSONHttpClient.get(`${config.apiBaseURL}/order`);
+  static async orders(page, sort, ascending) {
+    return await JSONHttpClient.get(
+      `${config.apiBaseURL}/order?page=${page}&sort=${sort || ''}&asc=${!!ascending}`
+    );
   }
 
   static async getOrderInfo(id) {
@@ -55,6 +57,7 @@ export default class Api {
   /**
    * Create a new order
    * @param {Object} data
+   * @param {String} data.title Title
    * @param {String} data.description Description
    * @param {String} data.url Url to the shop
    * @param {String} data.comments Additional comments
