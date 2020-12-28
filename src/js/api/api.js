@@ -2,6 +2,68 @@ import config from "../config";
 import JSONHttpClient from "./json-http-client";
 import Session from "./session";
 
+/**
+ * @typedef {Object} Order
+ * @property {Number} id
+ * @property {String} title
+ * @property {String} description
+ * @property {String} url
+ * @property {String} comments
+ * @property {String} date
+ * @property {String} total
+ */
+
+/**
+ * @typedef {Object} OrderInfo
+ * @property {Number} id
+ * @property {String} title
+ * @property {String} description
+ * @property {String} url
+ * @property {String} comments
+ * @property {String} date
+ */
+
+/**
+ * @typedef {Object} OrderPosition
+ * @property {Number} id
+ * @property {Number} user_id
+ * @property {String} item
+ * @property {String} price
+ * @property {String} date
+ * @property {String} username
+ * @property {String} firstname
+ * @property {String} lastname
+ */
+
+/**
+ * @typedef {Object} BalanceInfo
+ * @property {Number} id user id
+ * @property {String} username
+ * @property {String} firstname
+ * @property {String} lastname
+ * @property {String} paid amount, which was already paid
+ * @property {String} debt total debt
+ * @property {String} total debt, which is still left
+ */
+
+/**
+ * @typedef {Object} Transaction
+ * @property {Number} id
+ * @property {String} amount
+ * @property {String} date
+ * @property {String} item
+ * @property {Number} order_id
+ */
+
+/**
+ * @template T
+ * @typedef {Object} Paginated
+ * @property {Number} current_page
+ * @property {Number} total total items
+ * @property {Number} pages total pages
+ * @property {T[]} items
+ */
+
 export default class Api {
   /**
    * Log user in
@@ -25,41 +87,78 @@ export default class Api {
     Session.logout();
   }
 
+  /**
+   * Get all orders
+   * @param {Number} page
+   * @param {String} sort can be "title", "date" or "total"
+   * @param {Boolean} ascending sort in ascending order
+   * @returns {Paginated<Order>}
+   */
   static async orders(page, sort, ascending) {
     return await JSONHttpClient.get(
       `${config.apiBaseURL}/order?page=${page}&sort=${sort || ''}&asc=${!!ascending}`
     );
   }
 
+  /**
+   * @param {Number} id order id
+   * @returns {OrderInfo}
+   */
   static async orderInfo(id) {
     return await JSONHttpClient.get(`${config.apiBaseURL}/order/${id}`);
   }
 
   /**
+   * TODO: Remove
    * @deprecated
    */
   static async getOrderInfo(id) {
     return await this.orderInfo(id);
   }
 
+  /**
+   * @param {Number} id order id
+   * @param {Number} page
+   * @param {String} sort can be "price", "date" or "name"
+   * @param {String} ascending
+   * @returns {Paginated<OrderPosition>}
+   */
   static async orderPositions(id, page, sort, ascending) {
     return await JSONHttpClient.get(
       `${config.apiBaseURL}/order/${id}/positions?page=${page}&sort=${sort || ''}&asc=${!!ascending}`
     );
   }
 
+  /**
+   * @param {Number} page
+   * @param {String} sort can be "debt", "paid", "total" or "name"
+   * @param {String} ascending
+   * @returns {Paginated<BalanceInfo>}
+   */
   static async debts(page, sort, ascending) {
     return await JSONHttpClient.get(
       `${config.apiBaseURL}/user/debts?page=${page}&sort=${sort || ''}&asc=${!!ascending}`
     );
   }
 
+  /**
+   * @param {Number} id user id
+   * @param {Number} page
+   * @param {String} sort can be "amount" or "date"
+   * @param {String} ascending
+   * @returns {Paginated<Transaction>}
+   */
   static async userTransactions(id, page, sort, ascending) {
     return await JSONHttpClient.get(
       `${config.apiBaseURL}/user/${id}/transactions?page=${page}&sort=${sort || ''}&asc=${!!ascending}`
     );
   }
 
+  /**
+   * @param {String} sort can be "debt", "paid", "total" or "name"
+   * @param {String} ascending
+   * @returns {BalanceInfo[]}
+   */
   static async allDebts(sort, ascending) {
     const data = await JSONHttpClient.get(
       `${config.apiBaseURL}/user/debts?per_page=-1&sort=${sort || ''}&asc=${!!ascending}`
