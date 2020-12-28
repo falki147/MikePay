@@ -39,6 +39,12 @@ export default class Api {
     );
   }
 
+  static async userTransactions(id, page, sort, ascending) {
+    return await JSONHttpClient.get(
+      `${config.apiBaseURL}/user/${id}/transactions?page=${page}&sort=${sort || ''}&asc=${!!ascending}`
+    );
+  }
+
   static async allDebts(sort, ascending) {
     const data = await JSONHttpClient.get(
       `${config.apiBaseURL}/user/debts?per_page=-1&sort=${sort || ''}&asc=${!!ascending}`
