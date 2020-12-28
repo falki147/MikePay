@@ -75,4 +75,18 @@ export default class Api {
   static async createUser(data) {
     await JSONHttpClient.post(`${config.apiBaseURL}/user`, data);
   }
+
+  /**
+   * Send contact message to admin
+   * @param {String} email
+   * @param {String} name
+   * @param {String} message
+   */
+  static async contact(email, name, message) {
+    await JSONHttpClient.post(`${config.apiBaseURL}/contact`, {
+      email: email,
+      name: name,
+      message: message
+    });
+  }
 };
