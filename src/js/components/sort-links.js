@@ -11,7 +11,7 @@ export default class SortLinks {
     for (const link of element.getElementsByClassName("sort-link")) {
       link.addEventListener("click", ev => {
         ev.preventDefault();
-        this.selected = ev.target.getAttribute("data-sort");
+        this.selected = link.getAttribute("data-sort");
       });
     }
   }

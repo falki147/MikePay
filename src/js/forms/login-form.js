@@ -1,4 +1,5 @@
 import Api from "../api/api";
+import Alert from "../components/alert";
 
 const loginForm = document.getElementById("login-form");
 if (loginForm) {
@@ -10,9 +11,10 @@ if (loginForm) {
 
     try {
       await Api.login(username, password);
+      Alert.success("Login war erfolgreich!");
     }
     catch (e) {
-      console.log(e);
+      Alert.error(e.message);
     }
   });
 }

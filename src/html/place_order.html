@@ -10,6 +10,9 @@ title: Bestellen
         <form id="place-order-form" action="" autocomplete="off">
           <div class="form-group">
             <h1 class="mb-5">Bestellen</h1>
+
+            <div class="alert-outlet"></div>
+
             <p id="description"></p>
             <p id="url"></p>
 
@@ -23,7 +26,7 @@ title: Bestellen
               <input type="text" class="form-control" id="price" placeholder="1,50" name="price" required>
             </div>
 
-            <div class="form-group my-2">
+            <div class="form-group my-2 guest-only">
               <label for="guest" class="form-label mb-0">Gast</label>
               <input type="text" class="form-control" id="guest" placeholder="Gast XY" name="guest">
             </div>
