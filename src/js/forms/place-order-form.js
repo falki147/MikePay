@@ -1,9 +1,31 @@
 import Api from "../api/api";
+import Session from "../api/session";
+import Alert from "../components/alert";
 
 const form = document.getElementById("place-order-form");
 if (form) {
   const params = new URLSearchParams(location.search);
   const orderId = params.get('order_id');
+
+  form.addEventListener("submit", async ev => {
+    ev.preventDefault();
+
+    const item = document.getElementById("item").value;
+    const price = document.getElementById("price").value;
+
+    if (!Session.isLoggedIn()) {
+      // TODO: Add guest implementation
+      throw Error("not implemented");
+    }
+
+    try {
+      await Api.placeOrder(orderId, { userid: Session.id(), item: item, price: price });
+      Alert.success("Bestellung war erfolgreich!");
+    }
+    catch (e) {
+      Alert.error(e.message);
+    }
+  });
 
   async function load() {
     const data = await Api.getOrderInfo(orderId);

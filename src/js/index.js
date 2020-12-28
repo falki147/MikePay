@@ -6,3 +6,12 @@ import "./forms/create-order";
 // import "./tables/load_enter_debts";
 import "./tables/debtor";
 import "./tables/debtors";
+
+import Session from "./api/session";
+
+if (Session.isLoggedIn()) {
+  // Remove guest only elements
+  for (const el of document.getElementsByClassName("guest-only")) {
+    el.remove();
+  }
+}

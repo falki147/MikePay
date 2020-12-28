@@ -11,6 +11,17 @@ export default class Session {
   }
 
   /**
+   * Returns id of user
+   */
+  static id() {
+    if (!this.isLoggedIn()) {
+      throw Error("user not logged in");
+    }
+
+    return this._getData().id;
+  }
+
+  /**
    * Returns first name of user
    */
   static firstname() {
