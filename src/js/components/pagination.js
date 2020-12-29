@@ -19,13 +19,15 @@ export default class Pagination {
       item.classList.remove("disabled");
     }
 
-    if (this._page == 1) {
+    if (items.length !== 0 && this._page == 1) {
       items[0].classList.add("disabled");
     }
 
-    items[this._page].classList.add("active");
+    if (this._page < items.length) {
+      items[this._page].classList.add("active");
+    }
 
-    if (this._page == this._pages) {
+    if (items.length !== 0 && this._page == this._pages) {
       items[items.length - 1].classList.add("disabled");
     }
   }
