@@ -5,13 +5,18 @@ import SortLinks from "../components/sort-links";
 
 const debtorTable = document.getElementById("debtor-table");
 if (debtorTable) {
+  const params = new URLSearchParams(location.search);
+  const userId = params.get('user_id');
+
   const pagination = new Pagination(document.getElementById("debtor-pagination"));
   const sortLinks = new SortLinks(debtorTable);
 
-  async function load() {
-    const params = new URLSearchParams(location.search);
-    const userId = params.get('user_id');
+  async function loadInfo() {
+    const data = await Api.userInfo(userId);
+    document.getElementById("debtor-name").innerText = `${data.firstname} ${data.lastname}`;
+  }
 
+  async function load() {
     const body = debtorTable.getElementsByTagName("tbody")[0];
     const data = await Api.userTransactions(
       userId, pagination.page, sortLinks.selected, sortLinks.ascending
@@ -45,4 +50,5 @@ if (debtorTable) {
   });
 
   load();
+  loadInfo();
 }
