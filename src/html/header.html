@@ -15,8 +15,15 @@ title: Benutzer erstellen
                 <li class="nav-item">
                   <a href="/create_order/" class="nav-link">Bestellung erstellen</a>
                 </li>
-                <li class="nav-item">
-                  <a href="/debtors/" class="nav-link">Schuldnerliste</a>
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Schulden
+                  </a>
+                  <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <li><a href="/debtors/" class="dropdown-item">Schuldnerliste</a></li>
+                    <li><a href="/enter_debts/" class="dropdown-item">Schulden eintragen</a></li>
+                    <li><a href="/settle_debts/" class="dropdown-item">Schulden begleichen</a></li>
+                  </ul>
                 </li>
               </ul>
             </div>
@@ -65,7 +72,7 @@ title: Benutzer erstellen
         
         <div class="row text-center d-flex justify-content-center pt-5 mb-3">
           <div class="col-md-2 mb-3">            
-            <a href="#">Impressum</a>
+            <a href="/impressum/">Impressum</a>
           </div>
           <div class="col-md-2 mb-3">
            <a href="#">About us</a>
@@ -74,7 +81,7 @@ title: Benutzer erstellen
             <a href="#">Help</a>
           </div>
           <div class="col-md-2 mb-3">
-            <a href="#">Contact</a>
+            <a href="/contact/">Contact</a>
           </div>
         </div>
         <hr>

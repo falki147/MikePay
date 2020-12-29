@@ -1,4 +1,5 @@
 import Api from "../api/api";
+import Alert from "../components/alert";
 
 window.addEventListener("load", function () {
   if(document.getElementById("createOrder-form")){
@@ -13,31 +14,21 @@ function validateCreateOrderForm(e){
   let url = document.getElementById("url").value;
   let description = document.getElementById("description").value;
   
-  let flag = 1;
-
-  let reg_titel = /\w+/;
-  let reg_url = /\w+/;
-  let reg_desc = /\w*/;
-
-  if(!reg_titel.test(titel)){
-    document.getElementById("titel-val").innerText = "Bitte geben Sie einen Titel an!";
-    flag = 0;
-  }
-
-  if(!reg_url.test(url)){
-    document.getElementById("url-val").innerText = "Bitte geben Sie einen URL an!";
-    flag = 0;
-  }
-
-  if(!reg_desc.test(description)){
-    document.getElementById("description-val").innerText = "Bitte geben Sie eine Beschreibung an!";
-    flag = 0;
-  }
-
-  if(!flag || !form.checkValidity()){
+  if(!form.checkValidity()){
     e.preventDefault();
     e.stopPropagation();
+  } else {
+    send_created_order({title: titel, description: description, url: url});
   }
 
   form.classList.add('was-validated');
+}
+
+async function send_created_order(data){
+  try{
+    await Api.createOrder(data);
+    //Alert.success("Daten wurden erfolgreich übermittelt.");
+  } catch(e){
+    //Alert.error(e.message);
+  }
 }

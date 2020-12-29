@@ -7,26 +7,69 @@ title: Schulden eintragen
   <div class="vh-100 d-flex justify-content-center align-items-center">
     <div class="shadow p-3 mb-5 bg-white rounded">
       <div class="m-4">
-        <form id="enterDebts-form" class="needs-validation" action="" autocomplete="off" novalidate>
+        <form id="enter-debts-form" class="needs-validation" action="" autocomplete="off" novalidate>
           <div class="form-group">
             <h1 class="mb-5">Schulden eintragen</h1>
 
             <div class="form-group my-2">
-              <label for="debtors" class="form-label mb-0">Schuldner auswählen</label>
-              <select class="form-select" name="debtors" id="debtors">
-                <option selected>Schuldner ...</option>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="checkUserGuest" id="checkUserSelection" checked>
+                <label class="form-check-label" for="checkUserSelection">Benutzer</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="checkUserGuest" id="checkGuestSelection">
+                <label class="form-check-label" for="checkUserSelection">Gast</label>
+              </div>
+            </div>
+
+            <!-- User-part -->
+            <div class="form-group my-2">
+              <label for="enter_debts_user_select" class="form-label mb-0">Benutzer auswählen</label>
+              <select class="form-select" name="enter_debts_user_select" id="enter_debts_user_select" required>
+                <option value="" selected>Benutzer ...</option>
               </select>
+              <div id="user-enter-debts-val" class="invalid-feedback">
+                Bitte wählen Sie einen Benutzer aus!
+              </div>
+              <div class="valid-feedback">
+                In Ordnung!
+              </div>
+            </div>
+
+            <!-- Guest-part -->
+            <div class="form-group my-2">
+              <label for="firstname_enter_debts" class="form-label mb-0">Vorname</label>
+              <input type="text" class="form-control" id="firstname_enter_debts" placeholder="Max" name="firstname_enter_debts" pattern="\w+(-\w+)*" disabled>
+              <div id="firstname-enter-debts-val" class="invalid-feedback">
+                Bitte geben Sie für den Gast einen Vornamen an!
+              </div>
+              <div class="valid-feedback">
+                In Ordnung!
+              </div>
             </div>
 
             <div class="form-group my-2">
-              <label for="amount" class="form-label mb-0">Offener Betrag</label>
-              <input type="text" class="form-control" id="amount" placeholder="amount" name="amount">
+              <label for="lastname_enter_debts" class="form-label mb-0">Nachname</label>
+              <input type="text" class="form-control" id="lastname_enter_debts" placeholder="Mustermann" name="lastname_enter_debts" pattern="\w+(-\w+)*" disabled>
+              <div id="lastname-enter-debts-val" class="invalid-feedback">
+                Bitte geben Sie für den Gast einen Nachnamen an!
+              </div>
+              <div class="valid-feedback">
+                In Ordnung!
+              </div>
             </div>
 
             <div class="form-group my-2">
-              <label for="settle" class="form-label mb-0">zu begleichender Betrag</label>
-              <input type="text" class="form-control" id="settle" placeholder="...€" name="settle" required>
+              <label for="amount_enter_debts" class="form-label mb-0">Betrag</label>
+              <input type="text" class="form-control" id="amount_enter_debts" placeholder="amount" name="amount_enter_debts" pattern="\d+(.\d+)*" required>
+              <div id="amount-enter-debts-val" class="invalid-feedback">
+                Bitte geben Sie einen gültigen Betrag ein!
+              </div>
+              <div class="valid-feedback">
+                In Ordnung!
+              </div>
             </div>
+            
 
             <div class="form-group mt-4">
               <button type="submit" class="btn btn-lg btn-primary w-100">Bestätigen</button>
