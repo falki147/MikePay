@@ -1,7 +1,11 @@
-module.exports = {
-	dir: {
-		input: 'src/html',
-		output: 'dist',
-		includes: 'includes'
-	}
+module.exports = config => {
+  config.addPassthroughCopy("assets");
+
+  return {
+    dir: {
+      input: 'src/html',
+      output: 'dist',
+      includes: 'includes'
+    }
+  };
 };
