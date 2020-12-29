@@ -19,7 +19,7 @@ if (form) {
     }
 
     try {
-      await Api.placeOrder(orderId, { userid: Session.id(), item: item, price: price });
+      await Api.placeOrder(orderId, { userid: await Session.id(), item: item, price: price });
       Alert.success("Bestellung war erfolgreich!");
     }
     catch (e) {

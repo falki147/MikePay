@@ -15,9 +15,13 @@ import "./tables/orders";
 
 import Session from "./api/session";
 
-if (Session.isLoggedIn()) {
-  // Remove guest only elements
-  for (const el of document.getElementsByClassName("guest-only")) {
-    el.remove();
+async function sessionStart() {
+  if (await Session.isLoggedIn()) {
+    // Remove guest only elements
+    for (const el of document.getElementsByClassName("guest-only")) {
+      el.remove();
+    }
   }
 }
+
+sessionStart();

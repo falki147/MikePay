@@ -1,3 +1,5 @@
+import Api from "./api";
+
 let data = null;
 const sessionKey = "mikepay_session";
 
@@ -6,52 +8,25 @@ export default class Session {
    * Check if user is logged in
    * @returns {Boolean}
    */
-  static isLoggedIn() {
-    return this._getData().loggedIn;
+  static async isLoggedIn() {
+    const data = await this._getData();
+    return data.loggedIn;
   }
 
-  /**
-   * Returns id of user
-   */
-  static id() {
-    if (!this.isLoggedIn()) {
-      throw Error("user not logged in");
-    }
-
-    return this._getData().id;
+  static async id() {
+    return (await this.data()).id;
   }
 
-  /**
-   * Returns first name of user
-   */
-  static firstname() {
-    if (!this.isLoggedIn()) {
-      throw Error("user not logged in");
-    }
-
-    return this._getData().firstname;
+  static async username() {
+    return (await this.data()).username;
   }
 
-  /**
-   * Returns last name of user
-   */
-  static lastname() {
-    if (!this.isLoggedIn()) {
-      throw Error("user not logged in");
-    }
-
-    return this._getData().lastname;
+  static async firstname() {
+    return (await this.data()).firstname;
   }
 
-  /**
-   * Returns user name of user
-   */
-  static username() {
-    if (!this.isLoggedIn()) {
-      throw Error("user not logged in");
-    }
-
-    return this._getData().username;
+  static async lastname() {
+    return (await this.data()).lastname;
   }
 
   /**
@@ -71,7 +46,20 @@ export default class Session {
     this._updateData();
   }
 
-  static _getData() {
+  /**
+   * Returns data of user
+   */
+  static async data() {
+    const data = await this._getData();
+
+    if (!await this.isLoggedIn()) {
+      throw Error("user not logged in");
+    }
+
+    return data;
+  }
+
+  static async _getData() {
     if (data) {
       return data;
     }
@@ -80,6 +68,13 @@ export default class Session {
 
     const item = sessionStorage.getItem(sessionKey);
     if (!item) {
+      try {
+        data = await Api.sessionInfo();
+        data.loggedIn = true;
+        this._updateData();
+      }
+      catch(e) {}
+
       return data;
     }
 
