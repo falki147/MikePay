@@ -47,6 +47,14 @@ import Session from "./session";
  * @property {String} total debt, which is still left
  */
 
+ /**
+ * @typedef {Object} UserInfo
+ * @property {Number} id
+ * @property {String} username
+ * @property {String} firstname
+ * @property {String} lastname
+ */
+
 /**
  * @typedef {Object} Transaction
  * @property {Number} id
@@ -202,6 +210,14 @@ export default class Api {
    */
   static async createUser(data) {
     await JSONHttpClient.post(`${config.apiBaseURL}/user`, data);
+  }
+
+  /**
+   * @param {Number} id user id
+   * @returns {UserInfo}
+   */
+  static async userInfo(id) {
+    return await JSONHttpClient.get(`${config.apiBaseURL}/user/${id}`);
   }
 
   /**
