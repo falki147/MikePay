@@ -21,6 +21,7 @@ import Session from "./session";
  * @property {String} url
  * @property {String} comments
  * @property {String} date
+ * @property {String} total
  */
 
 /**
