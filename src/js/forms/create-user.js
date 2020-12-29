@@ -8,6 +8,7 @@ window.addEventListener("load", function () {
 });
 
 function validateCreateUserForm(e){
+  e.preventDefault();
   
   const form = document.getElementById("createUser-form");
   let firstname = document.getElementById("firstname").value;
@@ -15,10 +16,7 @@ function validateCreateUserForm(e){
   let username = document.getElementById("username").value;
   let password = document.getElementById("password").value;
   
-  if(!form.checkValidity()){
-    e.preventDefault();
-    e.stopPropagation();
-  } else {
+  if(form.checkValidity()){
     send_crated_user({username: username, firstname: firstname, lastname: lastname, password: password});
   }
 

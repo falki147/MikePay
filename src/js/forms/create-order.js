@@ -8,17 +8,15 @@ window.addEventListener("load", function () {
 });
 
 function validateCreateOrderForm(e){
+  e.preventDefault();
 
   const form = document.getElementById("createOrder-form");
   let titel = document.getElementById("titel").value;
   let url = document.getElementById("url").value;
   let description = document.getElementById("description").value;
   
-  if(!form.checkValidity()){
-    e.preventDefault();
-    e.stopPropagation();
-  } else {
-    send_created_order({title: titel, description: description, url: url});
+  if(form.checkValidity()){
+    send_created_order({title: titel, description: description, url: url, comments: ""});
   }
 
   form.classList.add('was-validated');
