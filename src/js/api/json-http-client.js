@@ -7,7 +7,8 @@ export default class JSONHttpClient {
     const response = await fetch(url, {
       headers: {
         "Accept": "application/json"
-      }
+      },
+      credentials: "include"
     });
 
     if (response.status !== 200) {
@@ -27,9 +28,10 @@ export default class JSONHttpClient {
       method: "POST",
       headers: {
         "Accept": "application/json",
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
       },
-      body: JSON.stringify(data)
+      body: JSON.stringify(data),
+      credentials: "include"
     });
 
     if (response.status !== 200) {

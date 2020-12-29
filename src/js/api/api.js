@@ -53,6 +53,7 @@ import Session from "./session";
  * @property {String} username
  * @property {String} firstname
  * @property {String} lastname
+ * @property {String} role
  */
 
 /**
@@ -218,6 +219,13 @@ export default class Api {
    */
   static async userInfo(id) {
     return await JSONHttpClient.get(`${config.apiBaseURL}/user/${id}`);
+  }
+
+  /**
+   * @returns {UserInfo}
+   */
+  static async sessionInfo() {
+    return await JSONHttpClient.get(`${config.apiBaseURL}/user`);
   }
 
   /**
