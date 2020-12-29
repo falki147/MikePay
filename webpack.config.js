@@ -2,6 +2,8 @@ const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
+  // TODO: Disable for prod
+  mode: "development",
   plugins: [
     new MiniCssExtractPlugin()
   ],
