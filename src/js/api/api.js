@@ -262,4 +262,14 @@ export default class Api {
       message: message
     });
   }
+
+  /**
+   * Add payment to transactions
+   * @param {Object} data
+   * @param {String} data.userid
+   * @param {String} data.amount
+   */
+  static async pay(data) {
+    await JSONHttpClient.post(`${config.apiBaseURL}/transaction/pay`, data);
+  }
 };
