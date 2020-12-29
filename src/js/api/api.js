@@ -53,6 +53,7 @@ import Session from "./session";
  * @property {String} date
  * @property {String} item
  * @property {Number} order_id
+ * @property {String} order_title
  */
 
 /**
