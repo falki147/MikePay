@@ -8,6 +8,7 @@ window.addEventListener("load", function () {
 });
 
 function validateContactForm(e){
+  e.preventDefault();
   
   const form = document.getElementById("contact-form");
   
@@ -16,10 +17,7 @@ function validateContactForm(e){
   let email = document.getElementById("email_contact_form").value;
   let description = document.getElementById("description_contact_form").value;
   
-  if(!form.checkValidity()){
-    e.preventDefault();
-    e.stopPropagation();
-  } else {
+  if(form.checkValidity()){
     send_contact(email, firstname + " " + lastname, description);
   }
 
