@@ -264,12 +264,26 @@ export default class Api {
   }
 
   /**
-   * Add payment to transactions
+   * Add payment
    * @param {Object} data
    * @param {String} data.userid
    * @param {String} data.amount
    */
   static async pay(data) {
     await JSONHttpClient.post(`${config.apiBaseURL}/transaction/pay`, data);
+  }
+
+  /**
+   * Add debt
+   * Either userid or firstname and lastname must be set.
+   * If userid is not set, a new user is created.
+   * @param {Object} data
+   * @param {String} data.amount
+   * @param {String} [data.userid]
+   * @param {String} [data.firstname]
+   * @param {String} [data.lastname]
+   */
+  static async addDebt(data) {
+    await JSONHttpClient.post(`${config.apiBaseURL}/transaction/owe`, data);
   }
 };
