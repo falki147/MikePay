@@ -67,6 +67,15 @@ import Session from "./session";
  */
 
 /**
+ * @typedef {Object} UserTransaction
+ * @extends Transaction
+ * @property {Number} user_id
+ * @property {String} username
+ * @property {String} firstname
+ * @property {String} lastname
+ */
+
+/**
  * @template T
  * @typedef {Object} Paginated
  * @property {Number} current_page
@@ -149,6 +158,18 @@ export default class Api {
   static async debts(page, sort, ascending) {
     return await JSONHttpClient.get(
       `${config.apiBaseURL}/user/debts?page=${page}&sort=${sort || ''}&asc=${!!ascending}`
+    );
+  }
+
+  /**
+   * @param {Number} page
+   * @param {String} sort can be "amount", "date" or "name"
+   * @param {String} ascending
+   * @returns {Paginated<UserTransaction>}
+   */
+  static async transactions(id, page, sort, ascending) {
+    return await JSONHttpClient.get(
+      `${config.apiBaseURL}/transaction?page=${page}&sort=${sort || ''}&asc=${!!ascending}`
     );
   }
 
