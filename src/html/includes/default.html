@@ -11,51 +11,50 @@
   <body class="vh-100 d-flex flex-column">
     <!-- header -->
     <header>
-      <nav class="bg-white">
-        <div class="border-bottom border-2">
-          <div class="row align-items-center ms-0 me-0">
-            <div class="col-auto">
-              <img src="/assets/mikepay.svg">
-            </div>
-            <div class="col">
-              <ul class="nav py-3 border-0">
-                <li class="nav-item">
-                  <a href="/create_user/" class="nav-link active">Benutzer erstellen</a>
-                </li>
-                <li class="nav-item">
-                  <a href="/create_order/" class="nav-link">Bestellung erstellen</a>
-                </li>
-                <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    Schulden
-                  </a>
-                  <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <li><a href="/debtors/" class="dropdown-item">Schuldnerliste</a></li>
-                    <li><a href="/debt_history/" class="dropdown-item">Schuldenhistorie</a></li>
-                    <li><a href="/enter_debts/" class="dropdown-item">Schulden eintragen</a></li>
-                    <li><a href="/settle_debts/" class="dropdown-item">Schulden begleichen</a></li>
-                  </ul>
-                </li>
-              </ul>
-            </div>
-            <div class="col-auto">
-              <ul class="nav py-3 border-0">
-                <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    Mein Profil
-                  </a>
-                  <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <li><a href="#" class="dropdown-item">Profil anzeigen</a></li>
-                    <li><a href="#" class="dropdown-item">Schulden anzeigen</a></li>
-                  </ul>
-                </li>
-                <li class="nav-item">
-                  <button class="btn btn-primary nav-item">Abmelden</button>
-                </li>
-              </ul>
-            </div>
+      <nav class="navbar navbar-expand-lg navbar-light border-bottom border-2">
+        <div class="container-fluid">
+          <div class="navbar-brand">
+            <img src="/assets/mikepay.svg">
           </div>
-        <div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link" href="/create_user/">Benutzer erstellen</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/create_order/">Bestellung erstellen</a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbar-dropdown-lists" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Schulden
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbar-dropdown-lists">
+                  <li><a href="/debtors/" class="dropdown-item">Schuldnerliste</a></li>
+                  <li><a href="/debt_history/" class="dropdown-item">Schuldenhistorie</a></li>
+                  <li><a href="/enter_debts/" class="dropdown-item">Schulden eintragen</a></li>
+                  <li><a href="/settle_debts/" class="dropdown-item">Schulden begleichen</a></li>
+                </ul>
+              </li>
+            </ul>
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbar-dropdown-profile" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Mein Profil
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbar-dropdown-profile">
+                  <li><a href="#" class="dropdown-item">Profil anzeigen</a></li>
+                  <li><a href="#" class="dropdown-item">Schulden anzeigen</a></li>
+                </ul>
+              </li>
+              <li class="nav-item">
+                <button class="btn btn-primary nav-item">Abmelden</button>
+              </li>
+            </ul>
+          </div>
+        </div>
       </nav>
     </header>
 
