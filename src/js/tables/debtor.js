@@ -24,13 +24,19 @@ if (debtorTable) {
 
     let html = "";
     for (const item of data.items) {
-      let itemName = "";
+      let orderTitle = "Keine Bestellung";
       if (item.order_id) {
-        itemName = `<a href="/order/?order_id=${item.order_id}">${encode(item.item)}</a>`;
+        orderTitle = `<a href="/order/?order_id=${item.order_id}">${encode(item.order_title)} (${encode(item.order_id)})</a>`;
+      }
+
+      let itemTitle = item.item;
+      if (!itemTitle) {
+        itemTitle = item.amount < 0 ? "Schulden" : "Rückzahlung";
       }
 
       html += "<tr>";
-      html += `  <td>${itemName}</td>`;
+      html += `  <td>${encode(itemTitle)}</td>`;
+      html += `  <td>${orderTitle}</td>`;
       html += `  <td>${encode(item.amount)}</td>`;
       html += `  <td>${encode(item.date)}</td>`;
       html += "</tr>";
