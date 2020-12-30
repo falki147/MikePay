@@ -13,7 +13,7 @@ if (debtorTable) {
 
   async function loadInfo() {
     const data = await Api.userInfo(userId);
-    document.getElementById("debtor-name").innerText = `${data.firstname} ${data.lastname}`;
+    document.getElementById("debtor-name").innerText = `Schuldner - ${data.firstname} ${data.lastname}`;
   }
 
   async function load() {

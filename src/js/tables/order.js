@@ -13,7 +13,7 @@ if (debtorTable) {
 
   async function loadInfo() {
     const data = await Api.orderInfo(orderId);
-    document.getElementById("order-title").innerText = data.title;
+    document.getElementById("order-title").innerText = "Bestellung - " + data.title;
     document.getElementById("order-description").innerText = data.description;
   }
 
