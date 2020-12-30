@@ -236,6 +236,19 @@ export default class Api {
   }
 
   /**
+   * Edits an existing user
+   * @param {Number} id userid
+   * @param {Object} data
+   * @param {String} [data.username]
+   * @param {String} [data.firstname]
+   * @param {String} [data.lastname]
+   * @param {String} [data.password]
+   */
+  static async createUser(id, data) {
+    await JSONHttpClient.patch(`${config.apiBaseURL}/user/${id}`, data);
+  }
+
+  /**
    * @param {Number} id user id
    * @returns {UserInfo}
    */

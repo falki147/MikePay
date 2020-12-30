@@ -42,6 +42,29 @@ export default class JSONHttpClient {
   }
 
   /**
+   * Perform HTTP Path request on url
+   * @param {String} url
+   * @param {Object} data Body of the request sent as JSON
+   */
+  static async patch(url, data) {
+    const response = await fetch(url, {
+      method: "PATCH",
+      headers: {
+        "Accept": "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+      credentials: "include"
+    });
+
+    if (response.status !== 200) {
+      await this.handleError(response);
+    }
+
+    return await response.json();
+  }
+
+  /**
    * Helper function to throw exception when request failed
    * @param {Response} response 
    */
