@@ -2,6 +2,7 @@ import Api from "../api/api";
 import encode from "../utils/encode";
 import Pagination from "../components/pagination";
 import SortLinks from "../components/sort-links";
+import Loader from "../components/loader";
 
 const debtorTable = document.getElementById("debtor-table");
 if (debtorTable) {
@@ -12,11 +13,15 @@ if (debtorTable) {
   const sortLinks = new SortLinks(debtorTable);
 
   async function loadInfo() {
+    Loader.begin();
     const data = await Api.userInfo(userId);
     document.getElementById("debtor-name").innerText = `Schuldner - ${data.firstname} ${data.lastname}`;
+    Loader.end();
   }
 
   async function load() {
+    Loader.begin();
+
     const body = debtorTable.getElementsByTagName("tbody")[0];
     const data = await Api.userTransactions(
       userId, pagination.page, sortLinks.selected, sortLinks.ascending
@@ -44,6 +49,8 @@ if (debtorTable) {
 
     body.innerHTML = html;
     pagination.pages = data.pages;
+
+    Loader.end();
   }
  
   pagination.onClick(() => {
