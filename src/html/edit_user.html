@@ -1,73 +1,65 @@
 ---
-layout: default
-title: Benutzer verwalten_
+layout: form
+title: Benutzer verwalten
 ---
 
-<div class="container">
-  <div class="vh-100 d-flex justify-content-center align-items-center">
-    <div class="shadow p-3 mb-5 bg-white rounded">
-      <div class="m-4">
-        <form id="edit-user-form" class="needs-validation" action="" autocomplete="off" novalidate>
-          <div class="form-group">
-            <h1 class="mb-5">Benutzer bearbeiten</h1>
+<form id="edit-user-form" class="needs-validation" action="" autocomplete="off" novalidate>
+  <div class="form-group">
+    <h1 class="mb-5">Benutzer bearbeiten</h1>
 
-            <div class="alert-outlet"></div>
-            
+    <div class="alert-outlet"></div>
+    
 
-            <div class="form-group my-2">
-              <label for="firstname_edit" class="form-label mb-0">Vorname</label>
-              <input type="text" class="form-control" id="firstname_edit" name="firstname_edit" pattern="\w+(-\w+)*" required>
-              <div id="firstname-val" class="invalid-feedback">
-                Bitte geben Sie ihren Vornamen an!
-              </div>
-              <div class="valid-feedback">
-                In Ordnung!
-              </div>
-            </div>
-
-            <div class="form-group my-2">
-              <label for="lastname_edit" class="form-label mb-0">Nachname</label>
-              <input type="text" class="form-control" id="lastname_edit" name="lastname_edit" pattern="\w+(-\w+)*" required>
-              <div id="lastname-val" class="invalid-feedback">
-                Bitte geben Sie ihren Nachnamen an!
-              </div>
-              <div class="valid-feedback">
-                In Ordnung!
-              </div>
-            </div>
-
-            <div class="form-group my-2">
-              <label for="username_edit" class="form-label mb-0">Benutzername</label>
-              <input type="text" class="form-control" id="username_edit" name="username_edit" pattern="\w+" required>
-              <div id="username-val" class="invalid-feedback">
-                Bitte geben Sie einen Usernamen an!
-              </div>
-              <div class="valid-feedback">
-                In Ordnung!
-              </div>
-            </div>
-
-            <div class="form-group my-2">
-              <label for="username" class="form-label mb-0">Passwort</label>
-              <input type="password_edit" class="form-control" id="password_edit" name="password_edit" pattern="^(?=.*\d)(?=.*[A-Z])(?=.*[a-z]).{8,}$" required>
-              <div id="password-val" class="invalid-feedback">
-                Bitte geben Sie ein Passwort an!
-              </div>
-              <div class="valid-feedback">
-                In Ordnung!
-              </div>
-            </div>
-
-            <div class="form-group mt-4">
-              <button type="submit" class="btn btn-lg btn-primary w-100">Speichern</button>
-            </div>
-
-            <div class="form-group text-center">
-              <label>&copy MikePay Inc.</label>
-            </div>
-          </div>
-        </form>
+    <div class="form-group my-2">
+      <label for="firstname_edit" class="form-label mb-0">Vorname</label>
+      <input type="text" class="form-control" id="firstname_edit" name="firstname_edit" pattern="\w+(-\w+)*" required>
+      <div id="firstname-val" class="invalid-feedback">
+        Bitte geben Sie ihren Vornamen an!
+      </div>
+      <div class="valid-feedback">
+        In Ordnung!
       </div>
     </div>
+
+    <div class="form-group my-2">
+      <label for="lastname_edit" class="form-label mb-0">Nachname</label>
+      <input type="text" class="form-control" id="lastname_edit" name="lastname_edit" pattern="\w+(-\w+)*" required>
+      <div id="lastname-val" class="invalid-feedback">
+        Bitte geben Sie ihren Nachnamen an!
+      </div>
+      <div class="valid-feedback">
+        In Ordnung!
+      </div>
+    </div>
+
+    <div class="form-group my-2">
+      <label for="username_edit" class="form-label mb-0">Benutzername</label>
+      <input type="text" class="form-control" id="username_edit" name="username_edit" pattern="\w+" required>
+      <div id="username-val" class="invalid-feedback">
+        Bitte geben Sie einen Usernamen an!
+      </div>
+      <div class="valid-feedback">
+        In Ordnung!
+      </div>
+    </div>
+
+    <div class="form-group my-2">
+      <label for="username" class="form-label mb-0">Passwort</label>
+      <input type="password_edit" class="form-control" id="password_edit" name="password_edit" pattern="^(?=.*\d)(?=.*[A-Z])(?=.*[a-z]).{8,}$" required>
+      <div id="password-val" class="invalid-feedback">
+        Bitte geben Sie ein Passwort an!
+      </div>
+      <div class="valid-feedback">
+        In Ordnung!
+      </div>
+    </div>
+
+    <div class="form-group mt-4">
+      <button type="submit" class="btn btn-lg btn-primary w-100">Speichern</button>
+    </div>
+
+    <div class="form-group text-center">
+      <label>&copy MikePay Inc.</label>
+    </div>
   </div>
-</div>
+</form>
