@@ -9,11 +9,15 @@ if (debtorTable) {
   const pagination = new Pagination(document.getElementById("debtors-pagination"));
   const sortLinks = new SortLinks(debtorTable);
 
+  let queryString = "";
+
   async function load() {
     Loader.begin();
 
     const body = debtorTable.getElementsByTagName("tbody")[0];
-    const data = await Api.debts(pagination.page, sortLinks.selected, sortLinks.ascending);
+    const data = await Api.debts(
+      pagination.page, sortLinks.selected, sortLinks.ascending, queryString
+    );
 
     let html = "";
     for (const item of data.items) {
@@ -39,6 +43,18 @@ if (debtorTable) {
   sortLinks.onChange(() => {
     pagination.page = 1;
     load();
+  });
+
+  const searchForm = document.getElementById("search-form");
+  searchForm.addEventListener("submit", ev => {
+    ev.preventDefault();
+
+    const searchInputField = document.getElementById("debtors-search");
+    if (searchInputField.value !== queryString) {
+      queryString = searchInputField.value;
+      pagination.page = 1;
+      load();
+    }
   });
 
   load();

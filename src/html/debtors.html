@@ -6,6 +6,17 @@ title: Schuldnerliste
 <div class="container">
   <h1>Schuldner</h1>
 
+  <form id="search-form">
+    <div class="input-group mb-3">
+      <input type="text" class="form-control"
+             placeholder="Name" aria-label="Name"
+             aria-describedby="debtors-search-btn"
+             name="query" id="debtors-search">
+      <input class="btn btn-outline-primary" type="submit"
+             id="debtors-search-btn" value="Search">
+    </div>
+  </form>
+
   <table id="debtors-table" class="table">
     <thead>
       <tr>

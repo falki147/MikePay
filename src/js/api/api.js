@@ -153,11 +153,12 @@ export default class Api {
    * @param {Number} page
    * @param {String} sort can be "debt", "paid", "total" or "name"
    * @param {String} ascending
+   * @param {String} [query] search string for finding user
    * @returns {Paginated<BalanceInfo>}
    */
-  static async debts(page, sort, ascending) {
+  static async debts(page, sort, ascending, query) {
     return await JSONHttpClient.get(
-      `${config.apiBaseURL}/user/debts?page=${page}&sort=${sort || ''}&asc=${!!ascending}`
+      `${config.apiBaseURL}/user/debts?page=${page}&sort=${sort || ''}&asc=${!!ascending}&query=${query || ""}`
     );
   }
 
