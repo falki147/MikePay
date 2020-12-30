@@ -8,7 +8,7 @@
     <script defer src="/main.js"></script>
     <link rel="stylesheet" href="/main.css">
   </head>
-  <body>
+  <body class="vh-100 d-flex flex-column">
     <!-- header -->
     <header>
       <nav class="bg-white">
@@ -59,7 +59,9 @@
       </nav>
     </header>
 
-    {{ content | safe }}
+    <main class="flex-grow-1">
+      {{ content | safe }}
+    </main>
 
     <!-- footer -->
     <footer class="">

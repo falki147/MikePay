@@ -2,6 +2,7 @@ import Api from "../api/api";
 import encode from "../utils/encode";
 import Pagination from "../components/pagination";
 import SortLinks from "../components/sort-links";
+import Loader from "../components/loader";
 
 const debtorTable = document.getElementById("order-table");
 if (debtorTable) {
@@ -12,12 +13,15 @@ if (debtorTable) {
   const sortLinks = new SortLinks(debtorTable);
 
   async function loadInfo() {
+    Loader.begin();
     const data = await Api.orderInfo(orderId);
-    document.getElementById("order-title").innerText = data.title;
+    document.getElementById("order-title").innerText = "Bestellung - " + data.title;
     document.getElementById("order-description").innerText = data.description;
+    Loader.end();
   }
 
   async function load() {
+    Loader.begin();
     const body = debtorTable.getElementsByTagName("tbody")[0];
     const data = await Api.orderPositions(
       orderId, pagination.page, sortLinks.selected, sortLinks.ascending
@@ -35,6 +39,7 @@ if (debtorTable) {
 
     body.innerHTML = html;
     pagination.pages = data.pages;
+    Loader.end();
   }
  
   pagination.onClick(() => {

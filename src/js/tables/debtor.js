@@ -2,6 +2,7 @@ import Api from "../api/api";
 import encode from "../utils/encode";
 import Pagination from "../components/pagination";
 import SortLinks from "../components/sort-links";
+import Loader from "../components/loader";
 
 const debtorTable = document.getElementById("debtor-table");
 if (debtorTable) {
@@ -12,11 +13,15 @@ if (debtorTable) {
   const sortLinks = new SortLinks(debtorTable);
 
   async function loadInfo() {
+    Loader.begin();
     const data = await Api.userInfo(userId);
-    document.getElementById("debtor-name").innerText = `${data.firstname} ${data.lastname}`;
+    document.getElementById("debtor-name").innerText = `Schuldner - ${data.firstname} ${data.lastname}`;
+    Loader.end();
   }
 
   async function load() {
+    Loader.begin();
+
     const body = debtorTable.getElementsByTagName("tbody")[0];
     const data = await Api.userTransactions(
       userId, pagination.page, sortLinks.selected, sortLinks.ascending
@@ -24,13 +29,19 @@ if (debtorTable) {
 
     let html = "";
     for (const item of data.items) {
-      let itemName = "";
+      let orderTitle = "Keine Bestellung";
       if (item.order_id) {
-        itemName = `<a href="/order/?order_id=${item.order_id}">${encode(item.item)}</a>`;
+        orderTitle = `<a href="/order/?order_id=${item.order_id}">${encode(item.order_title)} (${encode(item.order_id)})</a>`;
+      }
+
+      let itemTitle = item.item;
+      if (!itemTitle) {
+        itemTitle = item.amount < 0 ? "Schulden" : "Rückzahlung";
       }
 
       html += "<tr>";
-      html += `  <td>${itemName}</td>`;
+      html += `  <td>${encode(itemTitle)}</td>`;
+      html += `  <td>${orderTitle}</td>`;
       html += `  <td>${encode(item.amount)}</td>`;
       html += `  <td>${encode(item.date)}</td>`;
       html += "</tr>";
@@ -38,6 +49,8 @@ if (debtorTable) {
 
     body.innerHTML = html;
     pagination.pages = data.pages;
+
+    Loader.end();
   }
  
   pagination.onClick(() => {
