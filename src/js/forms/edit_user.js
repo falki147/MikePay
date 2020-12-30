@@ -1,5 +1,5 @@
 import Api from "../api/api";
-//import Session from "../api/session";
+import Session from "../api/session";
 import Alert from "../components/alert";
 
 window.addEventListener("load", function () {

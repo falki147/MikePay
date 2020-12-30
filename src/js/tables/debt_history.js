@@ -3,6 +3,7 @@ import encode from "../utils/encode";
 import Pagination from "../components/pagination";
 import SortLinks from "../components/sort-links";
 
+//
 const debt_history_table = document.getElementById("debt-history-table");
 
 if(debt_history_table){
@@ -12,7 +13,7 @@ if(debt_history_table){
   async function load() {
     const body = debt_history_table.getElementsByTagName("tbody")[0];
     const data = await Api.transactions(1, pagination.page, sortLinks.selected, sortLinks.ascending);
-    
+
     let html = "";
     for (const item of data.items) {
       html += "<tr>";
