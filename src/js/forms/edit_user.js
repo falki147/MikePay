@@ -19,6 +19,7 @@ async function load_user_info(){
   try{
     const data = await Api.userInfo(await Session.id());
     //const data = await Api.userInfo(1);
+    
     console.log(data);
     firstname.value = data.firstname;
     lastname.value = data.lastname;
