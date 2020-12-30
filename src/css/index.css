@@ -5,3 +5,8 @@
   color: inherit;
   text-decoration: inherit;
 }
+
+.form-wrapper {
+  width: 100%;
+  max-width: 450px;
+}
