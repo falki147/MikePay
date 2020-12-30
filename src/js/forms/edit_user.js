@@ -5,7 +5,7 @@ import Alert from "../components/alert";
 window.addEventListener("load", function () {
   if(document.getElementById("edit-user-form")){
     load_user_info();
-    document.getElementById("edit-user-form").addEventListener("submit", validateCreateUserForm);
+    document.getElementById("edit-user-form").addEventListener("submit", validate_edit_user_form);
   }
 });
 
@@ -17,22 +17,23 @@ async function load_user_info(){
   let password = document.getElementById("password_edit");
 
   try{
-    const data = await Api.userInfo(Session.id());
+    const data = await Api.userInfo(await Session.id());
+    //const data = await Api.userInfo(1);
     console.log(data);
-    //Alert.success("Yay");
+    firstname.value = data.firstname;
+    lastname.value = data.lastname;
+    username.value = data.username;
+    password.value = data.password;
   } catch(e){
-    //Alert.error(e);
+    Alert.error(e);
   }
   
-  firstname.innerText = data.firstname;
-  lastname.innerText = data.lastname;
-  username.innerText = data.username;
-  password.innerText = data.password;
+  
 }
 
 function validate_edit_user_form(e){
   e.preventDefault();
-  
+
   const form = document.getElementById("edit-user-form");
   let firstname = document.getElementById("firstname_edit").value;
   let lastname = document.getElementById("lastname_edit").value;
