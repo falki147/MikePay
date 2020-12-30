@@ -6,6 +6,8 @@ import "./forms/create-order";
 import "./forms/enter-debts";
 import "./forms/settle_debts";
 import "./forms/contact-form";
+//import "./forms/edit_user";
+import "./tables/debt_history";
 import "./tables/load_settle_debts";
 import "./tables/load_enter_debts";
 import "./tables/debtor";
