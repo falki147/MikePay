@@ -3,6 +3,7 @@ import encode from "../utils/encode";
 import Pagination from "../components/pagination";
 import SortLinks from "../components/sort-links";
 import Loader from "../components/loader";
+import getShortDate from "../utils/dateShort";
 
 const debtorTable = document.getElementById("orders-table");
 if (debtorTable) {
@@ -19,7 +20,7 @@ if (debtorTable) {
       html += "<tr>";
       html += `  <td>${encode(item.title)}</td>`;
       html += `  <td>${encode(item.total)}</td>`;
-      html += `  <td>${encode(item.date)}</td>`;
+      html += `  <td>${encode(getShortDate(item.date))}</td>`;
       html += `  <td><a href="/order/?order_id=${item.id}">Details</a></td>`;
       html += "</tr>";
     }
