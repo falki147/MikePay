@@ -24,7 +24,7 @@ async function load_user_info(){
     firstname.value = data.firstname;
     lastname.value = data.lastname;
     username.value = data.username;
-    password.value = data.password;
+    password.value = "";
   } catch(e){
     Alert.error(e);
   }
@@ -40,8 +40,15 @@ function validate_edit_user_form(e){
   let lastname = document.getElementById("lastname_edit").value;
   let username = document.getElementById("username_edit").value;
   let password = document.getElementById("password_edit").value;
-  
-  if(form.checkValidity()){
+  let password_conf = document.getElementById("password_edit_conf").value;
+
+  if(password != password_conf){
+    document.getElementById("password_edit_conf").setCustomValidity("do not match");
+  } else {
+    document.getElementById("password_edit_conf").setCustomValidity("");
+  }
+
+  if((password == password_conf) && form.checkValidity()){
     //TODO adapt data format
     send_edited_data({username: username, firstname: firstname, lastname: lastname, password: password});
   }

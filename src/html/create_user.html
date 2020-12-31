@@ -41,12 +41,23 @@ title: Benutzer erstellen
     </div>
 
     <div class="form-group my-2">
-      <label for="username" class="form-label mb-0">Passwort</label>
+      <label for="password" class="form-label mb-0">Passwort</label>
       <input type="password" class="form-control" id="password" placeholder="********" name="password" pattern="^(?=.*\d)(?=.*[A-Z])(?=.*[a-z]).{8,}$" required>
       <div id="password-val" class="invalid-feedback">
         Bitte geben Sie ein Passwort an!
       </div>
       <div class="valid-feedback">
+        In Ordnung!
+      </div>
+    </div>
+
+    <div class="form-group my-2">
+      <label for="password_conf" class="form-label mb-0">Passwort-Bestätigung</label>
+      <input type="password" class="form-control" id="password_conf" placeholder="********" name="password_conf" pattern="^(?=.*\d)(?=.*[A-Z])(?=.*[a-z]).{8,}$" required>
+      <div id="password-conf-inv" class="invalid-feedback">
+        Bitte bestätigen Sie ihr Passwort!
+      </div>
+      <div id="password-conf-val" class="valid-feedback">
         In Ordnung!
       </div>
     </div>

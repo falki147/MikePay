@@ -15,8 +15,15 @@ function validateCreateUserForm(e){
   let lastname = document.getElementById("lastname").value;
   let username = document.getElementById("username").value;
   let password = document.getElementById("password").value;
-  
-  if(form.checkValidity()){
+  let password_conf = document.getElementById("password_conf").value;
+
+  if(password != password_conf){
+    document.getElementById("password_conf").setCustomValidity("do not match");
+  } else {
+    document.getElementById("password_conf").setCustomValidity("");
+  }
+
+  if((password == password_conf) && form.checkValidity()){
     send_crated_user({username: username, firstname: firstname, lastname: lastname, password: password});
   }
 
