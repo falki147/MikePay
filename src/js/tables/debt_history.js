@@ -19,8 +19,7 @@ if(debt_history_table){
     for (const item of data.items) {
       html += "<tr>";
       html += `  <td><a href="/debtor/?user_id=${item.user_id}">${encode(item.firstname)} ${encode(item.lastname)}</a></td>`;
-      html += `  <td><a href="/order/?order_id=${item.order_id}">${encode(item.order_id)}</a></td>`;
-      html += `  <td>${encode(item.order_title)}</td>`;
+      html += `  <td><a href="/order/?order_id=${item.order_id}">${encode(item.order_title)} (${encode(item.order_id)})</a></td>`;
       html += `  <td>${encode(item.item)}</td>`;
       html += `  <td>${encode(item.amount)}</td>`;
       html += `  <td>${encode(getShortDate(item.date))}</td>`;
