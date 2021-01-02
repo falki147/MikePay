@@ -1,5 +1,6 @@
 import Api from "../api/api";
 import Alert from "../components/alert";
+import Loader from "../components/loader";
 
 window.addEventListener("load", function () {
   if(document.getElementById("contact-form")){
@@ -26,9 +27,12 @@ function validateContactForm(e){
 
 async function send_contact(email, name, message){
   try{
+    Loader.begin(document.getElementById("contact-btn"));
     await Api.contact(email, name, message);
     Alert.success("Ihr Anliegen wurde weitergeleitet.");
   } catch(e){
     Alert.error(e.message);
   }
+
+  Loader.end();
 }

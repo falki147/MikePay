@@ -1,6 +1,7 @@
 import Api from "../api/api";
 import Session from "../api/session";
 import Alert from "../components/alert";
+import Loader from "../components/loader";
 
 window.addEventListener("load", function () {
   if(document.getElementById("enter-debts-form")){
@@ -59,9 +60,12 @@ async function validateEnterDebtForm(e){
 
 async function send_entry_debt(){
   try {
+    Loader.begin(document.getElementById("enter-debts-btn"));
     Api.addDebt(data);
     Alert.success("Schulden wurden erfolgreich eingetragen");
   } catch(e) {
     Alert.error("Schulden konnten nicht eingetragen werden");
   }
+
+  Loader.end();
 }

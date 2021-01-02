@@ -1,6 +1,7 @@
 import Api from "../api/api";
 import Session from "../api/session";
 import Alert from "../components/alert";
+import Loader from "../components/loader";
 
 window.addEventListener("load", function () {
   if(document.getElementById("settle-debts-form")){
@@ -29,9 +30,12 @@ function validateSettleDebtForm(e){
 
 async function send_settle_debt(data){
   try {
+    Loader.begin(document.getElementById("settle-debts-btn"));
     Api.pay(data);
     Alert.success("Schulden wurden erfolgreich begliechen");
   } catch(e) {
     Alert.error("Schulden konnten nicht begliechen werden");
   }
+
+  Loader.end();
 }

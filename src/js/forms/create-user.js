@@ -1,5 +1,6 @@
 import Api from "../api/api";
 import Alert from "../components/alert";
+import Loader from "../components/loader";
 
 window.addEventListener("load", function () {
   if(document.getElementById("createUser-form")){
@@ -32,9 +33,12 @@ function validateCreateUserForm(e){
 
 async function send_crated_user(data){
   try{
+    Loader.begin(document.getElementById("create-user-btn"));
     await Api.createUser(data);
     Alert.success("Benutzer wurde erfolgreich erstellt!");
   } catch(e){
     Alert.error("Fehler beim Erstellen des Benutzers!");
   }
+
+  Loader.end();
 }

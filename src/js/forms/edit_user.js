@@ -1,6 +1,7 @@
 import Api from "../api/api";
 import Session from "../api/session";
 import Alert from "../components/alert";
+import Loader from "../components/loader";
 
 window.addEventListener("load", function () {
   if(document.getElementById("edit-user-form")){
@@ -53,9 +54,12 @@ function validate_edit_user_form(e){
 
 async function send_edited_data(data){
   try {
+    Loader.begin(document.getElementById("edit-user-btn"));
     //TODO Api call
     Alert.success("yay");
   } catch(e) {
     Alert.error(e);
   }
+
+  Loader.end();
 }

@@ -1,6 +1,7 @@
 import Api from "../api/api";
 import Session from "../api/session";
 import Alert from "../components/alert";
+import Loader from "../components/loader";
 
 const form = document.getElementById("place-order-form");
 if (form) {
@@ -19,12 +20,15 @@ if (form) {
     }
 
     try {
+      Loader.begin(document.getElementById("place-order-btn"));
       await Api.placeOrder(orderId, { userid: await Session.id(), item: item, price: price });
       Alert.success("Bestellung war erfolgreich!");
     }
     catch (e) {
       Alert.error(e.message);
     }
+
+    Loader.end();
   });
 
   async function load() {

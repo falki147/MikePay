@@ -1,5 +1,6 @@
 import Api from "../api/api";
 import Alert from "../components/alert";
+import Loader from "../components/loader";
 
 window.addEventListener("load", function () {
   if(document.getElementById("createOrder-form")){
@@ -24,9 +25,12 @@ function validateCreateOrderForm(e){
 
 async function send_created_order(data){
   try{
+    Loader.begin(document.getElementById("create-order-btn"));
     await Api.createOrder(data);
     Alert.success("Bestellung wurde erfolgreich erstellt.");
   } catch(e){
     Alert.error(e.message);
   }
+
+  Loader.end();
 }
