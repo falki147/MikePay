@@ -12,7 +12,7 @@ async function load_entries() {
   const selector = document.getElementById("settle_debts_select");
   let amount = document.getElementById("settle_debts_amount");
   if(selector && amount){
-    const data = await Api.allDebts(null, true);
+    const data = await Api.allDebts("name", true);
     
     let debts_arr = [];
     let options = "";
@@ -29,7 +29,7 @@ async function load_entries() {
 async function change_Amount(){
   
   const currentItem = document.getElementById("settle_debts_select").value;
-  const data = await Api.allDebts(null, true);
+  const data = await Api.allDebts("name", true);
 
   for (const item of data) {
     if((item.firstname + " " + item.lastname) == currentItem){

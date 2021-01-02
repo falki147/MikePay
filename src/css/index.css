@@ -10,3 +10,44 @@
   width: 100%;
   max-width: 450px;
 }
+
+.loading {
+  position: relative;
+}
+
+.loading::before {
+  content: "";
+  display: block;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background: #fff;
+  z-index: 1001;
+}
+
+.loading::after {
+  content: "";
+  display: block;
+  width: 50px;
+  height: 50px;
+  border: 2px solid #000;
+  border-color: transparent #000 #000 #000;
+  border-radius: 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: loading-animation 1s linear infinite;
+  z-index: 1002;
+}
+
+@keyframes loading-animation {
+  from {
+    transform: rotate(0);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

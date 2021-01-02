@@ -12,9 +12,10 @@ if (debtorTable) {
   let queryString = "";
 
   async function load() {
-    Loader.begin();
-
     const body = debtorTable.getElementsByTagName("tbody")[0];
+
+    Loader.begin(body);
+
     const data = await Api.debts(
       pagination.page, sortLinks.selected, sortLinks.ascending, queryString
     );

@@ -11,8 +11,10 @@ if (debtorTable) {
   const sortLinks = new SortLinks(debtorTable);
 
   async function load() {
-    Loader.begin();
     const body = debtorTable.getElementsByTagName("tbody")[0];
+
+    Loader.begin(body);
+
     const data = await Api.orders(pagination.page, sortLinks.selected, sortLinks.ascending);
 
     let html = "";

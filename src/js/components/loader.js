@@ -1,49 +1,28 @@
 let count = 0;
 
 export default class Loader {
-  static begin() {
+  static begin(elem) {
+    // Either add class to element or on main element
+    elem = elem || document.getElementsByTagName("main")[0];
+
+    // TODO: Make sure elem isn't a child of an exisiting loading element
+    elem.classList.add("loading");
+
+    // Remove loading class on children
+    for (const child of elem.getElementsByClassName("loading")) {
+      child.classList.remove("loading");
+    }
+
     ++count;
-    this.update();
   }
 
   static end() {
     --count;
-    this.update();
-  }
-
-  static update() {
-    const main = document.querySelector("main");
-
+    
     if (count == 0) {
-      if (main) {
-        main.style.display = "block";
-      }
-      
-      const spinner = document.getElementById("spinner-wrapper");
-
-      if (spinner) {
-        spinner.remove();
-      }
-    }
-    else {
-      if (main) {
-        const height = main.getBoundingClientRect().height;
-        main.style.display = "none";
-
-        if (!document.getElementById("spinner-wrapper")) {
-          const spinner = document.createElement("div");
-          spinner.id = "spinner-wrapper";
-          spinner.className = "d-flex flex-grow-1 justify-content-center";
-
-          // Keep height of original content
-          spinner.style.minHeight = height + "px";
-
-          spinner.innerHTML =
-            `<div class="spinner-border my-3" role="status">
-              <span class="visually-hidden">Loading...</span>
-            </div>`;
-          main.parentNode.insertBefore(spinner, main.nextSibling);
-        }
+      // Remove loading class from every element
+      for (const child of document.getElementsByClassName("loading")) {
+        child.classList.remove("loading");
       }
     }
   }
