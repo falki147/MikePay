@@ -22,8 +22,10 @@ if (debtorTable) {
   }
 
   async function load() {
-    Loader.begin();
     const body = debtorTable.getElementsByTagName("tbody")[0];
+
+    Loader.begin(body);
+
     const data = await Api.orderPositions(
       orderId, pagination.page, sortLinks.selected, sortLinks.ascending
     );
