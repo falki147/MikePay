@@ -26,16 +26,15 @@ if (debtorTable) {
 
       for (const item of data.items) {
         html += "<tr>";
-        html += `  <td>${encode(item.firstname)} ${encode(item.lastname)}</td>`;
+        html += `  <td><a href="/debtor/?user_id=${item.id}">${encode(item.firstname)} ${encode(item.lastname)}</a></td>`;
         html += `  <td>${encode(item.debt)}</td>`;
         html += `  <td>${encode(item.paid)}</td>`;
         html += `  <td>${encode(item.total)}</td>`;
-        html += `  <td><a href="/debtor/?user_id=${item.id}">Details</a></td>`;
         html += "</tr>";
       }
 
     } else {
-      html += `<td colspan="5" align="center"> Keine Daten </td>`;
+      html += `<td colspan="4" align="center"> Keine Daten </td>`;
     }
 
     body.innerHTML = html;

@@ -20,10 +20,9 @@ if (debtorTable) {
     let html = "";
     for (const item of data.items) {
       html += "<tr>";
-      html += `  <td>${encode(item.title)}</td>`;
+      html += `  <td><a href="/order/?order_id=${item.id}">${encode(item.title)}</a></td>`;
       html += `  <td>${encode(item.total)}</td>`;
       html += `  <td>${encode(getShortDate(item.date))}</td>`;
-      html += `  <td><a href="/order/?order_id=${item.id}">Details</a></td>`;
       html += "</tr>";
     }
 
