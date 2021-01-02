@@ -13,7 +13,7 @@ export default class Loader {
       // Add spinner to button when it wasn't already added
       if (elem.getElementsByClassName("spinner-border").length === 0) {
         elem.innerHTML =
-          "<span class=\"align-baseline spinner-border spinner-border-sm\" " +
+          "<span class=\"align-baseline fs-6 spinner-border spinner-border-sm\" " +
           "      role=\"status\" " +
           "      aria-hidden=\"true\">" +
           "</span> " + elem.innerHTML;
