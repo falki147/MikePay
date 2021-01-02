@@ -9,7 +9,7 @@ async function load_entries_enter_debts() {
   
   const selector = document.getElementById("enter_debts_user_select");
   if(selector){
-    const data = await Api.allDebts(null, true);
+    const data = await Api.allDebts("name", true);
     
     let debts_arr = [];
     let options = "";
