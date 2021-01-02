@@ -89,8 +89,13 @@ export default class Session {
     if (sessionItem !== "true" || !storageItem) {
       // Try to get data from server
       try {
-        data = await Api.sessionInfo();
-        data.loggedIn = true;
+        const sessionData = await Api.sessionInfo();
+
+        if (sessionData !== null) {
+          data = sessionData;
+          data.loggedIn = true;
+        }
+
         this._updateData();
       }
       catch(e) {}

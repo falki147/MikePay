@@ -258,12 +258,12 @@ export default class Api {
   }
 
   /**
-   * @returns {UserInfo}
+   * @returns {UserInfo|null}
    */
   static async sessionInfo() {
     const data = await JSONHttpClient.get(`${config.apiBaseURL}/user`);
     if (!data.id) {
-      throw Error("user isn't logged in");
+      return null;
     }
     return data;
   }
