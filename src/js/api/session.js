@@ -1,7 +1,23 @@
 import Api from "./api";
 
+Api.onUserChange(() => {
+  // Invalidate user data when user changed
+  Session.invalidate();
+});
+
 let data = null;
 const sessionKey = "mikepay_session";
+const storageKey = "mikepay_session";
+
+/**
+ * @typedef {Object} SessionUserInfo
+ * @property {Boolean} loggedIn
+ * @property {Number} id
+ * @property {String} username
+ * @property {String} firstname
+ * @property {String} lastname
+ * @property {String} role
+ */
 
 export default class Session {
   /**
@@ -13,52 +29,41 @@ export default class Session {
     return data.loggedIn;
   }
 
+  /**
+   * Retrieve id from current user
+   * @returns {Boolean}
+   */
   static async id() {
     return (await this.data()).id;
   }
 
-  static async username() {
-    return (await this.data()).username;
-  }
-
-  static async firstname() {
-    return (await this.data()).firstname;
-  }
-
-  static async lastname() {
-    return (await this.data()).lastname;
-  }
-
   /**
-   * Set user session data
-   */
-  static login(userdata) {
-    data = userdata;
-    data.loggedIn = true;
-    this._updateData();
-  }
-
-  /**
-   * Clear session
-   */
-  static logout() {
-    data = { loggedIn: false };
-    this._updateData();
-  }
-
-  /**
-   * Returns data of user
+   * Returns data of the current user
+   * @returns {SessionUserInfo}
    */
   static async data() {
     const data = await this._getData();
 
-    if (!await this.isLoggedIn()) {
+    if (!data.loggedIn) {
       throw Error("user not logged in");
     }
 
     return data;
   }
 
+  /**
+   * Clears all saved data
+   * This forces the client to fetch the user data from the server next time.
+   */
+  static invalidate() {
+    sessionStorage.removeItem(sessionKey);
+    localStorage.removeItem(localStorage);
+  }
+
+  /**
+   * Retrieves session user data from either local storage (when recent) or server
+   * @returns {SessionUserInfo}
+   */
   static async _getData() {
     if (data) {
       return data;
@@ -66,8 +71,10 @@ export default class Session {
 
     data = { loggedIn: false };
 
-    const item = sessionStorage.getItem(sessionKey);
-    if (!item) {
+    const sessionItem = sessionStorage.getItem(sessionKey);
+    const storageItem = localStorage.getItem(storageKey);
+
+    if (sessionItem !== "true" || !storageItem) {
       try {
         data = await Api.sessionInfo();
         data.loggedIn = true;
@@ -79,7 +86,7 @@ export default class Session {
     }
 
     try {
-      data = JSON.parse(item);
+      data = JSON.parse(storageItem);
     }
     catch (e) {
       // Log exception and return default session
@@ -89,7 +96,11 @@ export default class Session {
     return data;
   }
 
+  /**
+   * Store current data in local/session storage
+   */
   static _updateData() {
-    sessionStorage.setItem(sessionKey, JSON.stringify(data));
+    sessionStorage.setItem(sessionKey, "true");
+    localStorage.setItem(storageKey, JSON.stringify(data));
   }
 };

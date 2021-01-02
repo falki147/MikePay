@@ -18,7 +18,7 @@ async function load_user_info(){
   let password = document.getElementById("password_edit");
 
   try{
-    const data = await Api.userInfo(await Session.id());
+    const data = await Session.data();
     firstname.value = data.firstname;
     lastname.value = data.lastname;
     username.value = data.username;

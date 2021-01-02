@@ -1,6 +1,5 @@
 import config from "../config";
 import JSONHttpClient from "./json-http-client";
-import Session from "./session";
 
 /**
  * @typedef {Object} Order
@@ -84,6 +83,8 @@ import Session from "./session";
  * @property {T[]} items
  */
 
+let onUserChangeCallbacks = [];
+
 export default class Api {
   /**
    * Log user in
@@ -95,8 +96,7 @@ export default class Api {
       `${config.apiBaseURL}/login`,
       { username: username, password: password }
     );
-
-    Session.login(userdata);
+    this._triggerOnUserChangeCallbacks();
   }
 
   /**
@@ -104,7 +104,7 @@ export default class Api {
    */
   static async logout() {
     await JSONHttpClient.post(`${config.apiBaseURL}/logout`);
-    Session.logout();
+    this._triggerOnUserChangeCallbacks();
   }
 
   /**
@@ -244,8 +244,9 @@ export default class Api {
    * @param {String} [data.lastname]
    * @param {String} [data.password]
    */
-  static async createUser(id, data) {
+  static async editUser(id, data) {
     await JSONHttpClient.patch(`${config.apiBaseURL}/user/${id}`, data);
+    this._triggerOnUserChangeCallbacks();
   }
 
   /**
@@ -303,5 +304,22 @@ export default class Api {
    */
   static async addDebt(data) {
     await JSONHttpClient.post(`${config.apiBaseURL}/transaction/owe`, data);
+  }
+
+  /**
+   * Add callback which gets called when something user related changed
+   * @param {Function} cb
+   */
+  static onUserChange(cb) {
+    onUserChangeCallbacks.push(cb);
+  }
+
+  /**
+   * Call all onUserChange-Callbacks
+   */
+  static _triggerOnUserChangeCallbacks() {
+    for (const cb of onUserChangeCallbacks) {
+      cb();
+    }
   }
 };
