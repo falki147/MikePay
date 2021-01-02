@@ -14,7 +14,9 @@
       <nav class="navbar navbar-expand-lg navbar-light border-bottom border-2">
         <div class="container-fluid">
           <div class="navbar-brand">
-            <img src="/assets/mikepay.svg">
+            <a href="/start_page/">
+              <img src="/assets/mikepay.svg">
+            </a>
           </div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -24,13 +26,10 @@
               <li class="nav-item">
                 <a class="nav-link" href="/start_page/">Home</a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/create_user/">Benutzer erstellen</a>
-              </li>
-              <li class="nav-item">
+              <li class="nav-item user-only">
                 <a class="nav-link" href="/create_order/">Bestellung erstellen</a>
               </li>
-              <li class="nav-item dropdown">
+              <li class="nav-item dropdown user-only">
                 <a class="nav-link dropdown-toggle" href="#" id="navbar-dropdown-lists" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                   Schulden
                 </a>
@@ -43,7 +42,7 @@
               </li>
             </ul>
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-              <li class="nav-item dropdown">
+              <li class="nav-item dropdown user-only">
                 <a class="nav-link dropdown-toggle" href="#" id="navbar-dropdown-profile" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                   Mein Profil
                 </a>
@@ -52,8 +51,14 @@
                   <li><a href="#" class="dropdown-item">Schulden anzeigen</a></li>
                 </ul>
               </li>
-              <li class="nav-item">
-                <button id="btn-logout"class="btn btn-primary nav-item">Abmelden</button>
+              <li class="nav-item user-only">
+                <button id="logout-btn" class="btn btn-primary nav-item">Abmelden</button>
+              </li>
+              <li class="nav-item guest-only">
+                <a class="nav-link" href="/login/">Anmelden</a>
+              </li>
+              <li class="nav-item guest-only">
+                <a class="btn btn-primary nav-item" href="/create_user/">Benutzer erstellen</a>
               </li>
             </ul>
           </div>

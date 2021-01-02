@@ -17,12 +17,35 @@ import "./tables/orders";
 
 import Session from "./api/session";
 import Api from "./api/api";
+import Loader from "./components/loader";
 
 async function sessionStart() {
   if (await Session.isLoggedIn()) {
     // Remove guest only elements
-    for (const el of document.getElementsByClassName("guest-only")) {
+    for (const el of [...document.getElementsByClassName("guest-only")]) {
       el.remove();
+    }
+
+    // Display user only elements
+    for (const el of [...document.getElementsByClassName("user-only")]) {
+      el.classList.remove("user-only");
+    }
+
+    const profileNav = document.getElementById("navbar-dropdown-profile");
+    if (profileNav) {
+      const data = await Session.data();
+      profileNav.innerText = `${data.firstname} ${data.lastname}`;
+    }
+  }
+  else {
+    // Remove user only elements
+    for (const el of [...document.getElementsByClassName("user-only")]) {
+      el.remove();
+    }
+
+    // Display guest only elements
+    for (const el of [...document.getElementsByClassName("guest-only")]) {
+      el.classList.remove("guest-only");
     }
   }
 }
@@ -30,13 +53,18 @@ async function sessionStart() {
 sessionStart();
 
 window.onload = function(){
-  document.getElementById("btn-logout").addEventListener("click", sessionLogout);
-}
+  const logoutButton = document.getElementById("logout-btn");
+  if (logoutButton) {
+    logoutButton.addEventListener("click", async () => {
+      try{
+        Loader.begin(logoutButton);
+        await Api.logout();
+        window.location = "/start_page/";
+      } catch(e) {
+        console.log(e);
+      }
 
-async function sessionLogout(){
-  try{
-    await Api.logout();
-  } catch(e) {
-    console.log(e);
+      Loader.end();
+    });
   }
 }
