@@ -3,6 +3,7 @@ import encode from "../utils/encode";
 import Pagination from "../components/pagination";
 import SortLinks from "../components/sort-links";
 import getShortDate from "../utils/dateShort";
+import Loader from "../components/loader";
 
 //
 const debt_history_table = document.getElementById("debt-history-table");
@@ -13,6 +14,9 @@ if(debt_history_table){
 
   async function load() {
     const body = debt_history_table.getElementsByTagName("tbody")[0];
+
+    Loader.begin(body);
+
     const data = await Api.transactions(1, pagination.page, sortLinks.selected, sortLinks.ascending);
 
     let html = "";
@@ -34,6 +38,7 @@ if(debt_history_table){
     }
     body.innerHTML = html;
     
+    Loader.end();
   }
  
   pagination.onClick(() => {
