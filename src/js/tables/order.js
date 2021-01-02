@@ -18,6 +18,18 @@ if (debtorTable) {
     const data = await Api.orderInfo(orderId);
     document.getElementById("order-title").innerText = "Bestellung - " + data.title;
     document.getElementById("order-description").innerText = data.description;
+
+    if (data.url) {
+      const orderLink = document.getElementById("order-link");
+      orderLink.innerText = data.url;
+      orderLink.href = data.url;
+    }
+
+    // TODO: Add prefix
+    const url = `/place_order/?order_id=${orderId}`;
+    const shareLink = document.getElementById("order-share-link");
+    shareLink.href = url;
+
     Loader.end();
   }
 
@@ -31,13 +43,19 @@ if (debtorTable) {
     );
 
     let html = "";
-    for (const item of data.items) {
-      html += "<tr>";
-      html += `  <td>${encode(item.item)}</td>`;
-      html += `  <td>${encode(item.price)}</td>`;
-      html += `  <td><a href="/debtor/?user_id=${item.user_id}">${encode(item.firstname)} ${encode(item.lastname)}</a></td>`;
-      html += `  <td>${encode(getShortDate(item.date))}</td>`;
-      html += "</tr>";
+
+    if (data.items.length !== 0) {
+      for (const item of data.items) {
+        html += "<tr>";
+        html += `  <td>${encode(item.item)}</td>`;
+        html += `  <td>${encode(item.price)}</td>`;
+        html += `  <td><a href="/debtor/?user_id=${item.user_id}">${encode(item.firstname)} ${encode(item.lastname)}</a></td>`;
+        html += `  <td>${encode(getShortDate(item.date))}</td>`;
+        html += "</tr>";
+      }
+    }
+    else {
+      html = "<tr><td class=\"text-center\" colspan=\"4\">Keine Daten</td></tr>";
     }
 
     body.innerHTML = html;
