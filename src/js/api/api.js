@@ -198,9 +198,11 @@ export default class Api {
    * @param {String} data.description Description
    * @param {String} data.url Url to the shop
    * @param {String} data.comments Additional comments
+   * @returns id of the new order
    */
   static async createOrder(data) {
-    await JSONHttpClient.post(`${config.apiBaseURL}/order`, data);
+    const orderData = await JSONHttpClient.post(`${config.apiBaseURL}/order`, data);
+    return orderData.id;
   }
 
   /**

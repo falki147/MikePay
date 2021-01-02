@@ -26,8 +26,9 @@ function validateCreateOrderForm(e){
 async function send_created_order(data){
   try{
     Loader.begin(document.getElementById("create-order-btn"));
-    await Api.createOrder(data);
+    const orderId = await Api.createOrder(data);
     Alert.success("Bestellung wurde erfolgreich erstellt.");
+    window.location = `/order/?order_id=${orderId}`;
   } catch(e){
     Alert.error(e.message);
   }
