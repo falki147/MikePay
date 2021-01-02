@@ -68,7 +68,7 @@ export default class Session {
   static invalidate() {
     data = null;
     sessionStorage.removeItem(sessionKey);
-    localStorage.removeItem(localStorage);
+    localStorage.removeItem(storageKey);
   }
 
   /**
@@ -81,7 +81,7 @@ export default class Session {
     }
 
     // Default to not logged in
-    data = { loggedIn: false };
+    let newData = { loggedIn: false };
 
     const sessionItem = sessionStorage.getItem(sessionKey);
     const storageItem = localStorage.getItem(storageKey);
@@ -92,15 +92,16 @@ export default class Session {
         const sessionData = await Api.sessionInfo();
 
         if (sessionData !== null) {
-          data = sessionData;
-          data.loggedIn = true;
+          newData = sessionData;
+          newData.loggedIn = true;
         }
 
         this._updateData();
       }
       catch(e) {}
 
-      return data;
+      data = newData;
+      return newData;
     }
 
     try {
@@ -109,6 +110,7 @@ export default class Session {
     catch (e) {
       // Log exception and return default session
       console.log(e);
+      data = newData;
     }
 
     return data;
