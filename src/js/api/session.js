@@ -5,8 +5,13 @@ Api.onUserChange(() => {
   Session.invalidate();
 });
 
+/** Caches the user data */
 let data = null;
+
+/** Session storage key */
 const sessionKey = "mikepay_session";
+
+/** Local storage key */
 const storageKey = "mikepay_session";
 
 /**
@@ -19,6 +24,11 @@ const storageKey = "mikepay_session";
  * @property {String} role
  */
 
+/**
+ * Class which handles the session on the client
+ * The session data is stored in localStorage. If it isn't present or out of date, a call to the api
+ * is made.
+ */
 export default class Session {
   /**
    * Check if user is logged in
@@ -56,6 +66,7 @@ export default class Session {
    * This forces the client to fetch the user data from the server next time.
    */
   static invalidate() {
+    data = null;
     sessionStorage.removeItem(sessionKey);
     localStorage.removeItem(localStorage);
   }
@@ -69,12 +80,14 @@ export default class Session {
       return data;
     }
 
+    // Default to not logged in
     data = { loggedIn: false };
 
     const sessionItem = sessionStorage.getItem(sessionKey);
     const storageItem = localStorage.getItem(storageKey);
 
     if (sessionItem !== "true" || !storageItem) {
+      // Try to get data from server
       try {
         data = await Api.sessionInfo();
         data.loggedIn = true;
