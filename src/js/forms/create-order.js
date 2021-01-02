@@ -25,8 +25,8 @@ function validateCreateOrderForm(e){
 async function send_created_order(data){
   try{
     await Api.createOrder(data);
-    //Alert.success("Daten wurden erfolgreich übermittelt.");
+    Alert.success("Bestellung wurde erfolgreich erstellt.");
   } catch(e){
-    //Alert.error(e.message);
+    Alert.error(e.message);
   }
 }

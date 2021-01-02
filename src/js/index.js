@@ -16,6 +16,7 @@ import "./tables/order";
 import "./tables/orders";
 
 import Session from "./api/session";
+import Api from "./api/api";
 
 async function sessionStart() {
   if (await Session.isLoggedIn()) {
@@ -27,3 +28,15 @@ async function sessionStart() {
 }
 
 sessionStart();
+
+window.onload = function(){
+  document.getElementById("btn-logout").addEventListener("click", sessionLogout);
+}
+
+async function sessionLogout(){
+  try{
+    await Api.logout();
+  } catch(e) {
+    console.log(e);
+  }
+}

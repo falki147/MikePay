@@ -18,9 +18,6 @@ async function load_user_info(){
 
   try{
     const data = await Api.userInfo(await Session.id());
-    //const data = await Api.userInfo(1);
-    
-    console.log(data);
     firstname.value = data.firstname;
     lastname.value = data.lastname;
     username.value = data.username;
@@ -28,8 +25,6 @@ async function load_user_info(){
   } catch(e){
     Alert.error(e);
   }
-  
-  
 }
 
 function validate_edit_user_form(e){

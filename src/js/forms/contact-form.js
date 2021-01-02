@@ -27,8 +27,8 @@ function validateContactForm(e){
 async function send_contact(email, name, message){
   try{
     await Api.contact(email, name, message);
-    //Alert.success("Daten wurden erfolgreich übermittelt.");
+    Alert.success("Ihr Anliegen wurde weitergeleitet.");
   } catch(e){
-    //Alert.error(e.message);
+    Alert.error(e.message);
   }
 }

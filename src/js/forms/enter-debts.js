@@ -1,4 +1,5 @@
 import Api from "../api/api";
+import Session from "../api/session";
 import Alert from "../components/alert";
 
 window.addEventListener("load", function () {
@@ -38,7 +39,7 @@ function changeSelection(){
   }
 }
 
-function validateEnterDebtForm(e){
+async function validateEnterDebtForm(e){
   
   const form = document.getElementById("enter-debts-form");
   let select = document.getElementById("enter_debts_user_select").value;
@@ -50,8 +51,7 @@ function validateEnterDebtForm(e){
     e.preventDefault();
     e.stopPropagation();
   } else {
-    //TODO : add data to be sent
-    send_entry_debt();
+    send_entry_debt({amount: amount, userid: await Session.id(), firstname: firstname, lastname: lastname});
   }
 
   form.classList.add('was-validated');
@@ -59,7 +59,7 @@ function validateEnterDebtForm(e){
 
 async function send_entry_debt(){
   try {
-    //TODO : Api call
+    Api.addDebt(data);
     Alert.success("Schulden wurden erfolgreich eingetragen");
   } catch(e) {
     Alert.error("Schulden konnten nicht eingetragen werden");

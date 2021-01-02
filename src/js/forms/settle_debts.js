@@ -1,4 +1,5 @@
 import Api from "../api/api";
+import Session from "../api/session";
 import Alert from "../components/alert";
 
 window.addEventListener("load", function () {
@@ -8,7 +9,8 @@ window.addEventListener("load", function () {
 });
 
 function validateSettleDebtForm(e){
-  
+  e.preventDefault();
+
   const form = document.getElementById("settle-debts-form");
   let select = document.getElementById("settle_debts_select").value;
   let amount = document.getElementById("settle_debts_amount").value;
@@ -18,18 +20,28 @@ function validateSettleDebtForm(e){
     e.preventDefault();
     e.stopPropagation();
   } else {
-    //TODO : add data to be sent
-    send_settle_debt();
+    send_settle_debt({userid: get_userid(), amount: settle});
   }
 
   form.classList.add('was-validated');
 }
 
-async function send_settle_debt(){
+async function send_settle_debt(data){
   try {
-    //TODO : Api call
-    Alert.success("Schulden wurden erfolgreich eingetragen");
+    Api.pay(data);
+    Alert.success("Schulden wurden erfolgreich begliechen");
   } catch(e) {
-    Alert.error("Schulden konnten nicht eingetragen werden");
+    Alert.error("Schulden konnten nicht begliechen werden");
+  }
+}
+
+async function get_userid(){
+  const currentItem = document.getElementById("settle_debts_select").value;
+  const data = await Api.allDebts(null, true);
+
+  for (const item of data) {
+    if((item.firstname + " " + item.lastname) == currentItem){
+      return item.id;
+    }
   }
 }

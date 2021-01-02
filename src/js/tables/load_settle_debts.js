@@ -31,7 +31,6 @@ async function change_Amount(){
   const currentItem = document.getElementById("settle_debts_select").value;
   const data = await Api.allDebts(null, true);
 
-  let debts_arr = [];
   for (const item of data) {
     if((item.firstname + " " + item.lastname) == currentItem){
       document.getElementById("settle_debts_amount").value = item.debt;

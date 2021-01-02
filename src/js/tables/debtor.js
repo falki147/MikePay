@@ -29,6 +29,9 @@ if (debtorTable) {
     );
 
     let html = "";
+
+    if(data.items.length > 0) {
+
     for (const item of data.items) {
       let orderTitle = "Keine Bestellung";
       if (item.order_id) {
@@ -46,6 +49,10 @@ if (debtorTable) {
       html += `  <td>${encode(item.amount)}</td>`;
       html += `  <td>${encode(getShortDate(item.date))}</td>`;
       html += "</tr>";
+    }
+
+    } else {
+      html += `<td colspan="4" align="center"> Keine Daten </td>`;
     }
 
     body.innerHTML = html;
