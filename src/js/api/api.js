@@ -260,7 +260,11 @@ export default class Api {
    * @returns {UserInfo}
    */
   static async sessionInfo() {
-    return await JSONHttpClient.get(`${config.apiBaseURL}/user`);
+    const data = await JSONHttpClient.get(`${config.apiBaseURL}/user`);
+    if (!data.id) {
+      throw Error("user isn't logged in");
+    }
+    return data;
   }
 
   /**
