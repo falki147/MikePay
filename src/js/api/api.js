@@ -129,14 +129,6 @@ export default class Api {
   }
 
   /**
-   * TODO: Remove
-   * @deprecated
-   */
-  static async getOrderInfo(id) {
-    return await this.orderInfo(id);
-  }
-
-  /**
    * @param {Number} id order id
    * @param {Number} page
    * @param {String} sort can be "price", "date" or "name"
