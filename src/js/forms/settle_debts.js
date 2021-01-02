@@ -20,7 +20,8 @@ function validateSettleDebtForm(e){
     e.preventDefault();
     e.stopPropagation();
   } else {
-    send_settle_debt({userid: get_userid(), amount: settle});
+    const userId = document.getElementById("settle_debts_select").value;
+    send_settle_debt({userid: userId, amount: settle});
   }
 
   form.classList.add('was-validated');
@@ -32,16 +33,5 @@ async function send_settle_debt(data){
     Alert.success("Schulden wurden erfolgreich begliechen");
   } catch(e) {
     Alert.error("Schulden konnten nicht begliechen werden");
-  }
-}
-
-async function get_userid(){
-  const currentItem = document.getElementById("settle_debts_select").value;
-  const data = await Api.allDebts(null, true);
-
-  for (const item of data) {
-    if((item.firstname + " " + item.lastname) == currentItem){
-      return item.id;
-    }
   }
 }

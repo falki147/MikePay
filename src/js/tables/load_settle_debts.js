@@ -18,7 +18,7 @@ async function load_entries() {
     let options = "";
     for (const item of data) {
       debts_arr.push(item.debt);
-      options += `  <option>${encode(item.firstname)} ${encode(item.lastname)}</option>`;
+      options += `  <option value="${item.id}">${encode(item.firstname)} ${encode(item.lastname)}</option>`;
     }
   
     amount.value = debts_arr[0];
@@ -32,7 +32,7 @@ async function change_Amount(){
   const data = await Api.allDebts("name", true);
 
   for (const item of data) {
-    if((item.firstname + " " + item.lastname) == currentItem){
+    if(item.id == currentItem){
       document.getElementById("settle_debts_amount").value = item.debt;
     }
   }
