@@ -50,10 +50,12 @@ export default class Pagination {
     }
 
     let html = "";
-    html += "<ul class=\"pagination\">";
+    html += "<ul class=\"pagination flex-wrap\">";
 
     html += "<li class=\"page-item page-item-prev\">";
-    html += "  <a class=\"page-link\" href=\"#\" data-page=\"prev\">Previous</a>";
+    html += "  <a class=\"page-link\" href=\"#\" data-page=\"prev\" aria-label=\"Zurück\">";
+    html += "    <i class=\"bi bi-arrow-left\"></i>";
+    html += "  </a>";
     html += "</li>";
     
     for (let i = 1; i <= this._pages; ++i) {
@@ -75,7 +77,9 @@ export default class Pagination {
     }
 
     html += "<li class=\"page-item page-item-next\">";
-    html += "  <a class=\"page-link\" href=\"#\" data-page=\"next\">Next</a>";
+    html += "  <a class=\"page-link\" href=\"#\" data-page=\"next\" aria-label=\"Weiter\">";
+    html += "    <i class=\"bi bi-arrow-right\"></i>";
+    html += "  </a>";
     html += "</li>";
 
     this._element.innerHTML = html;
