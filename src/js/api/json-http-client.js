@@ -69,12 +69,10 @@ export default class JSONHttpClient {
    * @param {Response} response 
    */
   static async handleError(response) {
-    let message = null;
     let code = null;
     try {
       const data = await response.json();
       code = data.code;
-      message = data.message;
     }
     catch (e) {}
 
