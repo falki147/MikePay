@@ -70,11 +70,29 @@ export default class JSONHttpClient {
    */
   static async handleError(response) {
     let message = null;
+    let code = null;
     try {
-      message = (await response.json()).message;
+      const data = await response.json();
+      code = data.code;
+      message = data.message;
     }
     catch (e) {}
-    
-    throw Error(message || `request failed with ${response.status}`);
+
+    console.error("Request failed");
+
+    switch (code) {
+      case "AUTH_FAILED":
+        throw Error("Authentifizierung fehlgeschlagen");
+      case "VALUE_NOT_POSITIVE":
+        throw Error("Wert muss größer als 0 sein");
+      case "VALUE_EMPTY":
+        throw Error("Wert darf nicht leer sein");
+      case "USER_NOT_FOUND":
+        throw Error("Benutzer wurde nicht gefunden");
+      case "ORDER_NOT_FOUND":
+        throw Error("Bestellung wurde nicht gefunden");
+      default:
+        throw Error("Interner Fehler ist aufgetreten");
+    }
   }
 };
