@@ -30,7 +30,7 @@ if (form) {
 
       formWrapper.classList.add("place-order-hide");
 
-      await sleep(500);
+      await sleep(300);
 
       const checkmark = document.createElement("div");
       checkmark.classList.add("checkmark");
@@ -46,7 +46,7 @@ if (form) {
       formWrapper.classList.add("place-order-show");
       formWrapper.style.removeProperty("display");
 
-      await sleep(500);
+      await sleep(300);
 
       formWrapper.classList.remove("place-order-show");
     }

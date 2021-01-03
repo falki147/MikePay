@@ -57,20 +57,18 @@
 }
 
 .place-order-hide {
-  animation: place-order-hide-animation 0.5s ease forwards;
+  animation: place-order-hide-animation 0.25s ease forwards;
 }
 
 .place-order-show {
-  animation: place-order-hide-animation 0.5s ease reverse backwards;
+  animation: place-order-hide-animation 0.25s ease reverse backwards;
 }
 
 @keyframes place-order-hide-animation {
   from {
-    transform: scale(1);
     opacity: 1;
   }
   to {
-    transform: scale(0);
     opacity: 0;
   }
 }
