@@ -1,3 +1,3 @@
 export default {
-  apiBaseURL: "http://mikepay.preinfalk.at/api"
+  apiBaseURL: "https://mikepay.preinfalk.at/api"
 };
