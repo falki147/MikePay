@@ -32,4 +32,5 @@ document.addEventListener("DOMContentLoaded", async () => {
     const id = await Session.id();
     debts.setAttribute("href", "/debtor/?user_id=" + id);
   }
+  
 });
