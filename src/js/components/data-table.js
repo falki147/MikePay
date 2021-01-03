@@ -10,6 +10,10 @@ export default class DataTable {
 
     pagination.onClick(() => {
       this._load();
+      window.scrollTo({
+        top: 0,
+        behavior: "auto"
+      });
     });
   
     sortLinks.onChange(() => {
