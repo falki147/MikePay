@@ -40,9 +40,19 @@ export default class DataTable {
         this._pagination.page, this._sortLinks.selected, this._sortLinks.ascending
       );
 
+      const columnNames =
+        [...this._head.getElementsByTagName("th")].map(e => e.innerText);
+
       let html = "";
       for (const item of data.items) {
-        html += `<tr><td>${this._renderCallback(item).join("</td><td>")}</td></tr>`;
+        html += "<tr>";
+
+        const columns = this._renderCallback(item);
+        for (let i = 0; i < columns.length; ++i) {
+          html += `<td data-label="${encode(columnNames[i])}: ">${columns[i]}</td>`;
+        }
+
+        html += "</tr>";
       }
 
       this._body.innerHTML = html;
