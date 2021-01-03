@@ -216,9 +216,13 @@ export default class Api {
 
   /**
    * Add an order position to an existing order
+   * Either userid or firstname and lastname must be set.
+   * If userid is not set, a new user is created.
    * @param {Number} orderId
    * @param {Object} data
-   * @param {Number} data.userid User, which placed the order
+   * @param {Number} [data.userid] User, which placed the order
+   * @param {String} [data.firstname]
+   * @param {String} [data.lastname]
    * @param {String} data.item Item which the user ordered
    * @param {String} data.price Price as a string e.g. "10,50"
    */

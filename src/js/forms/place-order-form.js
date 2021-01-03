@@ -16,14 +16,19 @@ if (form) {
     const item = document.getElementById("item").value;
     const price = document.getElementById("price").value;
 
-    if (!Session.isLoggedIn()) {
-      // TODO: Add guest implementation
-      throw Error("not implemented");
+    let data = { item: item, price: price };
+
+    if (await Session.isLoggedIn()) {
+      data.userid = await Session.id()
+    }
+    else {
+      data.firstname = document.getElementById("firstname").value;
+      data.lastname = document.getElementById("lastname").value;
     }
 
     try {
       Loader.begin(document.getElementById("place-order-btn"));
-      await Api.placeOrder(orderId, { userid: await Session.id(), item: item, price: price });
+      await Api.placeOrder(orderId, data);
       Loader.end();
 
       const formWrapper = document.getElementsByClassName("form-wrapper")[0];
