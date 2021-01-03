@@ -45,7 +45,6 @@ function validate_edit_user_form(e){
   }
 
   if((password == password_conf) && form.checkValidity()){
-    //TODO adapt data format
     send_edited_data({username: username, firstname: firstname, lastname: lastname, password: password});
   }
 
@@ -55,11 +54,11 @@ function validate_edit_user_form(e){
 async function send_edited_data(data){
   try {
     Loader.begin(document.getElementById("edit-user-btn"));
-    //TODO Api call
-    Alert.success("yay");
+    const id = await Session.id();
+    Api.editUser(id, data);
+    Alert.success("Ihr Konto wurde erfolgreich bearbeitet");
   } catch(e) {
     Alert.error(e);
   }
-
   Loader.end();
 }

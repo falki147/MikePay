@@ -26,4 +26,10 @@ document.addEventListener("DOMContentLoaded", async () => {
     const data = await Session.data();
     profileNav.innerText = `${data.firstname} ${data.lastname}`;
   }
+
+  const debts = document.getElementById("navbar-dropdown-debts");
+  if(debts && await Session.isLoggedIn()){
+    const id = await Session.id();
+    debts.setAttribute("href", "/debtor/?user_id=" + id);
+  }
 });
