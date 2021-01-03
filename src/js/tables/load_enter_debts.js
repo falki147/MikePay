@@ -15,7 +15,7 @@ async function load_entries_enter_debts() {
     let options = "";
     for (const item of data) {
       debts_arr.push(item.debt);
-      options += `  <option>${encode(item.firstname)} ${encode(item.lastname)}</option>`;
+      options += `  <option value="${item.id}">${encode(item.firstname)} ${encode(item.lastname)}</option>`;
     }
     selector.innerHTML = options;
   }

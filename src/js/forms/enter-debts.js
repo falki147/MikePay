@@ -47,12 +47,19 @@ async function validateEnterDebtForm(e){
   let firstname = document.getElementById("firstname_enter_debts").value;
   let lastname = document.getElementById("lastname_enter_debts").value;
   let amount = document.getElementById("amount_enter_debts").value;
+  const rad_user = document.getElementById("checkUserSelection");
 
   if(!form.checkValidity()){
     e.preventDefault();
     e.stopPropagation();
   } else {
-    send_entry_debt({amount: amount, userid: await Session.id(), firstname: firstname, lastname: lastname});
+    
+    if(rad_user.checked){
+      const id = document.getElementById("enter_debts_user_select").value;
+      send_entry_debt({amount: amount, userid: id});
+    } else {
+      send_entry_debt({amount: amount, firstname: firstname, lastname: lastname});
+    }
   }
 
   form.classList.add('was-validated');
