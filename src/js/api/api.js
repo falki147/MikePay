@@ -37,6 +37,14 @@ import JSONHttpClient from "./json-http-client";
  */
 
 /**
+ * @typedef {Object} OrderPositionInfo
+ * @property {Number} id
+ * @property {Number} order_id
+ * @property {String} item
+ * @property {String} price
+ */
+
+/**
  * @typedef {Object} BalanceInfo
  * @property {Number} id user id
  * @property {String} username
@@ -216,6 +224,34 @@ export default class Api {
    */
   static async placeOrder(orderId, data) {
     await JSONHttpClient.post(`${config.apiBaseURL}/order/${orderId}`, data);
+  }
+
+  /**
+   * Get order position info
+   * @param {Number} orderPositionId
+   * @returns {OrderPositionInfo}
+   */
+  static async orderPositionInfo(orderPositionId) {
+    return await JSONHttpClient.get(`${config.apiBaseURL}/order/position/${orderPositionId}`);
+  }
+
+  /**
+   * Edit an order position
+   * @param {Number} orderPositionId
+   * @param {Object} data
+   * @param {String} data.item Item which the user ordered
+   * @param {String} data.price Price as a string e.g. "10,50"
+   */
+  static async editOrderPosition(orderPositionId, data) {
+    await JSONHttpClient.patch(`${config.apiBaseURL}/order/position/${orderPositionId}`, data);
+  }
+
+  /**
+   * Delete an order position
+   * @param {Number} orderPositionId
+   */
+  static async deleteOrderPosition(orderPositionId) {
+    await JSONHttpClient.delete(`${config.apiBaseURL}/order/position/${orderPositionId}`, {});
   }
 
   /**

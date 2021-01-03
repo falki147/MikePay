@@ -4,29 +4,19 @@ import DataTable from "../components/data-table";
 import encode from "../utils/encode";
 import link from "../utils/link";
 import getShortDate from "../utils/dateShort";
+import Session from "../api/session";
 
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", async () => {
   const orderTable = document.getElementById("order-table");
   if (orderTable) {
+    Loader.begin();
+
     const params = new URLSearchParams(location.search);
     const orderId = params.get("order_id");
-
-    const pagination = document.getElementById("order-pagination");
-
-    new DataTable(
-      orderTable, pagination,
-      async (page, sort, asc) => await Api.orderPositions(orderId, page, sort, asc),
-      item => [
-        encode(item.item),
-        encode(item.price),
-        link(`/debtor/?user_id=${item.user_id}`, `${item.firstname} ${item.lastname}`),
-        encode(getShortDate(item.date))
-      ]
-    );
+    const userId = await Session.id();
+    let locked = true;
 
     async function loadInfo() {
-      Loader.begin();
-
       try {
         const data = await Api.orderInfo(orderId);
         document.getElementById("order-title").innerText = "Bestellung - " + data.title;
@@ -43,20 +33,48 @@ document.addEventListener("DOMContentLoaded", () => {
         const shareLink = document.getElementById("order-share-link");
         shareLink.href = url;
 
+        locked = data.status === "locked";
+
         const orderLock = document.getElementById("order-lock");
-        orderLock.checked = data.status === "locked";
+        orderLock.checked = locked;
 
         orderLock.addEventListener("change", async () => {
           await Api.lockOrder(orderId, orderLock.checked);
+          locked = orderLock.checked;
+          dataTable.resetPage();
         });
       }
       catch (e) {
         console.error(e);
       }
-
-      Loader.end();
     }
 
-    loadInfo();
+    await loadInfo();
+
+    const pagination = document.getElementById("order-pagination");
+
+    const dataTable = new DataTable(
+      orderTable, pagination,
+      async (page, sort, asc) => await Api.orderPositions(orderId, page, sort, asc),
+      item => {
+        let title = encode(item.item);
+
+        if (!locked && item.user_id === userId) {
+          title = link(
+            `/edit_order_position/?order_position_id=${item.id}`,
+            `${title} <i class="bi bi-pencil"></i>`, true
+          );
+        }
+
+        return [
+          title,
+          encode(item.price),
+          link(`/debtor/?user_id=${item.user_id}`, `${item.firstname} ${item.lastname}`),
+          encode(getShortDate(item.date))
+        ];
+      }
+    );
+
+    Loader.end();
   }
 });

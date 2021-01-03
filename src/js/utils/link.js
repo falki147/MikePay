@@ -1,13 +1,20 @@
 import encode from "./encode";
 
-export default function link(href, text) {
+export default function link(href, text, raw) {
   if (!href) {
-    return encode(text);
+    return raw ? text : encode(text);
   }
 
   const div = document.createElement("div");
   const anchor = document.createElement("a");
-  anchor.innerText = text;
+
+  if (raw) {
+    anchor.innerHTML = text;
+  }
+  else {
+    anchor.innerText = text;
+  }
+  
   anchor.href = href;
   div.appendChild(anchor);
   return div.innerHTML;

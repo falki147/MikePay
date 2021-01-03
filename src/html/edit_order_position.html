@@ -1,0 +1,61 @@
+---
+layout: form
+title: Bestellung bearbeiten
+---
+
+<form id="edit-order-position-form" class="needs-validation" autocomplete="off" novalidate>
+  <div class="form-group">
+    <h1 class="mb-5">Bestellung bearbeiten</h1>
+
+    <div class="alert-outlet"></div>
+
+    <div class="form-group my-2">
+      <label for="item" class="form-label mb-0">Artikel</label>
+      <input type="text" class="form-control" id="item" name="item" required>
+      <div id="firstname-val" class="invalid-feedback">
+        Bitte geben Sie den Artikelnamen an!
+      </div>
+    </div>
+
+    <div class="form-group my-2">
+      <label for="price" class="form-label mb-0">Preis</label>
+      <input type="text" class="form-control" id="price" name="price" required>
+      <div id="firstname-val" class="invalid-feedback">
+        Bitte geben Sie den Preis an!
+      </div>
+    </div>
+
+    <div class="form-group mt-4">
+      <button type="submit"
+              id="edit-order-position-btn"
+              class="mb-2 btn btn-lg btn-primary w-100">
+        Speichern
+      </button>
+      <button type="button"
+              class="btn btn-lg btn-outline-secondary w-100"
+              data-bs-toggle="modal"
+              data-bs-target="#delete-modal">
+        Löschen
+      </button>
+    </div>
+  </div>
+</form>
+
+<!-- Delete Modal -->
+<div class="modal fade" id="delete-modal" tabindex="-1" aria-labelledby="delete-modal-title">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="delete-modal-title">Löschen bestätigen</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Schließen"></button>
+      </div>
+      <div class="modal-body">
+        Wollen Sie die den Artikel wirklich aus der Bestellung löschen?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Schließen</button>
+        <button type="button" class="btn btn-danger" id="delete-order-position-btn">Löschen</button>
+      </div>
+    </div>
+  </div>
+</div>

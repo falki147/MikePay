@@ -65,6 +65,29 @@ export default class JSONHttpClient {
   }
 
   /**
+   * Perform HTTP Delete request on url
+   * @param {String} url
+   * @param {Object} data Body of the request sent as JSON
+   */
+  static async delete(url, data) {
+    const response = await fetch(url, {
+      method: "DELETE",
+      headers: {
+        "Accept": "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+      credentials: "include"
+    });
+
+    if (response.status !== 200) {
+      await this.handleError(response);
+    }
+
+    return await response.json();
+  }
+
+  /**
    * Helper function to throw exception when request failed
    * @param {Response} response 
    */
@@ -89,6 +112,8 @@ export default class JSONHttpClient {
         throw Error("Benutzer wurde nicht gefunden");
       case "ORDER_NOT_FOUND":
         throw Error("Bestellung wurde nicht gefunden");
+      case "ORDER_POSITION_NOT_FOUND":
+        throw Error("Artikel wurde nicht gefunden");
       default:
         throw Error("Interner Fehler ist aufgetreten");
     }

@@ -21,11 +21,13 @@ export default class Loader {
       }
     }
     else {
-      // TODO: Make sure elem isn't a child of an exisiting loading element
-      elem.classList.add("loading");
+      // Make sure elem isn't a child of an exisiting loading element
+      if (!this._checkClass(elem.parentNode, "loading")) {
+        elem.classList.add("loading");
+      }
 
       // Remove loading class on children
-      for (const child of elem.getElementsByClassName("loading")) {
+      for (const child of [...elem.getElementsByClassName("loading")]) {
         child.classList.remove("loading");
       }
     }
@@ -38,7 +40,7 @@ export default class Loader {
     
     if (count == 0) {
       // Remove loading class from every element
-      for (const child of document.getElementsByClassName("loading")) {
+      for (const child of [...document.getElementsByClassName("loading")]) {
         child.classList.remove("loading");
       }
 
@@ -50,5 +52,17 @@ export default class Loader {
 
       buttonLoaders = [];
     }
+  }
+
+  static _checkClass(elem) {
+    if (!elem) {
+      return false;
+    }
+
+    if (elem.classList && elem.classList.contains("loading")) {
+      return true;
+    }
+
+    return this._checkClass(elem.parentNode);
   }
 };
