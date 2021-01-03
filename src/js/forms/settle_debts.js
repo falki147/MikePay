@@ -22,7 +22,6 @@ function validateSettleDebtForm(e){
     const userId = document.getElementById("settle_debts_select").value;
     send_settle_debt({userid: userId, amount: settle});
   }
-
   form.classList.add('was-validated');
 }
 

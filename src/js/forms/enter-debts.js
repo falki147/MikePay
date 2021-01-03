@@ -61,7 +61,6 @@ async function validateEnterDebtForm(e){
       send_entry_debt({amount: amount, firstname: firstname, lastname: lastname});
     }
   }
-
   form.classList.add('was-validated');
 }
 
