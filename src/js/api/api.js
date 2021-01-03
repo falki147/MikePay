@@ -20,6 +20,7 @@ import JSONHttpClient from "./json-http-client";
  * @property {String} url
  * @property {String} comments
  * @property {String} date
+ * @property {String} status
  * @property {String} total
  */
 
@@ -215,6 +216,15 @@ export default class Api {
    */
   static async placeOrder(orderId, data) {
     await JSONHttpClient.post(`${config.apiBaseURL}/order/${orderId}`, data);
+  }
+
+  /**
+   * Lock or unlock an order
+   * @param {Number} orderId
+   * @param {Boolean} lock
+   */
+  static async lockOrder(orderId, lock) {
+    await JSONHttpClient.post(`${config.apiBaseURL}/order/${orderId}/lock`, { locked: lock });
   }
 
   /**
