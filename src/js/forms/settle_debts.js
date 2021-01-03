@@ -13,8 +13,6 @@ function validateSettleDebtForm(e){
   e.preventDefault();
 
   const form = document.getElementById("settle-debts-form");
-  let select = document.getElementById("settle_debts_select").value;
-  let amount = document.getElementById("settle_debts_amount").value;
   let settle = document.getElementById("settle_debts_settle").value;
 
   if(!form.checkValidity()){
@@ -24,7 +22,6 @@ function validateSettleDebtForm(e){
     const userId = document.getElementById("settle_debts_select").value;
     send_settle_debt({userid: userId, amount: settle});
   }
-
   form.classList.add('was-validated');
 }
 

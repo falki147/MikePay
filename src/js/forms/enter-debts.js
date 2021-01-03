@@ -41,7 +41,7 @@ function changeSelection(){
 }
 
 async function validateEnterDebtForm(e){
-  
+  e.preventDefault();
   const form = document.getElementById("enter-debts-form");
   let select = document.getElementById("enter_debts_user_select").value;
   let firstname = document.getElementById("firstname_enter_debts").value;
@@ -61,11 +61,10 @@ async function validateEnterDebtForm(e){
       send_entry_debt({amount: amount, firstname: firstname, lastname: lastname});
     }
   }
-
   form.classList.add('was-validated');
 }
 
-async function send_entry_debt(){
+async function send_entry_debt(data){
   try {
     Loader.begin(document.getElementById("enter-debts-btn"));
     Api.addDebt(data);
@@ -73,6 +72,5 @@ async function send_entry_debt(){
   } catch(e) {
     Alert.error("Schulden konnten nicht eingetragen werden");
   }
-
   Loader.end();
 }
