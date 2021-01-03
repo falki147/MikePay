@@ -86,8 +86,9 @@ export default class SortLinks {
 
   _update() {
     // Clear previous icons
-    this._element.querySelectorAll(".sort-link i.bi")
-      .forEach(el => el.remove());
+    for (const el of [...this._element.querySelectorAll(".sort-link i.bi")]) {
+      el.remove();
+    }
 
     const target = this._element.querySelector(`.sort-link[data-sort="${this._selected}"]`);
     if (target) {
