@@ -13,8 +13,18 @@ export default class SortLinks {
     return this._selected;
   }
 
+  set selected(value) {
+    this._selected = value;
+    this._update();
+  }
+
   get ascending() {
     return this._ascending;
+  }
+
+  set ascending(value) {
+    this._ascending = value;
+    this._update();
   }
 
   onChange(cb) {

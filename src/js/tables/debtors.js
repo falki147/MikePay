@@ -1,14 +1,12 @@
 import Api from "../api/api";
 import encode from "../utils/encode";
-import Pagination from "../components/pagination";
-import SortLinks from "../components/sort-links";
-import Loader from "../components/loader";
 import DataTable from "../components/data-table";
 import link from "../utils/link";
 
 const debtorTable = document.getElementById("debtors-table");
 if (debtorTable) {
-  let queryString = "";
+  const params = new URLSearchParams(location.search);
+  let queryString = params.get("query") || "";
 
   const pagination = document.getElementById("debtors-pagination");
 
@@ -23,14 +21,25 @@ if (debtorTable) {
     ]
   );
 
+  const searchInputField = document.getElementById("debtors-search");
+  searchInputField.value = queryString;
+
   const searchForm = document.getElementById("search-form");
   searchForm.addEventListener("submit", ev => {
     ev.preventDefault();
 
-    const searchInputField = document.getElementById("debtors-search");
     if (searchInputField.value !== queryString) {
       queryString = searchInputField.value;
       dataTable.resetPage();
+
+      const url = new URL(window.location);
+      if (queryString) {
+        url.searchParams.set("query", queryString);
+      }
+      else {
+        url.searchParams.delete("query");
+      }
+      window.history.replaceState({}, "", url);
     }
   });
 }

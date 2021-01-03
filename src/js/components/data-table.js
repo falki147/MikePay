@@ -8,6 +8,11 @@ export default class DataTable {
     const pagination = new Pagination(paginationElement);
     const sortLinks = new SortLinks(table);
 
+    const {page, sort, asc} = this._getQueryInfo();
+    pagination.page = page;
+    sortLinks.selected = sort;
+    sortLinks.ascending = asc;
+
     pagination.onClick(() => {
       this._load();
       window.scrollTo({
@@ -46,6 +51,8 @@ export default class DataTable {
   }
 
   async _load() {
+    this._updateQueryParameter();
+
     Loader.begin(this._body);
 
     try {
@@ -72,7 +79,7 @@ export default class DataTable {
       this._pagination.pages = data.pages;
 
       if (data.items.length === 0) {
-        this.writeMessage("Keine Daten");
+        this._writeMessage("Keine Daten");
       }
 
       Loader.end();
@@ -80,14 +87,46 @@ export default class DataTable {
     catch (e) {
       console.log(e);
       Loader.end();
-      this.writeMessage(e.message);
+      this._writeMessage(e.message);
     }
   }
 
-  writeMessage(message) {
+  _writeMessage(message) {
     // Might not be 100% accurate
     const columns = this._head.getElementsByTagName("th").length;
 
     this._body.innerHTML = `<tr><td class="text-center" colspan="${columns}">${encode(message)}</td></tr>`;
+  }
+
+  _updateQueryParameter() {
+    const {page, sort, asc} = this._getQueryInfo();
+
+    if (this._pagination.page !== page ||
+        this._sortLinks.selected !== sort ||
+        (this._sortLinks.selected && this._sortLinks.ascending !== asc)) {
+      const url = new URL(window.location);
+      url.searchParams.set("page", this._pagination.page);
+
+      if (!this._sortLinks.selected) {
+        url.searchParams.delete("sort");
+        url.searchParams.delete("asc");
+      }
+      else {
+        url.searchParams.set("sort", this._sortLinks.selected);
+        url.searchParams.set("asc", this._sortLinks.ascending ? "true" : "false");
+      }
+
+      window.history.replaceState({}, "", url);
+    }
+  }
+
+  _getQueryInfo() {
+    const url = new URL(window.location);
+
+    return {
+      page: Number(url.searchParams.get("page") || "1"),
+      sort: url.searchParams.get("sort") || null,
+      asc: (url.searchParams.get("asc") || "true") === "true"
+    };
   }
 };
