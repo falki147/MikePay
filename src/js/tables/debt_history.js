@@ -17,7 +17,7 @@ if(debt_history_table){
 
     Loader.begin(body);
 
-    const data = await Api.transactions(1, pagination.page, sortLinks.selected, sortLinks.ascending);
+    const data = await Api.transactions(pagination.page, sortLinks.selected, sortLinks.ascending);
 
     let html = "";
     

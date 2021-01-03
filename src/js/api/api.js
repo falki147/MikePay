@@ -160,7 +160,7 @@ export default class Api {
    * @param {String} ascending
    * @returns {Paginated<UserTransaction>}
    */
-  static async transactions(id, page, sort, ascending) {
+  static async transactions(page, sort, ascending) {
     return await JSONHttpClient.get(
       `${config.apiBaseURL}/transaction?page=${page}&sort=${sort || ''}&asc=${!!ascending}`
     );
