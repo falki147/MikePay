@@ -120,6 +120,12 @@
   100%  {width: 60px; height: 30px;}
 }
 
+@media only screen and (min-width: 576px) {
+  .responsive-sort {
+    display: none;
+  }
+}
+
 @media only screen and (max-width: 576px) {
   .responsive-table thead {
     display: none;

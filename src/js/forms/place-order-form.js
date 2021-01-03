@@ -61,6 +61,14 @@ if (form) {
 
     try {
       const data = await Api.orderInfo(orderId);
+
+      if (data.status === "locked") {
+        Alert.error(
+          "Die Bestellung ist bereits gesperrt. Neue Einträge können nicht hinzugefügt werden."
+        );
+
+        document.getElementById("place-order-btn").disabled = true;
+      }
       
       const description = document.getElementById("description");
       const url = document.getElementById("url");

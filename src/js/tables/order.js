@@ -42,6 +42,13 @@ document.addEventListener("DOMContentLoaded", () => {
         const url = `/place_order/?order_id=${orderId}`;
         const shareLink = document.getElementById("order-share-link");
         shareLink.href = url;
+
+        const orderLock = document.getElementById("order-lock");
+        orderLock.checked = data.status === "locked";
+
+        orderLock.addEventListener("change", async () => {
+          await Api.lockOrder(orderId, orderLock.checked);
+        });
       }
       catch (e) {
         console.error(e);

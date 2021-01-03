@@ -10,12 +10,25 @@ export default class DataTable {
 
     pagination.onClick(() => {
       this._load();
+      window.scrollTo({
+        top: 0,
+        behavior: "auto"
+      });
     });
   
     sortLinks.onChange(() => {
       pagination.page = 1;
       this._load();
     });
+
+    // Sort on click
+    sortLinks.sortOnClick();
+
+    // Add selectbox for mobile
+    const sortLinksSelect = sortLinks.createSelectbox();
+    sortLinksSelect.classList.add("responsive-sort");
+    sortLinksSelect.classList.add("mb-3");
+    table.parentNode.insertBefore(sortLinksSelect, table);
 
     this._head = table.getElementsByTagName("thead")[0];
     this._body = table.getElementsByTagName("tbody")[0];
