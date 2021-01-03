@@ -51,6 +51,8 @@ export default class SortLinks {
     const select = document.createElement("select");
     select.className = "form-select";
     select.id = id;
+
+    select.options.add(new Option("Keine", "", true));
     
     for (const link of this._element.getElementsByClassName("sort-link")) {
       select.options.add(
@@ -63,14 +65,24 @@ export default class SortLinks {
     }
 
     select.addEventListener("change", () => {
-      const value = select.value.split(";");
-      this._selected = value[0];
-      this._ascending = value[1] === "asc";
+      if (select.value === "") {
+        this._selected = null;
+        this._ascending = true;
+      }
+      else {
+        const value = select.value.split(";");
+        this._selected = value[0];
+        this._ascending = value[1] === "asc";
+      }
+
       this._update();
     });
 
     this.onChange(() => {
-      const newValue = `${this._selected};${this._ascending ? "asc" : "desc"}`;
+      let newValue = "";
+      if (this._selected !== null) {
+        newValue = `${this._selected};${this._ascending ? "asc" : "desc"}`;
+      }
 
       if (select.value !== newValue) {
         select.value = newValue;
