@@ -1,76 +1,55 @@
 import Api from "../api/api";
+import DataTable from "../components/data-table";
 import encode from "../utils/encode";
-import Pagination from "../components/pagination";
-import SortLinks from "../components/sort-links";
 import Loader from "../components/loader";
 import getShortDate from "../utils/dateShort";
+import link from "../utils/link";
 
-const debtorTable = document.getElementById("debtor-table");
-if (debtorTable) {
-  const params = new URLSearchParams(location.search);
-  const userId = params.get('user_id');
+document.addEventListener("DOMContentLoaded", () => {
+  const debtorTable = document.getElementById("debtor-table");
+  if (debtorTable) {
+    const params = new URLSearchParams(location.search);
+    const userId = params.get('user_id');
 
-  const pagination = new Pagination(document.getElementById("debtor-pagination"));
-  const sortLinks = new SortLinks(debtorTable);
+    const pagination = document.getElementById("debtor-pagination");
 
-  async function loadInfo() {
-    Loader.begin();
-    const data = await Api.userInfo(userId);
-    document.getElementById("debtor-name").innerText = `Schuldner - ${data.firstname} ${data.lastname}`;
-    Loader.end();
-  }
+    new DataTable(
+      debtorTable, pagination,
+      async (page, sort, asc) => await Api.userTransactions(userId, page, sort, asc),
+      item => {
+        let orderTitle = "Keine Bestellung";
+        if(item.order_id) {
+          orderTitle = link(`/order/?order_id=${item.order_id}`, `${item.order_title} (${item.order_id})`);
+        }
 
-  async function load() {
-    const body = debtorTable.getElementsByTagName("tbody")[0];
+        let itemTitle = item.item;
+        if(!itemTitle){
+          itemTitle = item.amount.startsWith("-") ? "Schulden" : "Rückzahlung";
+        }
 
-    Loader.begin(body);
-
-    const data = await Api.userTransactions(
-      userId, pagination.page, sortLinks.selected, sortLinks.ascending
+        return [
+          encode(itemTitle),
+          orderTitle,
+          encode(item.amount),
+          encode(getShortDate(item.date))
+        ];
+      }
     );
 
-    let html = "";
+    async function loadInfo() {
+      Loader.begin();
 
-    if(data.items.length > 0) {
-
-    for (const item of data.items) {
-      let orderTitle = "Keine Bestellung";
-      if (item.order_id) {
-        orderTitle = `<a href="/order/?order_id=${item.order_id}">${encode(item.order_title)} (${encode(item.order_id)})</a>`;
+      try {
+        const data = await Api.userInfo(userId);
+        document.getElementById("debtor-name").innerText = `Schuldner - ${data.firstname} ${data.lastname}`;
+      }
+      catch (e) {
+        console.error(e);
       }
 
-      let itemTitle = item.item;
-      if (!itemTitle) {
-        itemTitle = item.amount < 0 ? "Schulden" : "Rückzahlung";
-      }
-
-      html += "<tr>";
-      html += `  <td>${encode(itemTitle)}</td>`;
-      html += `  <td>${orderTitle}</td>`;
-      html += `  <td>${encode(item.amount)}</td>`;
-      html += `  <td>${encode(getShortDate(item.date))}</td>`;
-      html += "</tr>";
+      Loader.end();
     }
 
-    } else {
-      html += `<td colspan="4" align="center"> Keine Daten </td>`;
-    }
-
-    body.innerHTML = html;
-    pagination.pages = data.pages;
-
-    Loader.end();
+    loadInfo();
   }
- 
-  pagination.onClick(() => {
-    load();
-  });
-
-  sortLinks.onChange(() => {
-    pagination.page = 1;
-    load();
-  });
-
-  load();
-  loadInfo();
-}
+});
