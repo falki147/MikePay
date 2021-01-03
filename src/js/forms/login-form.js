@@ -14,7 +14,7 @@ if (loginForm) {
       Loader.begin(document.getElementById("login-btn"));
       await Api.login(username, password);
       Alert.success("Login war erfolgreich!");
-      window.location = "/start_page/";
+      window.location = "/";
     }
     catch (e) {
       Alert.error(e.message);

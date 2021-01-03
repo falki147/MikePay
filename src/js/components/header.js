@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       try{
         Loader.begin(logoutButton);
         await Api.logout();
-        window.location = "/start_page/";
+        window.location = "/";
       } catch(e) {
         console.log(e);
       }
