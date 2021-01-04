@@ -21,19 +21,26 @@ document.addEventListener("DOMContentLoaded", async () => {
         const data = await Api.orderInfo(orderId);
         locked = data.status === "locked";
 
+        // Update order title
         document.getElementById("order-title").innerText = `Bestellung - ${data.title}`;
 
+        // Update order description
         let description = encode(data.description);
         if (data.url) {
           description += ` (${link(data.url, "Link", false, { target: "blank" })})`;
         }
         document.getElementById("order-description").innerHTML = description;
 
+        // Update add product link href
+        const shareLink = document.getElementById("order-add-product-link");
         // TODO: Add prefix
-        const url = `/place_order/?order_id=${orderId}`;
-        const shareLink = document.getElementById("order-share-link");
-        shareLink.href = url;
+        shareLink.href = `/place_order/?order_id=${orderId}`;
 
+        if (locked) {
+          shareLink.classList.add("d-none");
+        }
+
+        // Update lock switch value
         const orderLock = document.getElementById("order-lock");
         if (orderLock) {
           orderLock.checked = locked;
@@ -42,9 +49,17 @@ document.addEventListener("DOMContentLoaded", async () => {
             await Api.lockOrder(orderId, orderLock.checked);
             locked = orderLock.checked;
             dataTable.resetPage();
+
+            if (locked) {
+              shareLink.classList.add("d-none");
+            }
+            else {
+              shareLink.classList.remove("d-none");
+            }
           });
         }
 
+        // Update order total and item count
         const total = document.getElementById("order-total");
         if (total) {
           total.innerText = data.total;
