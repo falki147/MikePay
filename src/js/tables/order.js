@@ -5,6 +5,7 @@ import encode from "../utils/encode";
 import link from "../utils/link";
 import getShortDate from "../utils/dateShort";
 import Session from "../api/session";
+import absoluteURL from "../utils/absoluteURL";
 
 document.addEventListener("DOMContentLoaded", async () => {
   const orderTable = document.getElementById("order-table");
@@ -27,7 +28,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         // Update order description
         let description = encode(data.description);
         if (data.url) {
-          description += ` (${link(data.url, "Link", false, { target: "blank" })})`;
+          description += ` (${link(absoluteURL(data.url), "Link", false, { target: "blank" })})`;
         }
         document.getElementById("order-description").innerHTML = description;
 

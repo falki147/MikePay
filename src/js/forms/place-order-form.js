@@ -2,6 +2,7 @@ import Api from "../api/api";
 import Session from "../api/session";
 import Alert from "../components/alert";
 import Loader from "../components/loader";
+import absoluteURL from "../utils/absoluteURL";
 import encode from "../utils/encode";
 import sleep from "../utils/sleep";
 
@@ -88,7 +89,7 @@ if (form) {
       description.innerText = data.description;
 
       const anchor = document.createElement("a");
-      anchor.href = data.url;
+      anchor.href = absoluteURL(data.url);
       anchor.innerText = data.url;
       anchor.target = "_blank";
       url.appendChild(anchor);
