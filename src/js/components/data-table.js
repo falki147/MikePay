@@ -33,6 +33,7 @@ export default class DataTable {
     const sortLinksSelect = sortLinks.createSelectbox();
     sortLinksSelect.classList.add("responsive-sort");
     sortLinksSelect.classList.add("mb-3");
+    sortLinksSelect.classList.add("mt-2");
     table.parentNode.insertBefore(sortLinksSelect, table);
 
     this._head = table.getElementsByTagName("thead")[0];
