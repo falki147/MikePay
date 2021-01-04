@@ -71,7 +71,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     async function enterDebt(data){
       try {
         Loader.begin(document.getElementById("enter-debts-btn"));
-        Api.addDebt(data);
+        await Api.addDebt(data);
         Alert.success("Schulden wurden erfolgreich eingetragen.");
       }
       catch (e) {
