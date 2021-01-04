@@ -1,0 +1,42 @@
+@media only screen and (min-width: 576px) {
+  /* Hide sort for mobile only. On desktop sort is operated by columns */
+  .responsive-sort {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 576px) {
+  /* Restyle table rows into card-like elements */
+
+  .responsive-table thead {
+    display: none;
+  }
+
+  .responsive-table tr {
+    display: block;
+    width: 100%;
+    border: 1px solid rgba(0, 0, 0, 0.125);
+    border-radius: 0.25rem;
+    margin-bottom: .5rem;
+    padding: 1rem 1rem;
+  }
+
+  .responsive-table td {
+    border: none;
+    display: block;
+    padding: 0 !important;
+  }
+
+  .responsive-table td:first-child {
+    font-size: 1.25rem;
+    margin-bottom: .5rem;
+  }
+
+  .responsive-table td::before {
+    content: attr(data-label);
+  }
+
+  .responsive-table td:first-child:before {
+    content: "";
+  }
+}

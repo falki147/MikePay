@@ -1,0 +1,69 @@
+.place-order-hide {
+  animation: place-order-hide-animation 0.25s ease forwards;
+}
+
+.place-order-show {
+  animation: place-order-hide-animation 0.25s ease reverse backwards;
+}
+
+@keyframes place-order-hide-animation {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+.checkmark {
+  position: relative;
+  width: 150px;
+  height: 150px;
+  border: 5px solid #007bff;
+  border-radius: 100%;
+}
+
+.checkmark-inner {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 60px;
+  height: 30px;
+  transform: translate(-31px) rotate(-43deg);
+  transform-origin: 0 0;
+  animation: checkmark-animation 0.5s ease-out;
+}
+
+.checkmark-inner::before {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 10px;
+  left: -5px;
+  top: -5px;
+  bottom: -5px;
+  background: #007bff;
+}
+
+.checkmark-inner::after {
+  content: "";
+  display: block;
+  position: absolute;
+  left: -5px;
+  right: -5px;
+  bottom: -5px;
+  height: 10px;
+  background: #007bff;
+}
+
+@keyframes checkmark-animation {
+  0% {
+    width: 0px; height: 0px;
+  }
+  50% {
+    width: 0px; height: 30px;
+  }
+  100% {
+    width: 60px; height: 30px;
+  }
+}

@@ -1,0 +1,15 @@
+.sort-link {
+  color: inherit;
+  text-decoration: inherit;
+}
+
+.form-wrapper {
+  width: 100%;
+  max-width: 470px;
+}
+
+/* Hide all user role specific parts until JS kicks in and determines which should be visible. */
+.guest-only, .user-only, .admin-only {
+  /* Important is needed for overwriting bootstrap's !important */
+  display: none !important;
+}
