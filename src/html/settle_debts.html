@@ -28,7 +28,7 @@ title: Schulden begleichen
 
     <div class="form-group my-2">
       <label for="settle_debts_settle" class="form-label mb-0">zu begleichender Betrag</label>
-      <input type="text" class="form-control" id="settle_debts_settle" placeholder="...€" name="settle_debts_settle" required>
+      <input type="text" class="form-control" id="settle_debts_settle" placeholder="...€" name="settle_debts_settle" pattern="(\d+(,\d*)?|,\d+)" required>
       <div id="amount-enter-debts-val" class="invalid-feedback">
         Bitte geben Sie einen gültigen Betrag ein!
       </div>

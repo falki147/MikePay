@@ -56,7 +56,7 @@ title: Schulden eintragen
 
     <div class="form-group my-2">
       <label for="amount_enter_debts" class="form-label mb-0">Betrag</label>
-      <input type="text" class="form-control" id="amount_enter_debts" placeholder="amount" name="amount_enter_debts" pattern="\d+(.\d+)*" required>
+      <input type="text" class="form-control" id="amount_enter_debts" placeholder="amount" name="amount_enter_debts" pattern="(\d+(,\d*)?|,\d+)" required>
       <div id="amount-enter-debts-val" class="invalid-feedback">
         Bitte geben Sie einen gültigen Betrag ein!
       </div>
