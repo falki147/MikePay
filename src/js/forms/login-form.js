@@ -2,6 +2,9 @@ import Api from "../api/api";
 import Alert from "../components/alert";
 import Loader from "../components/loader";
 
+/**
+ * Add all event listeners to login form
+ */
 document.addEventListener("DOMContentLoaded", () => {
   const loginForm = document.getElementById("login-form");
   if (loginForm) {
