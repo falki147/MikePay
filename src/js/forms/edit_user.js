@@ -7,8 +7,22 @@ window.addEventListener("load", function () {
   if(document.getElementById("edit-user-form")){
     load_user_info();
     document.getElementById("edit-user-form").addEventListener("submit", validate_edit_user_form);
+    document.getElementById("password_edit").addEventListener("input", password_change_state);
   }
 });
+
+function password_change_state(){
+  let password = document.getElementById("password_edit");
+  let password_conf = document.getElementById("password_edit_conf");
+
+  if(password.value != "" || password_conf.value != ""){
+    password.required = true;
+    password_conf.required = true;
+  } else {
+    password.required = false;
+    password_conf.required = false;
+  }
+}
 
 async function load_user_info(){
  
@@ -45,7 +59,11 @@ function validate_edit_user_form(e){
   }
 
   if((password == password_conf) && form.checkValidity()){
-    send_edited_data({username: username, firstname: firstname, lastname: lastname, password: password});
+    if(password == ""){
+      send_edited_data({username: username, firstname: firstname, lastname: lastname});
+    } else {
+      send_edited_data({username: username, firstname: firstname, lastname: lastname, password: password});
+    }
   }
 
   form.classList.add('was-validated');
