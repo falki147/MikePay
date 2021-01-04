@@ -17,6 +17,7 @@ import "./tables/order";
 import "./tables/orders";
 import "./components/session";
 import "./components/header";
+import "./components/startpage";
 
 // Initialize tooltips
 for (const tooltip of document.querySelectorAll('[data-bs-toggle="tooltip"]')) {

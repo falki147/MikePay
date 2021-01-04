@@ -4,7 +4,7 @@ title: Startpage
 ---
 
 <div class="container-fluid h-100">
-  <div class="d-flex justify-content-center align-items-center h-100 flex-wrap">
+  <div class="d-flex justify-content-center align-items-center h-100 flex-wrap guest-only">
     <div class="d-flex justify-content-center flex-wrap">
       <div class="card m-2" style="width: 18rem;">
         <div class="m-4">
@@ -37,6 +37,54 @@ title: Startpage
           <h5 class="card-title">Neuer Benutzer</h5>
           <p class="card-text">In wenigen Schritten essen bestellen.</p>
           <a href="/create_user/" class="btn btn-primary w-100">Benutzer erstellen</a>
+        </div>
+      </div>
+        
+      <div class="card m-2" style="width: 18rem;">
+        <div class="m-4">
+          <img src="/assets/plat/help-logo.svg" class="card-img-top img-fluid" alt="fancy help logo">
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">Guide</h5>
+          <p class="card-text">Planlos? Hier gibts Infos zu unsere Seite.</p>
+          <a href="#" class="btn btn-primary w-100">Get help</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="d-flex justify-content-center align-items-center h-100 flex-wrap user-only">
+    <div class="d-flex justify-content-center flex-wrap">
+      <div class="card m-2" style="width: 18rem;">
+        <div class="m-4">
+          <img src="/assets/plat/order-logo.svg" class="card-img-top img-fluid" alt="fancy order logo">
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">Essen bestellen</h5>
+          <p class="card-text w-100">Hunger? Hier bei der neuesten Bestellung mitmachen.</p>
+          <a href="/place_order/" class="btn btn-primary w-100">Jetzt bestellen</a>
+        </div>
+      </div>
+        
+      <div class="card m-2" style="width: 18rem;">
+        <div class="m-4">
+          <img src="/assets/plat/login-logo.svg" class="card-img-top img-fluid" alt="fancy login logo">
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">Schulden</h5>
+          <p class="card-text">Hier siehst du, wie viel du Mike schuldest.</p>
+          <a id="startpage-debts-link" href="#" class="btn btn-primary w-100">Weiter</a>
+        </div>
+      </div>
+    </div>
+    <div class="d-flex justify-content-center flex-wrap">
+      <div class="card m-2" style="width: 18rem;">
+        <div class="m-4">
+          <img src="/assets/plat/sign-up-logo.svg" class="card-img-top img-fluid" alt="fancy creaet user logo">
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">Benutzer bearbeiten</h5>
+          <p class="card-text">Falsche Daten eingegeben? Kein Problem.</p>
+          <a href="/edit_user/" class="btn btn-primary w-100">Benutzer bearbeiten</a>
         </div>
       </div>
         

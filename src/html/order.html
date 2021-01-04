@@ -12,7 +12,7 @@ title: Bestellung
     <li class="nav-item" role="presentation">
       <a class="nav-link active" id="products-tab" data-bs-toggle="tab" href="#products" role="tab" aria-controls="products" aria-selected="true">Artikel</a>
     </li>
-    <li class="nav-item" role="presentation">
+    <li class="nav-item admin-only" role="presentation">
       <a class="nav-link" id="info-tab" data-bs-toggle="tab" href="#info" role="tab" aria-controls="info" aria-selected="false">Info</a>
     </li>
   </ul>
@@ -34,7 +34,7 @@ title: Bestellung
       </table>
       <nav id="order-pagination" aria-label="Page navigation example"></nav>
     </div>
-    <div class="tab-pane fade" id="info" role="tabpanel" aria-labelledby="info-tab">
+    <div class="tab-pane fade admin-only" id="info" role="tabpanel" aria-labelledby="info-tab">
       <div class="form-check form-switch my-2">
         <input class="form-check-input" type="checkbox" id="order-lock">
         <label class="form-check-label" for="order-lock">

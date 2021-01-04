@@ -3,7 +3,7 @@ import Session from "../api/session";
 import Loader from "./loader";
 
 /**
- * Handle logout button and initialize profile text
+ * Handle logout button and initialize profile text and debts link
  */
 document.addEventListener("DOMContentLoaded", async () => {
   const logoutButton = document.getElementById("logout-btn");
@@ -30,7 +30,6 @@ document.addEventListener("DOMContentLoaded", async () => {
   const debts = document.getElementById("navbar-dropdown-debts");
   if(debts && await Session.isLoggedIn()){
     const id = await Session.id();
-    debts.setAttribute("href", "/debtor/?user_id=" + id);
+    debts.href = "/debtor/?user_id=" + id;
   }
-  
 });
