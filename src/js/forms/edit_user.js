@@ -3,6 +3,9 @@ import Session from "../api/session";
 import Alert from "../components/alert";
 import Loader from "../components/loader";
 
+/**
+ * Add all event listeners to edit user form
+ */
 document.addEventListener("DOMContentLoaded", () => {
   const form = document.getElementById("edit-user-form");
   if (form) {

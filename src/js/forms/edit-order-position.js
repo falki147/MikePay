@@ -1,61 +1,98 @@
 import Api from "../api/api";
-import Session from "../api/session";
 import Alert from "../components/alert";
 import Loader from "../components/loader";
 
+/**
+ * Add all event listeners to edit order position form
+ */
 document.addEventListener("DOMContentLoaded", async () => {
-  const editOrderPositionForm = document.getElementById("edit-order-position-form");
-  if (editOrderPositionForm) {
+  const form = document.getElementById("edit-order-position-form");
+  if (form) {
+    // Get order position id from query parameters
     const params = new URLSearchParams(location.search);
-    const orderPositionId = params.get('order_position_id');
+    const orderPositionId = params.get("order_position_id");
 
-    const item = document.getElementById("item");
-    const price = document.getElementById("price");
+    // Gets filled in loadOrderPositionInfo
+    let orderId = null;
 
-    Loader.begin();
+    form.addEventListener("submit", onSubmit);
 
-    const data = await Api.orderPositionInfo(orderPositionId);
-    item.value = data.item;
-    price.value = data.price;
+    document.getElementById("delete-order-position-btn")
+      .addEventListener("click", onDeleteClick);
 
-    Loader.end();
-
-    editOrderPositionForm.addEventListener("submit", async ev => {
-      editOrderPositionForm.classList.add('was-validated');
-
+    /**
+     * Handle submit event
+     * @param {Event} ev
+     */
+    async function onSubmit(ev) {
       ev.preventDefault();
+      form.classList.add("was-validated");
 
-      if (!editOrderPositionForm.checkValidity()) {
+      if (!form.checkValidity()) {
         return;
       }
 
-      Loader.begin(document.getElementById("edit-order-position-btn"));
-
       try {
-        await Api.editOrderPosition(orderPositionId, { item: item.value, price: price.value });
-        Alert.success("Artikel wurde erfolgreich bearbeitet!");
+        Loader.begin(document.getElementById("edit-order-position-btn"));
+        
+        await Api.editOrderPosition(orderPositionId, {
+          item: document.getElementById("item").value,
+          price: document.getElementById("price").value
+        });
+
+        Alert.success("Artikel wurde erfolgreich bearbeitet.");
       }
       catch (e) {
+        console.error(e);
         Alert.error(e.message);
       }
 
       Loader.end();
-    });
+    }
 
-    const deleteButton = document.getElementById("delete-order-position-btn");
-    deleteButton.addEventListener("click", async ev => {
+    /**
+     * Handle delete button click
+     * @param {Event} ev
+     */
+    async function onDeleteClick(ev) {
       ev.preventDefault();
-      Loader.begin(deleteButton);
 
       try {
+        Loader.begin(document.getElementById("delete-order-position-btn"));
         await Api.deleteOrderPosition(orderPositionId);
-        window.location = `/order/?order_id=${data.order_id}`;
+        Alert.success("Der Artikel wurde erfolgreich entfernt.");
+
+        // Redirect to order after deletion
+        window.location = `/order/?order_id=${orderId}`;
       }
       catch (e) {
-        console.log(e.message);
+        console.error(e);
+        Alert.error(e.message);
       }
 
       Loader.end();
-    });
+    }
+
+    /**
+     * Load user data of order postion and prefill fields with the data
+     */
+    async function loadOrderPositionInfo() {
+      try {
+        Loader.begin();
+
+        const data = await Api.orderPositionInfo(orderPositionId);
+        document.getElementById("item").value = data.item;
+        document.getElementById("price").value = data.price;
+        orderId = data.order_id;
+      }
+      catch (e) {
+        console.error(e);
+        Alert.error(e.message);
+      }
+
+      Loader.end();
+    }
+
+    loadOrderPositionInfo();
   }
 });
