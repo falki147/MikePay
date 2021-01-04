@@ -2,43 +2,60 @@ import Api from "../api/api";
 import Alert from "../components/alert";
 import Loader from "../components/loader";
 
-window.addEventListener("load", function () {
-  if(document.getElementById("createUser-form")){
-    document.getElementById("createUser-form").addEventListener("submit", validateCreateUserForm);
+/**
+ * Add all event listeners to create user form
+ */
+document.addEventListener("DOMContentLoaded", () => {
+  const form = document.getElementById("createUser-form");
+  if (form) {
+    form.addEventListener("submit", onSubmit);
+
+    /**
+     * Handle submit event
+     * @param {Event} e
+     */
+    function onSubmit(e) {
+      e.preventDefault();
+
+      const passwordConfInput = document.getElementById("password_conf");
+
+      const firstname = document.getElementById("firstname").value;
+      const lastname = document.getElementById("lastname").value;
+      const username = document.getElementById("username").value;
+      const password = document.getElementById("password").value;
+      const passwordConf = passwordConfInput.value;
+
+      if (password != passwordConf) {
+        passwordConfInput.setCustomValidity("do not match");
+      }
+      else {
+        passwordConfInput.setCustomValidity("");
+      }
+
+      if (form.checkValidity()) {
+        createUser({
+          username: username, firstname: firstname, lastname: lastname, password: password
+        });
+      }
+
+      form.classList.add("was-validated");
+    }
+
+    /**
+     * Create new user
+     */
+    async function createUser(data){
+      try {
+        Loader.begin(document.getElementById("create-user-btn"));
+        await Api.createUser(data);
+        Alert.success("Benutzer wurde erfolgreich erstellt.");
+      }
+      catch (e) {
+        console.error(e);
+        Alert.error(e.message);
+      }
+    
+      Loader.end();
+    }
   }
 });
-
-function validateCreateUserForm(e){
-  e.preventDefault();
-  
-  const form = document.getElementById("createUser-form");
-  let firstname = document.getElementById("firstname").value;
-  let lastname = document.getElementById("lastname").value;
-  let username = document.getElementById("username").value;
-  let password = document.getElementById("password").value;
-  let password_conf = document.getElementById("password_conf").value;
-
-  if(password != password_conf){
-    document.getElementById("password_conf").setCustomValidity("do not match");
-  } else {
-    document.getElementById("password_conf").setCustomValidity("");
-  }
-
-  if((password == password_conf) && form.checkValidity()){
-    send_crated_user({username: username, firstname: firstname, lastname: lastname, password: password});
-  }
-
-  form.classList.add('was-validated');
-}
-
-async function send_crated_user(data){
-  try{
-    Loader.begin(document.getElementById("create-user-btn"));
-    await Api.createUser(data);
-    Alert.success("Benutzer wurde erfolgreich erstellt!");
-  } catch(e){
-    Alert.error("Fehler beim Erstellen des Benutzers!");
-  }
-
-  Loader.end();
-}

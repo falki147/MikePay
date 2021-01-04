@@ -2,36 +2,52 @@ import Api from "../api/api";
 import Alert from "../components/alert";
 import Loader from "../components/loader";
 
-window.addEventListener("load", function () {
-  if(document.getElementById("createOrder-form")){
-    document.getElementById("createOrder-form").addEventListener("submit", validateCreateOrderForm);
+/**
+ * Add all event listeners to create order form
+ */
+document.addEventListener("DOMContentLoaded", () => {
+  const form = document.getElementById("createOrder-form");
+  if (form) {
+    form.addEventListener("submit", onSubmit);
+
+    /**
+     * Handle submit event
+     * @param {Event} e
+     */
+    function onSubmit(e) {
+      e.preventDefault();
+
+      const titel = document.getElementById("titel").value;
+      const url = document.getElementById("url").value;
+      const description = document.getElementById("description").value;
+      
+      if (form.checkValidity()) {
+        createOrder({
+          title: titel, description: description, url: url, comments: ""
+        });
+      }
+
+      form.classList.add("was-validated");
+    }
+
+    /**
+     * Create new order
+     */
+    async function createOrder(data){
+      try {
+        Loader.begin(document.getElementById("create-order-btn"));
+        const orderId = await Api.createOrder(data);
+        Alert.success("Bestellung wurde erfolgreich erstellt.");
+
+        // Redirect to new order
+        window.location = `/order/?order_id=${orderId}`;
+      }
+      catch (e) {
+        console.error(e);
+        Alert.error(e.message);
+      }
+    
+      Loader.end();
+    }
   }
 });
-
-function validateCreateOrderForm(e){
-  e.preventDefault();
-
-  const form = document.getElementById("createOrder-form");
-  let titel = document.getElementById("titel").value;
-  let url = document.getElementById("url").value;
-  let description = document.getElementById("description").value;
-  
-  if(form.checkValidity()){
-    send_created_order({title: titel, description: description, url: url, comments: ""});
-  }
-
-  form.classList.add('was-validated');
-}
-
-async function send_created_order(data){
-  try{
-    Loader.begin(document.getElementById("create-order-btn"));
-    const orderId = await Api.createOrder(data);
-    Alert.success("Bestellung wurde erfolgreich erstellt.");
-    window.location = `/order/?order_id=${orderId}`;
-  } catch(e){
-    Alert.error(e.message);
-  }
-
-  Loader.end();
-}
