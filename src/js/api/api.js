@@ -66,6 +66,14 @@ import JSONHttpClient from "./json-http-client";
  */
 
 /**
+ * @typedef {Object} ExtendedUserInfo
+ * @extends UserInfo
+ * @property {String} paid amount, which was already paid
+ * @property {String} debt total debt
+ * @property {String} total debt, which is still left
+ */
+
+/**
  * @typedef {Object} Transaction
  * @property {Number} id
  * @property {String} amount
@@ -303,7 +311,7 @@ export default class Api {
 
   /**
    * @param {Number} id user id
-   * @returns {UserInfo}
+   * @returns {ExtendedUserInfo}
    */
   static async userInfo(id) {
     return await JSONHttpClient.get(`${config.apiBaseURL}/user/${id}`);

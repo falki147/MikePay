@@ -41,7 +41,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
       try {
         const data = await Api.userInfo(userId);
-        document.getElementById("debtor-name").innerText = `Schuldner - ${data.firstname} ${data.lastname}`;
+        document.getElementById("debtor-name").innerText =
+          `Schuldner - ${data.firstname} ${data.lastname}`;
+
+        document.getElementById("debtor-debts").innerText = data.debt;
+        document.getElementById("debtor-paid").innerText = data.paid;
+        document.getElementById("debtor-total").innerText = data.total;
       }
       catch (e) {
         console.error(e);
