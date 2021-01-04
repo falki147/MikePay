@@ -85,6 +85,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       item => {
         let title = encode(item.item);
 
+        // Add edit link to order position when product is from same user and order is not locked
         if (!locked && item.user_id === userId) {
           title = link(
             `/edit_order_position/?order_position_id=${item.id}`,

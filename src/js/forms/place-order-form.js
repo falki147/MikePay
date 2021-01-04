@@ -8,7 +8,7 @@ import sleep from "../utils/sleep";
 const form = document.getElementById("place-order-form");
 if (form) {
   const params = new URLSearchParams(location.search);
-  const orderId = params.get('order_id');
+  let orderId = params.get('order_id');
 
   form.addEventListener("submit", async ev => {
     ev.preventDefault();
@@ -65,7 +65,14 @@ if (form) {
     Loader.begin();
 
     try {
-      const data = await Api.orderInfo(orderId);
+      let data;
+      if (orderId) {
+        data = await Api.orderInfo(orderId);
+      }
+      else {
+        data = await Api.orderInfoLatest();
+        orderId = data.id;
+      }
 
       if (data.status === "locked") {
         Alert.error(
@@ -88,6 +95,7 @@ if (form) {
     }
     catch (e) {
       console.log(e);
+      Alert.error(e.message);
     }
 
     Loader.end();

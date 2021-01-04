@@ -139,6 +139,13 @@ export default class Api {
   }
 
   /**
+   * @returns {OrderInfo}
+   */
+  static async orderInfoLatest() {
+    return await JSONHttpClient.get(`${config.apiBaseURL}/order/latest`);
+  }
+
+  /**
    * @param {Number} id order id
    * @param {Number} page
    * @param {String} sort can be "price", "date" or "name"
