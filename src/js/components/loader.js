@@ -21,11 +21,6 @@ export default class Loader {
       }
     }
     else {
-      // Fix for Chrome. Force table to be relative because position relative on tbody doesn't work
-      if (elem.tagName === "TBODY") {
-        elem.parentNode.style.position = "relative";
-      }
-
       // Make sure elem isn't a child of an exisiting loading element
       if (!this._checkClass(elem.parentNode, "loading")) {
         elem.classList.add("loading");

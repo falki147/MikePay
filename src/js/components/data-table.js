@@ -53,7 +53,7 @@ export default class DataTable {
   async _load() {
     this._updateQueryParameter();
 
-    Loader.begin(this._body);
+    Loader.begin(this._body.parentNode);
 
     try {
       const data = await this._dataCallback(
