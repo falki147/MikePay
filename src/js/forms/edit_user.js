@@ -4,7 +4,7 @@ import Alert from "../components/alert";
 import Loader from "../components/loader";
 
 /**
- * Add all event listeners to edit user form
+ * Add all event listeners to edit user form and load user info
  */
 document.addEventListener("DOMContentLoaded", () => {
   const form = document.getElementById("edit-user-form");

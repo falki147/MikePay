@@ -3,7 +3,7 @@ import Alert from "../components/alert";
 import Loader from "../components/loader";
 
 /**
- * Add all event listeners to edit order position form
+ * Add all event listeners to edit order position form and load order position info
  */
 document.addEventListener("DOMContentLoaded", async () => {
   const form = document.getElementById("edit-order-position-form");
