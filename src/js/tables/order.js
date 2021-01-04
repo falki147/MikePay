@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     const params = new URLSearchParams(location.search);
     const orderId = params.get("order_id");
-    const userId = await Session.id();
+    const userId = await Session.isLoggedIn() ? await Session.id() : null;
     let locked = true;
 
     async function loadInfo() {
