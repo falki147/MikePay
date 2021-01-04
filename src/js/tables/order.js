@@ -19,30 +19,41 @@ document.addEventListener("DOMContentLoaded", async () => {
     async function loadInfo() {
       try {
         const data = await Api.orderInfo(orderId);
-        document.getElementById("order-title").innerText = "Bestellung - " + data.title;
-        document.getElementById("order-description").innerText = data.description;
+        locked = data.status === "locked";
 
+        document.getElementById("order-title").innerText = `Bestellung - ${data.title}`;
+
+        let description = encode(data.description);
         if (data.url) {
-          const orderLink = document.getElementById("order-link");
-          orderLink.innerText = data.url;
-          orderLink.href = data.url;
+          description += ` (${link(data.url, "Link", false, { target: "blank" })})`;
         }
+        document.getElementById("order-description").innerHTML = description;
 
         // TODO: Add prefix
         const url = `/place_order/?order_id=${orderId}`;
         const shareLink = document.getElementById("order-share-link");
         shareLink.href = url;
 
-        locked = data.status === "locked";
-
         const orderLock = document.getElementById("order-lock");
-        orderLock.checked = locked;
+        if (orderLock) {
+          orderLock.checked = locked;
 
-        orderLock.addEventListener("change", async () => {
-          await Api.lockOrder(orderId, orderLock.checked);
-          locked = orderLock.checked;
-          dataTable.resetPage();
-        });
+          orderLock.addEventListener("change", async () => {
+            await Api.lockOrder(orderId, orderLock.checked);
+            locked = orderLock.checked;
+            dataTable.resetPage();
+          });
+        }
+
+        const total = document.getElementById("order-total");
+        if (total) {
+          total.innerText = data.total;
+        }
+
+        const items = document.getElementById("order-items");
+        if (items) {
+          items.innerText = data.items;
+        }
       }
       catch (e) {
         console.error(e);
@@ -62,7 +73,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         if (!locked && item.user_id === userId) {
           title = link(
             `/edit_order_position/?order_position_id=${item.id}`,
-            `${title} <i class="bi bi-pencil"></i>`, true
+            `${title}<i class="bi bi-pencil" aria-label="Artikel bearbeiten"></i>`, true
           );
         }
 

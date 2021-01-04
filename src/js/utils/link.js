@@ -1,6 +1,6 @@
 import encode from "./encode";
 
-export default function link(href, text, raw) {
+export default function link(href, text, raw, attributes) {
   if (!href) {
     return raw ? text : encode(text);
   }
@@ -13,6 +13,10 @@ export default function link(href, text, raw) {
   }
   else {
     anchor.innerText = text;
+  }
+
+  for (const attr in attributes) {
+    anchor.setAttribute(attr, attributes[attr]);
   }
   
   anchor.href = href;

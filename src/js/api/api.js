@@ -22,6 +22,7 @@ import JSONHttpClient from "./json-http-client";
  * @property {String} date
  * @property {String} status
  * @property {String} total
+ * @property {Number} items
  */
 
 /**

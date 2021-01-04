@@ -4,28 +4,51 @@ title: Bestellung
 ---
 
 <div class="container">
-  <h1 id="order-title"></h1>
-  <a id="order-link"></a>
-  <p id="order-description"></p>
-  <p>
-    <a id="order-share-link">Link zum Teilen</a>
-  </p>
+  <h1 id="order-title" class="mb-0"></h1>
 
-  <div class="form-check form-switch">
-    <input class="form-check-input" type="checkbox" id="order-lock">
-    <label class="form-check-label" for="order-lock">Bestellung sperren</label>
+  <p id="order-description" class="mt-0"></p>
+
+  <ul class="nav nav-tabs" role="tablist">
+    <li class="nav-item" role="presentation">
+      <a class="nav-link active" id="products-tab" data-bs-toggle="tab" href="#products" role="tab" aria-controls="products" aria-selected="true">Artikel</a>
+    </li>
+    <li class="nav-item" role="presentation">
+      <a class="nav-link" id="info-tab" data-bs-toggle="tab" href="#info" role="tab" aria-controls="info" aria-selected="false">Info</a>
+    </li>
+  </ul>
+  <div class="tab-content">
+    <div class="tab-pane fade show active" id="products" role="tabpanel" aria-labelledby="products-tab">
+      <div class="mt-2">
+        <a id="order-share-link"><i class="bi bi-plus"></i>Artikel hinzufügen</a>
+      </div>
+      <table id="order-table" class="table responsive-table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th><a class="sort-link" data-sort="price" href="#">Preis</a></th>
+            <th><a class="sort-link" data-sort="name" href="#">Benutzer</a></th>
+            <th><a class="sort-link" data-sort="date" href="#">Datum</a></th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+      <nav id="order-pagination" aria-label="Page navigation example"></nav>
+    </div>
+    <div class="tab-pane fade" id="info" role="tabpanel" aria-labelledby="info-tab">
+      <div class="form-check form-switch my-2">
+        <input class="form-check-input" type="checkbox" id="order-lock">
+        <label class="form-check-label" for="order-lock">
+          Bestellung sperren
+          <i class="bi bi-question"
+             data-bs-toggle="tooltip"
+             data-bs-placement="right"
+             title="Bei gesperrten Bestellungen können keine Produkte hinzugefügt oder bearbeitet werden."></i>
+        </label>
+      </div>
+      <div>
+        Gesamtsumme: <span id="order-total"></span><br>
+        Artikel: <span id="order-items"></span><br>
+      </div>
+    </div>
   </div>
-
-  <table id="order-table" class="table responsive-table">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th><a class="sort-link" data-sort="price" href="#">Preis</a></th>
-        <th><a class="sort-link" data-sort="name" href="#">Benutzer</a></th>
-        <th><a class="sort-link" data-sort="date" href="#">Datum</a></th>
-      </tr>
-    </thead>
-    <tbody></tbody>
-  </table>
-  <nav id="order-pagination" aria-label="Page navigation example"></nav>
 </div>
