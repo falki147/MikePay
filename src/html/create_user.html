@@ -3,7 +3,7 @@ layout: form
 title: Benutzer erstellen
 ---
 
-<form id="createUser-form" class="needs-validation" action="" autocomplete="off" novalidate>
+<form id="createUser-form" class="needs-validation" autocomplete="off" novalidate>
   <div class="form-group">
     <h1 class="mb-5">Benutzer erstellen</h1>
 
@@ -11,7 +11,13 @@ title: Benutzer erstellen
 
     <div class="form-group my-2">
       <label for="firstname" class="form-label mb-0">Vorname</label>
-      <input type="text" class="form-control" id="firstname" placeholder="Max" name="firstname" pattern="\w+(-\w+)*" required>
+      <input type="text"
+             class="form-control"
+             id="firstname"
+             placeholder="Max"
+             name="firstname"
+             pattern="\w+(-\w+)*" required>
+
       <div id="firstname-val" class="invalid-feedback">
         Bitte geben Sie ihren Vornamen an!
       </div>
@@ -19,7 +25,13 @@ title: Benutzer erstellen
 
     <div class="form-group my-2">
       <label for="lastname" class="form-label mb-0">Nachname</label>
-      <input type="text" class="form-control" id="lastname" placeholder="Mustermann" name="lastname" pattern="\w+(-\w+)*" required>
+      <input type="text"
+             class="form-control"
+             id="lastname"
+             placeholder="Mustermann"
+             name="lastname"
+             pattern="\w+(-\w+)*" required>
+
       <div id="lastname-val" class="invalid-feedback">
         Bitte geben Sie ihren Nachnamen an!
       </div>
@@ -27,7 +39,13 @@ title: Benutzer erstellen
 
     <div class="form-group my-2">
       <label for="username" class="form-label mb-0">Benutzername</label>
-      <input type="text" class="form-control" id="username" placeholder="maxi12" name="username" pattern="\w+" required>
+      <input type="text"
+             class="form-control"
+             id="username"
+             placeholder="maxi12"
+             name="username"
+             pattern="\w+" required>
+
       <div id="username-val" class="invalid-feedback">
         Bitte geben Sie einen Usernamen an!
       </div>
@@ -35,7 +53,13 @@ title: Benutzer erstellen
 
     <div class="form-group my-2">
       <label for="password" class="form-label mb-0">Passwort</label>
-      <input type="password" class="form-control" id="password" placeholder="********" name="password" pattern="^(?=.*\d)(?=.*[A-Z])(?=.*[a-z]).{8,}$" required>
+      <input type="password"
+             class="form-control"
+             id="password"
+             placeholder="********"
+             name="password"
+             pattern="^(?=.*\d)(?=.*[A-Z])(?=.*[a-z]).{8,}$" required>
+
       <div id="password-val" class="invalid-feedback">
         Bitte geben Sie ein Passwort an!
       </div>
@@ -43,14 +67,22 @@ title: Benutzer erstellen
 
     <div class="form-group my-2">
       <label for="password_conf" class="form-label mb-0">Passwort-Bestätigung</label>
-      <input type="password" class="form-control" id="password_conf" placeholder="********" name="password_conf" pattern="^(?=.*\d)(?=.*[A-Z])(?=.*[a-z]).{8,}$" required>
+      <input type="password"
+             class="form-control"
+             id="password_conf"
+             placeholder="********"
+             name="password_conf"
+             pattern="^(?=.*\d)(?=.*[A-Z])(?=.*[a-z]).{8,}$" required>
+
       <div id="password-conf-inv" class="invalid-feedback">
         Bitte bestätigen Sie ihr Passwort!
       </div>
     </div>
 
     <div class="form-group mt-4">
-      <button type="submit" id="create-user-btn" class="btn btn-lg btn-primary w-100">Erstellen</button>
+      <button type="submit" id="create-user-btn" class="btn btn-lg btn-primary w-100">
+        Erstellen
+      </button>
     </div>
   </div>
 </form>

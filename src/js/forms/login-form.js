@@ -6,10 +6,15 @@ import Loader from "../components/loader";
  * Add all event listeners to login form
  */
 document.addEventListener("DOMContentLoaded", () => {
-  const loginForm = document.getElementById("login-form");
-  if (loginForm) {
-    loginForm.addEventListener("submit", async ev => {
+  const form = document.getElementById("login-form");
+  if (form) {
+    form.addEventListener("submit", async ev => {
       ev.preventDefault();
+      form.classList.add("was-validated");
+
+      if (!form.checkValidity()) {
+        return;
+      }
 
       const username = document.getElementById("username").value;
       const password = document.getElementById("password").value;

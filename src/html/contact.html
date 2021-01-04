@@ -3,7 +3,7 @@ layout: form
 title: Kontaktformular
 ---
 
-<form id="contact-form" class="needs-validation" action="" autocomplete="off" novalidate>
+<form id="contact-form" class="needs-validation" novalidate>
   <div class="form-group">
     <h1 class="mb-5">Kontaktformular</h1>
 
@@ -11,7 +11,13 @@ title: Kontaktformular
 
     <div class="form-group my-2">
       <label for="firstname_contact_form" class="form-label mb-0">Vorname</label>
-      <input type="text" class="form-control" id="firstname_contact_form" placeholder="Max" name="firstname_contact_form" pattern="\w+(-\w+)*" required>
+      <input type="text"
+             class="form-control"
+             id="firstname_contact_form"
+             placeholder="Max"
+             name="firstname_contact_form"
+             pattern="\w+(-\w+)*" required>
+
       <div id="firstname-val" class="invalid-feedback">
         Bitte geben Sie ihren Vornamen an!
       </div>
@@ -19,7 +25,13 @@ title: Kontaktformular
 
     <div class="form-group my-2">
       <label for="lastname_contact_form" class="form-label mb-0">Nachname</label>
-      <input type="text" class="form-control" id="lastname_contact_form" placeholder="Mustermann" name="lastname_contact_form" pattern="\w+(-\w+)*" required>
+      <input type="text"
+             class="form-control"
+             id="lastname_contact_form"
+             placeholder="Mustermann"
+             name="lastname_contact_form"
+             pattern="\w+(-\w+)*" required>
+
       <div class="invalid-feedback">
         Bitte geben Sie ihren Nachnamen an!
       </div>
@@ -27,7 +39,13 @@ title: Kontaktformular
 
     <div class="form-group my-2">
       <label for="email_contact_form" class="form-label mb-0">Email</label>
-      <input type="text" class="form-control" id="email_contact_form" placeholder="max.muster@gmuster.com" name="email_contact_form" pattern="^\w+(.\w+)*@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$" required>
+      <input type="text"
+             class="form-control"
+             id="email_contact_form"
+             placeholder="max.muster@gmuster.com"
+             name="email_contact_form"
+             pattern="^\w+(.\w+)*@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$" required>
+
       <div id="username-val" class="invalid-feedback">
         Bitte geben Sie ihre Email an!
       </div>
@@ -35,7 +53,12 @@ title: Kontaktformular
 
     <div class="form-group my-2">
       <label for="description_contact_form" class="form-label mb-0">Beschreibung</label>
-      <textarea id="description_contact_form" class="form-control" name="description_contact_form" rows="5" placeholder="Lorem ipsum" pattern="\w*" required></textarea>
+      <textarea id="description_contact_form"
+                class="form-control"
+                name="description_contact_form"
+                rows="5" placeholder="Lorem ipsum"
+                pattern="\w*" required></textarea>
+
       <div id="description-val" class="invalid-feedback">
         Bitte erläutern Sie ihr Anliegen!
       </div>

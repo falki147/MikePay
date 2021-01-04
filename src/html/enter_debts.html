@@ -3,7 +3,7 @@ layout: form
 title: Schulden eintragen
 ---
 
-<form id="enter-debts-form" class="needs-validation" action="" autocomplete="off" novalidate>
+<form id="enter-debts-form" class="needs-validation" autocomplete="off" novalidate>
   <div class="form-group">
     <h1 class="mb-5">Schulden eintragen</h1>
 
@@ -11,11 +11,19 @@ title: Schulden eintragen
 
     <div class="form-group my-2">
       <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" name="checkUserGuest" id="checkUserSelection" checked>
+        <input class="form-check-input"
+               type="radio"
+               name="checkUserGuest"
+               id="checkUserSelection" checked>
+
         <label class="form-check-label" for="checkUserSelection">Benutzer</label>
       </div>
       <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" name="checkUserGuest" id="checkGuestSelection">
+        <input class="form-check-input"
+               type="radio"
+               name="checkUserGuest"
+               id="checkGuestSelection">
+
         <label class="form-check-label" for="checkGuestSelection">Gast</label>
       </div>
     </div>
@@ -23,7 +31,9 @@ title: Schulden eintragen
     <!-- User-part -->
     <div class="form-group my-2">
       <label for="enter_debts_user_select" class="form-label mb-0">Benutzer auswählen</label>
-      <select class="form-select" name="enter_debts_user_select" id="enter_debts_user_select" required>
+      <select class="form-select"
+              name="enter_debts_user_select"
+              id="enter_debts_user_select" required>
         <option value="" selected>Benutzer ...</option>
       </select>
       <div id="user-enter-debts-val" class="invalid-feedback">
@@ -34,7 +44,13 @@ title: Schulden eintragen
     <!-- Guest-part -->
     <div class="form-group my-2">
       <label for="firstname_enter_debts" class="form-label mb-0">Vorname</label>
-      <input type="text" class="form-control" id="firstname_enter_debts" placeholder="Max" name="firstname_enter_debts" pattern="\w+(-\w+)*" disabled>
+      <input type="text"
+             class="form-control"
+             id="firstname_enter_debts"
+             placeholder="Max"
+             name="firstname_enter_debts"
+             pattern="\w+(-\w+)*" disabled>
+
       <div id="firstname-enter-debts-val" class="invalid-feedback">
         Bitte geben Sie für den Gast einen Vornamen an!
       </div>
@@ -42,7 +58,13 @@ title: Schulden eintragen
 
     <div class="form-group my-2">
       <label for="lastname_enter_debts" class="form-label mb-0">Nachname</label>
-      <input type="text" class="form-control" id="lastname_enter_debts" placeholder="Mustermann" name="lastname_enter_debts" pattern="\w+(-\w+)*" disabled>
+      <input type="text"
+             class="form-control"
+             id="lastname_enter_debts"
+             placeholder="Mustermann"
+             name="lastname_enter_debts"
+             pattern="\w+(-\w+)*" disabled>
+
       <div id="lastname-enter-debts-val" class="invalid-feedback">
         Bitte geben Sie für den Gast einen Nachnamen an!
       </div>
@@ -50,14 +72,22 @@ title: Schulden eintragen
 
     <div class="form-group my-2">
       <label for="amount_enter_debts" class="form-label mb-0">Betrag</label>
-      <input type="text" class="form-control" id="amount_enter_debts" placeholder="amount" name="amount_enter_debts" pattern="(\d+(,\d*)?|,\d+)" required>
+      <input type="text"
+             class="form-control"
+             id="amount_enter_debts"
+             placeholder="2,30"
+             name="amount_enter_debts"
+             pattern="(\d+(,\d*)?|,\d+)" required>
+
       <div id="amount-enter-debts-val" class="invalid-feedback">
         Bitte geben Sie einen gültigen Betrag ein!
       </div>
     </div>
             
     <div class="form-group mt-4">
-      <button type="submit" id="enter-debts-btn" class="btn btn-lg btn-primary w-100">Bestätigen</button>
+      <button type="submit" id="enter-debts-btn" class="btn btn-lg btn-primary w-100">
+        Bestätigen
+      </button>
     </div>     
   </div>
 </form>

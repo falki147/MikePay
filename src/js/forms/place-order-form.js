@@ -22,6 +22,11 @@ document.addEventListener("DOMContentLoaded", () => {
      */
     async function onSubmit(ev) {
       ev.preventDefault();
+      form.classList.add("was-validated");
+
+      if (!form.checkValidity()) {
+        return;
+      }
 
       const item = document.getElementById("item").value;
       const price = document.getElementById("price").value;

@@ -3,7 +3,7 @@ layout: form
 title: Bestellung erstellen
 ---
 
-<form id="createOrder-form" action="" class="needs-validation" autocomplete="off" novalidate>
+<form id="createOrder-form" class="needs-validation" autocomplete="off" novalidate>
   <div class="form-group my-2">
     <h1 class="mb-5">Bestellung erstellen</h1>
 
@@ -27,13 +27,17 @@ title: Bestellung erstellen
 
     <div class="form-group my-2">
       <label for="description" class="form-label mb-0">Beschreibung</label>
-      <textarea id="description" class="form-control" name="description" rows="3" placeholder="Lorem ipsum"></textarea>
-      <div id="description-val" class="invalid-feedback">
-      </div>
+      <textarea id="description"
+                class="form-control"
+                name="description"
+                rows="3"
+                placeholder="Lorem ipsum"></textarea>
     </div>
 
     <div class="form-group mt-4">
-      <button type="submit" id="create-order-btn" class="btn btn-lg btn-primary w-100">Erstellen</button>
+      <button type="submit" id="create-order-btn" class="btn btn-lg btn-primary w-100">
+        Erstellen
+      </button>
     </div>
   </div>
 </form>

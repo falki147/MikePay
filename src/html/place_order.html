@@ -3,7 +3,7 @@ layout: form
 title: Bestellen
 ---
 
-<form id="place-order-form" action="" autocomplete="off">
+<form id="place-order-form" novalidate>
   <div class="form-group">
     <h1 class="mb-5">Bestellen</h1>
 
@@ -14,26 +14,63 @@ title: Bestellen
 
     <div class="form-group my-2">
       <label for="item" class="form-label mb-0">Artikel</label>
-      <input type="text" class="form-control" id="item" placeholder="Wurstsemmel" name="item" required>
+      <input type="text"
+             class="form-control"
+             id="item"
+             placeholder="Wurstsemmel"
+             name="item" required>
+
+      <div id="item-val" class="invalid-feedback">
+        Bitte geben Sie einen Artikel an!
+      </div>
     </div>
 
     <div class="form-group my-2">
       <label for="price" class="form-label mb-0">Preis</label>
-      <input type="text" class="form-control" id="price" placeholder="1,50" name="price" pattern="(\d+(,\d*)?|,\d+)" required>
+      <input type="text"
+             class="form-control"
+             id="price"
+             placeholder="1,50"
+             name="price"
+             pattern="(\d+(,\d*)?|,\d+)" required>
+      
+      <div id="price-val" class="invalid-feedback">
+        Bitte geben Sie einen gültigen Preis an!
+      </div>
     </div>
 
     <div class="form-group my-2 guest-only">
       <label for="firstname" class="form-label mb-0">Vorname</label>
-      <input type="text" class="form-control" id="firstname" placeholder="Max" name="firstname">
+      <input type="text"
+             class="form-control"
+             id="firstname"
+             placeholder="Max"
+             name="firstname"
+             required>
+
+      <div id="firstname-val" class="invalid-feedback">
+        Bitte geben Sie ihren Vornamen an!
+      </div>
     </div>
 
     <div class="form-group my-2 guest-only">
       <label for="lastname" class="form-label mb-0">Nachname</label>
-      <input type="text" class="form-control" id="lastname" placeholder="Mustermann" name="lastname">
+      <input type="text"
+             class="form-control"
+             id="lastname"
+             placeholder="Mustermann"
+             name="lastname"
+             required>
+
+      <div id="lastname-val" class="invalid-feedback">
+        Bitte geben Sie ihren Nachnamen an!
+      </div>
     </div>
 
     <div class="form-group mt-4">
-      <button type="submit" id="place-order-btn" class="btn btn-lg btn-primary w-100">Bestellen</button>
+      <button type="submit"
+              id="place-order-btn"
+              class="btn btn-lg btn-primary w-100">Bestellen</button>
     </div>
     
   </div>

@@ -3,16 +3,20 @@ layout: form
 title: Benutzer verwalten
 ---
 
-<form id="edit-user-form" class="needs-validation" action="" autocomplete="off" novalidate>
+<form id="edit-user-form" class="needs-validation" autocomplete="off" novalidate>
   <div class="form-group">
     <h1 class="mb-5">Benutzer bearbeiten</h1>
 
     <div class="alert-outlet"></div>
-    
 
     <div class="form-group my-2">
       <label for="firstname_edit" class="form-label mb-0">Vorname</label>
-      <input type="text" class="form-control" id="firstname_edit" name="firstname_edit" pattern="\w+(-\w+)*" required>
+      <input type="text"
+             class="form-control"
+             id="firstname_edit"
+             name="firstname_edit"
+             pattern="\w+(-\w+)*" required>
+
       <div id="firstname-val" class="invalid-feedback">
         Bitte geben Sie ihren Vornamen an!
       </div>
@@ -20,7 +24,12 @@ title: Benutzer verwalten
 
     <div class="form-group my-2">
       <label for="lastname_edit" class="form-label mb-0">Nachname</label>
-      <input type="text" class="form-control" id="lastname_edit" name="lastname_edit" pattern="\w+(-\w+)*" required>
+      <input type="text"
+             class="form-control"
+             id="lastname_edit"
+             name="lastname_edit"
+             pattern="\w+(-\w+)*" required>
+
       <div id="lastname-val" class="invalid-feedback">
         Bitte geben Sie ihren Nachnamen an!
       </div>
@@ -28,15 +37,25 @@ title: Benutzer verwalten
 
     <div class="form-group my-2">
       <label for="username_edit" class="form-label mb-0">Benutzername</label>
-      <input type="text" class="form-control" id="username_edit" name="username_edit" pattern="\w+" required>
+      <input type="text"
+             class="form-control"
+             id="username_edit"
+             name="username_edit"
+             pattern="\w+" required>
+
       <div id="username-val" class="invalid-feedback">
-        Bitte geben Sie einen Usernamen an!
+        Bitte geben Sie einen Benutzernamen an!
       </div>
     </div>
 
     <div class="form-group my-2">
       <label for="password_edit" class="form-label mb-0">Passwort</label>
-      <input type="password" class="form-control" id="password_edit" name="password_edit" pattern="^(?=.*\d)(?=.*[A-Z])(?=.*[a-z]).{8,}$">
+      <input type="password"
+             class="form-control"
+             id="password_edit"
+             name="password_edit"
+             pattern="^(?=.*\d)(?=.*[A-Z])(?=.*[a-z]).{8,}$">
+
       <div id="password-val" class="invalid-feedback">
         Bitte geben Sie ein Passwort an!
       </div>
@@ -44,14 +63,21 @@ title: Benutzer verwalten
 
     <div class="form-group my-2">
       <label for="password_edit_conf" class="form-label mb-0">Passwort-Bestätigung</label>
-      <input type="password" class="form-control" id="password_edit_conf" name="password_edit_conf" pattern="^(?=.*\d)(?=.*[A-Z])(?=.*[a-z]).{8,}$">
+      <input type="password"
+             class="form-control"
+             id="password_edit_conf"
+             name="password_edit_conf"
+             pattern="^(?=.*\d)(?=.*[A-Z])(?=.*[a-z]).{8,}$">
+
       <div id="password-conf-inv" class="invalid-feedback">
         Bitte bestätigen Sie ihr Passwort!
       </div>
     </div>
 
     <div class="form-group mt-4">
-      <button type="submit" id="edit-user-btn" class="btn btn-lg btn-primary w-100">Speichern</button>
+      <button type="submit" id="edit-user-btn" class="btn btn-lg btn-primary w-100">
+        Speichern
+      </button>
     </div>
   </div>
 </form>

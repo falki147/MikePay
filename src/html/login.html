@@ -3,20 +3,36 @@ layout: form
 title: Login
 ---
 
-<form id="login-form">
+<form id="login-form" novalidate>
   <div class="form-group">
     <h1 class="mb-5">Login</h1>
 
     <div class="alert-outlet"></div>
 
     <div class="form-group my-2">
-      <label for="username" class="form-label mb-0">Username oder voller Name</label>
-      <input type="text" class="form-control" id="username" placeholder="maxi12" name="username" required>
+      <label for="username" class="form-label mb-0">Benutzername oder voller Name</label>
+      <input type="text"
+             class="form-control"
+             id="username"
+             placeholder="maxi12"
+             name="username" required>
+
+      <div id="username-val" class="invalid-feedback">
+        Bitte geben Sie ihren Benutzernamen oder ihren vollen Namen an!
+      </div>
     </div>
 
     <div class="form-group my-2">
-      <label for="username" class="form-label mb-0">Passwort</label>
-      <input type="password" class="form-control" id="password" placeholder="********" name="password" required>
+      <label for="password" class="form-label mb-0">Passwort</label>
+      <input type="password"
+             class="form-control"
+             id="password"
+             placeholder="********"
+             name="password" required>
+
+      <div id="password-val" class="invalid-feedback">
+        Bitte geben Sie ihr Passwort ein!
+      </div>
     </div>
 
     <div class="form-group mt-4">

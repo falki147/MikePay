@@ -3,7 +3,7 @@ layout: form
 title: Bestellung bearbeiten
 ---
 
-<form id="edit-order-position-form" class="needs-validation" autocomplete="off" novalidate>
+<form id="edit-order-position-form" class="needs-validation" novalidate>
   <div class="form-group">
     <h1 class="mb-5">Bestellung bearbeiten</h1>
 
@@ -47,14 +47,21 @@ title: Bestellung bearbeiten
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="delete-modal-title">Löschen bestätigen</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Schließen"></button>
+        <button type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Schließen"></button>
       </div>
       <div class="modal-body">
         Wollen Sie die den Artikel wirklich aus der Bestellung löschen?
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Schließen</button>
-        <button type="button" class="btn btn-danger" id="delete-order-position-btn">Löschen</button>
+        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+          Schließen
+        </button>
+        <button type="button" class="btn btn-danger" id="delete-order-position-btn">
+          Löschen
+        </button>
       </div>
     </div>
   </div>
