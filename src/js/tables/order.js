@@ -6,6 +6,7 @@ import link from "../utils/link";
 import getShortDate from "../utils/dateShort";
 import Session from "../api/session";
 import absoluteURL from "../utils/absoluteURL";
+import Alert from "../components/alert";
 
 document.addEventListener("DOMContentLoaded", async () => {
   const orderTable = document.getElementById("order-table");
@@ -73,6 +74,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       }
       catch (e) {
         console.error(e);
+        Alert.error(e.message);
       }
     }
 

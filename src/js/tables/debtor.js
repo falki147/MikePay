@@ -4,8 +4,9 @@ import encode from "../utils/encode";
 import Loader from "../components/loader";
 import getShortDate from "../utils/dateShort";
 import link from "../utils/link";
+import Alert from "../components/alert";
 
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", async () => {
   const debtorTable = document.getElementById("debtor-table");
   if (debtorTable) {
     const params = new URLSearchParams(location.search);
@@ -50,11 +51,12 @@ document.addEventListener("DOMContentLoaded", () => {
       }
       catch (e) {
         console.error(e);
+        Alert.error(e.message);
       }
 
       Loader.end();
     }
 
-    loadInfo();
+    await loadInfo();
   }
 });
