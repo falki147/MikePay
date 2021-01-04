@@ -1,4 +1,4 @@
-import { Tooltip } from "bootstrap";
+import "bootstrap";
 import "./forms/login-form";
 import "./forms/place-order-form";
 import "./forms/create-user";
@@ -17,8 +17,4 @@ import "./tables/orders";
 import "./components/session";
 import "./components/header";
 import "./components/startpage";
-
-// Initialize tooltips
-for (const tooltip of document.querySelectorAll('[data-bs-toggle="tooltip"]')) {
-  new Tooltip(tooltip);
-}
+import "./components/tooltip";
