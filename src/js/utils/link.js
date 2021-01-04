@@ -1,5 +1,12 @@
 import encode from "./encode";
 
+/**
+ * Creates HTML for a link
+ * @param {String} href
+ * @param {String} text
+ * @param {Boolean} [raw]
+ * @param {*} [attributes]
+ */
 export default function link(href, text, raw, attributes) {
   if (!href) {
     return raw ? text : encode(text);
