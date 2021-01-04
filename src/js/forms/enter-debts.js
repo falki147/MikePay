@@ -80,5 +80,28 @@ document.addEventListener("DOMContentLoaded", async () => {
       }
       Loader.end();
     }
+
+    /**
+     * Load users for select element
+     */
+    async function initializeUsers() {
+      try {
+        Loader.begin();
+        const data = await Api.allDebts("name", true);
+
+        const selector = document.getElementById("enter_debts_user_select");
+        for (const user of data) {
+          selector.options.add(new Option(`${user.firstname} ${user.lastname}`, user.id));
+        }
+      }
+      catch (e) {
+        console.error(e);
+        Alert.error(e.message);
+      }
+
+      Loader.end();
+    }
+
+    initializeUsers();
   }
 });
