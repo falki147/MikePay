@@ -29,7 +29,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         // Update order description
         let description = encode(data.description);
         if (data.url) {
-          description += ` (${link(absoluteURL(data.url), "Link", false, { target: "blank" })})`;
+          description += ` (${link(absoluteURL(data.url), "Link", false, { target: "_blank" })})`;
         }
         document.getElementById("order-description").innerHTML = description;
 
