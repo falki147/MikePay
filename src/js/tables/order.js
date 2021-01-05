@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     const params = new URLSearchParams(location.search);
     const orderId = params.get("order_id");
-    const userId = await Session.isLoggedIn() ? await Session.id() : null;
+    const userData = await Session.isLoggedIn() ? (await Session.data()) : null;
     let locked = true;
 
     async function loadInfo() {
@@ -88,8 +88,9 @@ document.addEventListener("DOMContentLoaded", async () => {
       item => {
         let title = encode(item.item);
 
-        // Add edit link to order position when product is from same user and order is not locked
-        if (!locked && item.user_id === userId) {
+        // Add edit link to order position when product is from same user (or user is admin)
+        // and order is not locked
+        if (!locked && userData && (userData.id == item.user_id || userData.role === "admin")) {
           title = link(
             `/edit_order_position/?order_position_id=${item.id}`,
             `${title}<i class="bi bi-pencil" aria-label="Artikel bearbeiten"></i>`, true
