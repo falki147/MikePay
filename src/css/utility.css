@@ -1,6 +1,7 @@
 .sort-link {
   color: inherit;
   text-decoration: inherit;
+  white-space: nowrap;
 }
 
 .form-wrapper {
