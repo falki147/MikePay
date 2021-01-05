@@ -86,7 +86,7 @@ export default class Session {
     const sessionItem = sessionStorage.getItem(sessionKey);
     const storageItem = localStorage.getItem(storageKey);
 
-    if (sessionItem !== "true" || !storageItem) {
+    if (sessionItem !== "true" || !storageItem || storageItem === "null") {
       // Try to get data from server
       try {
         const sessionData = await Api.sessionInfo();
