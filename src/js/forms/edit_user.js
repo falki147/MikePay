@@ -67,7 +67,7 @@ document.addEventListener("DOMContentLoaded", () => {
     async function editUser(data){
       try {
         Loader.begin(document.getElementById("edit-user-btn"));
-        Api.editUser(await Session.id(), data);
+        await Api.editUser(await Session.id(), data);
         Alert.success("Ihr Konto wurde erfolgreich bearbeitet.");
       }
       catch(e) {
