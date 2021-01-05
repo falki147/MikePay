@@ -8,6 +8,8 @@ import Loader from "../components/loader";
 document.addEventListener("DOMContentLoaded", async () => {
   const form = document.getElementById("edit-order-position-form");
   if (form) {
+    let isSubmitting = false;
+
     // Get order position id from query parameters
     const params = new URLSearchParams(location.search);
     const orderPositionId = params.get("order_position_id");
@@ -26,6 +28,12 @@ document.addEventListener("DOMContentLoaded", async () => {
      */
     async function onSubmit(ev) {
       ev.preventDefault();
+
+      if (isSubmitting) {
+        // Prevent double submit
+        return;
+      }
+
       form.classList.add("was-validated");
 
       if (!form.checkValidity()) {
@@ -33,6 +41,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       }
 
       try {
+        isSubmitting = true;
         Loader.begin(document.getElementById("edit-order-position-btn"));
         
         await Api.editOrderPosition(orderPositionId, {
@@ -48,6 +57,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       }
 
       Loader.end();
+      isSubmitting = false;
     }
 
     /**

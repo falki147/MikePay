@@ -8,6 +8,8 @@ import Loader from "../components/loader";
 document.addEventListener("DOMContentLoaded", () => {
   const form = document.getElementById("createUser-form");
   if (form) {
+    let isSubmitting = false;
+
     form.addEventListener("submit", onSubmit);
 
     /**
@@ -16,6 +18,11 @@ document.addEventListener("DOMContentLoaded", () => {
      */
     function onSubmit(e) {
       e.preventDefault();
+
+      if (isSubmitting) {
+        // Prevent double submit
+        return;
+      }
 
       const passwordConfInput = document.getElementById("password_conf");
 
@@ -46,6 +53,7 @@ document.addEventListener("DOMContentLoaded", () => {
      */
     async function createUser(data){
       try {
+        isSubmitting = true;
         Loader.begin(document.getElementById("create-user-btn"));
         await Api.createUser(data);
         Alert.success("Benutzer wurde erfolgreich erstellt.");
@@ -56,6 +64,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     
       Loader.end();
+      isSubmitting = false;
     }
   }
 });

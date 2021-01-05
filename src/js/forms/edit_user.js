@@ -9,6 +9,8 @@ import Loader from "../components/loader";
 document.addEventListener("DOMContentLoaded", () => {
   const form = document.getElementById("edit-user-form");
   if (form) {
+    let isSubmitting = false;
+
     form.addEventListener("submit", onSubmit);
     document.getElementById("password_edit").addEventListener("input", onPasswordInput);
 
@@ -18,6 +20,11 @@ document.addEventListener("DOMContentLoaded", () => {
      */
     function onSubmit(e) {
       e.preventDefault();
+
+      if (isSubmitting) {
+        // Prevent double submit
+        return;
+      }
 
       const firstname = document.getElementById("firstname_edit").value;
       const lastname = document.getElementById("lastname_edit").value;
@@ -66,6 +73,7 @@ document.addEventListener("DOMContentLoaded", () => {
      */
     async function editUser(data){
       try {
+        isSubmitting = true;
         Loader.begin(document.getElementById("edit-user-btn"));
         await Api.editUser(await Session.id(), data);
         Alert.success("Ihr Konto wurde erfolgreich bearbeitet.");
@@ -75,6 +83,7 @@ document.addEventListener("DOMContentLoaded", () => {
         Alert.error(e);
       }
       Loader.end();
+      isSubmitting = false;
     }
 
     /**

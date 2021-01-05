@@ -11,6 +11,8 @@ import sleep from "../utils/sleep";
 document.addEventListener("DOMContentLoaded", () => {
   const form = document.getElementById("place-order-form");
   if (form) {
+    let isSubmitting = false;
+
     const params = new URLSearchParams(location.search);
     let orderId = params.get('order_id');
 
@@ -22,6 +24,12 @@ document.addEventListener("DOMContentLoaded", () => {
      */
     async function onSubmit(ev) {
       ev.preventDefault();
+
+      if (isSubmitting) {
+        // Prevent double submit
+        return;
+      }
+
       form.classList.add("was-validated");
 
       if (!form.checkValidity()) {
@@ -43,6 +51,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       try {
+        isSubmitting = true;
         Loader.begin(document.getElementById("place-order-btn"));
         await Api.placeOrder(orderId, data);
         Loader.end();
@@ -53,6 +62,8 @@ document.addEventListener("DOMContentLoaded", () => {
         Alert.error(e.message);
         Loader.end();
       }
+
+      isSubmitting = false;
     }
 
     /**

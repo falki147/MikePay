@@ -8,6 +8,8 @@ import Loader from "../components/loader";
 document.addEventListener("DOMContentLoaded", async () => {
   const form = document.getElementById("enter-debts-form");
   if (form) {
+    let isSubmitting = false;
+
     form.addEventListener("submit", onSubmit);
     document.getElementById("checkUserSelection").addEventListener("change", changeSelection);
     document.getElementById("checkGuestSelection").addEventListener("change", changeSelection);
@@ -18,6 +20,11 @@ document.addEventListener("DOMContentLoaded", async () => {
      */
     function onSubmit(e) {
       e.preventDefault();
+
+      if (isSubmitting) {
+        // Prevent double submit
+        return;
+      }
 
       const firstname = document.getElementById("firstname_enter_debts").value;
       const lastname = document.getElementById("lastname_enter_debts").value;
@@ -70,6 +77,7 @@ document.addEventListener("DOMContentLoaded", async () => {
      */
     async function enterDebt(data){
       try {
+        isSubmitting = true;
         Loader.begin(document.getElementById("enter-debts-btn"));
         await Api.addDebt(data);
         Alert.success("Schulden wurden erfolgreich eingetragen.");
@@ -79,6 +87,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         Alert.error(e.message);
       }
       Loader.end();
+      isSubmitting = false;
     }
 
     /**

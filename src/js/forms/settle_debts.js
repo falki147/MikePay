@@ -8,6 +8,7 @@ import Loader from "../components/loader";
 document.addEventListener("DOMContentLoaded", () => {
   const form = document.getElementById("settle-debts-form");
   if (form) {
+    let isSubmitting = false;
     const userDebt = {};
 
     form.addEventListener("submit", onSubmit);
@@ -20,6 +21,11 @@ document.addEventListener("DOMContentLoaded", () => {
      */
     function onSubmit(e) {
       e.preventDefault();
+
+      if (isSubmitting) {
+        // Prevent double submit
+        return;
+      }
 
       const userId = document.getElementById("settle_debts_select").value;
       const amount = document.getElementById("settle_debts_settle").value;
@@ -36,6 +42,7 @@ document.addEventListener("DOMContentLoaded", () => {
      */
     async function addPaymentEntry(data) {
       try {
+        isSubmitting = true;
         Loader.begin(document.getElementById("settle-debts-btn"));
         await Api.pay(data);
         Alert.success("Schulden wurden erfolgreich beglichen.");
@@ -46,6 +53,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     
       Loader.end();
+      isSubmitting = false;
     }
 
     /**
@@ -68,7 +76,7 @@ document.addEventListener("DOMContentLoaded", () => {
         for (const user of data) {
           selector.options.add(new Option(`${user.firstname} ${user.lastname}`, user.id));
 
-          // Negate total (amount of which the user already payed subtracted by debts)
+          // Negate total (amount of which the user already paid subtracted by debts)
           let total = user.total;
           if (total.startsWith("-")) {
             total = total.substring(1);

@@ -10,12 +10,19 @@ document.addEventListener("DOMContentLoaded", () => {
   if (form) {
     form.addEventListener("submit", onSubmit);
 
+    let isSubmitting = false;
+
     /**
      * Handle submit event
      * @param {Event} e
      */
     function onSubmit(e) {
       e.preventDefault();
+
+      if (isSubmitting) {
+        // Prevent double submit
+        return;
+      }
 
       const titel = document.getElementById("titel").value;
       const url = document.getElementById("url").value;
@@ -35,6 +42,7 @@ document.addEventListener("DOMContentLoaded", () => {
      */
     async function createOrder(data){
       try {
+        isSubmitting = true;
         Loader.begin(document.getElementById("create-order-btn"));
         const orderId = await Api.createOrder(data);
         Alert.success("Bestellung wurde erfolgreich erstellt.");
@@ -48,6 +56,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     
       Loader.end();
+      isSubmitting = false;
     }
   }
 });

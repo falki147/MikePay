@@ -8,8 +8,16 @@ import Loader from "../components/loader";
 document.addEventListener("DOMContentLoaded", () => {
   const form = document.getElementById("login-form");
   if (form) {
+    let isSubmitting = false;
+
     form.addEventListener("submit", async ev => {
       ev.preventDefault();
+
+      if (isSubmitting) {
+        // Prevent double submit
+        return;
+      }
+
       form.classList.add("was-validated");
 
       if (!form.checkValidity()) {
@@ -20,6 +28,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const password = document.getElementById("password").value;
 
       try {
+        isSubmitting = true;
         Loader.begin(document.getElementById("login-btn"));
         await Api.login(username, password);
         Alert.success("Login war erfolgreich.");
@@ -31,6 +40,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       Loader.end();
+      isSubmitting = false;
     });
   }
 });
