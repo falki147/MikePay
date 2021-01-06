@@ -43,7 +43,10 @@ export default class DataTable {
     this._dataCallback = dataCallback;
     this._renderCallback = renderCallback;
 
+    // Force loading animation on main element on first load
+    Loader.begin();
     this._load();
+    Loader.end();
   }
 
   resetPage() {
