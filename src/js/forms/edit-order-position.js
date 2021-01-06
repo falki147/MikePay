@@ -94,6 +94,9 @@ document.addEventListener("DOMContentLoaded", async () => {
         document.getElementById("item").value = data.item;
         document.getElementById("price").value = data.price;
         orderId = data.order_id;
+
+        const anchor = document.getElementById("order-link");
+        anchor.href = `/order/?order_id=${orderId}`;
       }
       catch (e) {
         console.error(e);
