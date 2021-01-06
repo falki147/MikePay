@@ -1,4 +1,4 @@
-@media only screen and (min-width: 576px) {
+@media only screen and (min-width: 577px) {
   /* Hide sort for mobile only. On desktop sort is operated by columns */
   .responsive-sort {
     display: none;
