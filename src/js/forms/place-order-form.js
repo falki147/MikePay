@@ -119,10 +119,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
           document.getElementById("place-order-btn").disabled = true;
         }
+
+        const title = document.getElementById("title");
+        title.innerText = `Bestellen - ${data.title}`;
+
+        const gotoOrder = document.getElementById("goto-order-btn");
+        if (gotoOrder) {
+          gotoOrder.href = `/order/?order_id=${data.id}`;
+        }
         
         const description = document.getElementById("description");
-        const url = document.getElementById("url");
-
         description.innerText = data.description;
 
         // Links can be empty/null
@@ -131,6 +137,8 @@ document.addEventListener("DOMContentLoaded", () => {
           anchor.href = absoluteURL(data.url);
           anchor.innerText = data.url;
           anchor.target = "_blank";
+
+          const url = document.getElementById("url");
           url.appendChild(anchor);
         }
       }

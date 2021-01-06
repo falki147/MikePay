@@ -5,7 +5,7 @@ title: Bestellen
 
 <form id="place-order-form" novalidate>
   <div class="form-group">
-    <h1 class="mb-5">Bestellen</h1>
+    <h1 id="title" class="mb-4">Bestellen</h1>
 
     <div class="alert-outlet"></div>
 
@@ -70,7 +70,11 @@ title: Bestellen
     <div class="form-group mt-4">
       <button type="submit"
               id="place-order-btn"
-              class="btn btn-lg btn-primary w-100">Bestellen</button>
+              class="btn btn-lg btn-primary w-100 mb-2">Bestellen</button>
+
+      <a id="goto-order-btn" class="btn btn-lg btn-outline-secondary w-100 user-only" href="#">
+        Zur Bestellung
+      </a>
     </div>
     
   </div>
