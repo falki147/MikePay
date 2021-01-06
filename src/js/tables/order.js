@@ -86,21 +86,30 @@ document.addEventListener("DOMContentLoaded", async () => {
       orderTable, pagination,
       async (page, sort, asc) => await Api.orderPositions(orderId, page, sort, asc),
       item => {
+        // Either item is from user or current user is admin
+        const ownsItem = userData && (userData.id == item.user_id || userData.role === "admin");
+
         let title = encode(item.item);
 
-        // Add edit link to order position when product is from same user (or user is admin)
-        // and order is not locked
-        if (!locked && userData && (userData.id == item.user_id || userData.role === "admin")) {
+        // Add edit link to order position when item is owned by user and order is not locked
+        if (!locked && ownsItem) {
           title = link(
             `/edit_order_position/?order_position_id=${item.id}`,
             `${title}<i class="bi bi-pencil" aria-label="Artikel bearbeiten"></i>`, true
           );
         }
 
+        let user = encode(`${item.firstname} ${item.lastname}`);
+
+        // Only allow admin and user itself to view transactions
+        if (ownsItem) {
+          user = link(`/debtor/?user_id=${item.user_id}`, user, true);
+        }
+
         return [
           title,
           encode(item.price),
-          link(`/debtor/?user_id=${item.user_id}`, `${item.firstname} ${item.lastname}`),
+          user,
           encode(getShortDate(item.date))
         ];
       }
