@@ -1,12 +1,16 @@
-# WDP Projekt von {Nachname} {Vorname} ({Matrikelnr.})
-* Projekt-Name: MikePay
-* Projekt-Typ: Webapp
-* Externe JS/CSS Bibliotheken: Bootstrap
-* Zeitaufwand (h): 66
-* Getting started:
-  Mit `npm run start` kann der Development Server gestartet werden. Dieser sollte normalerweise
-  unter http://localhost:8080/ laufen. Die API ist auf einem externen Server (PHP), es sollte aber
-  kein Problem sein diese zu verwenden (ist voreingestellt)
+# MikePay
+MikePay ist eine Plattform für das Verwalten von Schulden. Der Fokus liegt dabei auf
+Essensbestellungen. Das Ziel ist Sammelbestellungen bei Lieferdiensten zu vereinfachen.
+
+Ursprünglich war eine REST-Api unter mikepay.preinfalk.at erreichbar, diese wurde aber deaktiviert.
+Als Ersatz wurde eine Demo-Api geschrieben, welche im Browser lokal läuft.
+
+Dieses Projekt wurde im Zuge der WDP3-Lehrveranstaltung von Benjamin Burglechner und Florian
+Preinfalk entwickelt.
+
+## Getting Started
+Mit `npm start` kann der Development-Server gestarted werden. Unter [http://localhost:8080/]() ist
+dieser aufrufbar.
 
 ## Testlogins
 ### Benutzer
