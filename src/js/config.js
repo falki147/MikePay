@@ -1,3 +1,5 @@
+import RestApi from "./api/rest-api/rest-api";
+
 export default {
-  apiBaseURL: "https://mikepay.preinfalk.at/api"
+  api: new RestApi("https://mikepay.preinfalk.at/api")
 };
