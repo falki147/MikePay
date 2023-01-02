@@ -17,3 +17,8 @@ import "./components/session";
 import "./components/header";
 import "./components/startpage";
 import "./components/tooltip";
+import config from "./config";
+
+if (typeof config.onLoad === 'function') {
+  config.onLoad();
+}
