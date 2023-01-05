@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       try{
         Loader.begin(logoutButton);
         await Api.logout();
-        window.location = "/";
+        window.location = "";
       } catch(e) {
         console.log(e);
       }
@@ -30,6 +30,6 @@ document.addEventListener("DOMContentLoaded", async () => {
   const debts = document.getElementById("navbar-dropdown-debts");
   if(debts && await Session.isLoggedIn()){
     const id = await Session.id();
-    debts.href = "/debtor/?user_id=" + id;
+    debts.href = "debtor/?user_id=" + id;
   }
 });

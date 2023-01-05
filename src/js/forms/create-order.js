@@ -48,7 +48,7 @@ document.addEventListener("DOMContentLoaded", () => {
         Alert.success("Bestellung wurde erfolgreich erstellt.");
 
         // Redirect to new order
-        window.location = `/order/?order_id=${orderId}`;
+        window.location = `order/?order_id=${orderId}`;
       }
       catch (e) {
         console.error(e);

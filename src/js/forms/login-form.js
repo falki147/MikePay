@@ -32,7 +32,7 @@ document.addEventListener("DOMContentLoaded", () => {
         Loader.begin(document.getElementById("login-btn"));
         await Api.login(username, password);
         Alert.success("Login war erfolgreich.");
-        window.location = "/";
+        window.location = "";
       }
       catch (e) {
         console.error(e);

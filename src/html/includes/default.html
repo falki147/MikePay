@@ -5,9 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>{{ title }} - MikePay</title>
-    <script defer src="/main.js"></script>
-    <link rel="stylesheet" href="/main.css">
-    <link rel="icon" type="image/svg+xml" href="/assets/mikepay-icon.svg" sizes="any">
+    <base href="/">
+    <script defer src="main.js"></script>
+    <link rel="stylesheet" href="main.css">
+    <link rel="icon" type="image/svg+xml" href="assets/mikepay-icon.svg" sizes="any">
   </head>
   <body class="min-vh-100 d-flex flex-column">
     <!-- header -->
@@ -15,8 +16,8 @@
       <nav class="navbar navbar-expand-lg navbar-light border-bottom border-2">
         <div class="container-fluid">
           <div class="navbar-brand">
-            <a href="/">
-              <img src="/assets/mikepay.svg" alt="MikePay logo">
+            <a href="">
+              <img src="assets/mikepay.svg" alt="MikePay logo">
             </a>
           </div>
           <button class="navbar-toggler"
@@ -31,13 +32,13 @@
           <div class="collapse navbar-collapse" id="navbar-menu">
             <ul class="navbar-nav me-auto mb-lg-0">
               <li class="nav-item">
-                <a class="nav-link" href="/">Home</a>
+                <a class="nav-link" href="">Home</a>
               </li>
               <li class="nav-item admin-only">
-                <a class="nav-link" href="/create_order/">Bestellung erstellen</a>
+                <a class="nav-link" href="create_order/">Bestellung erstellen</a>
               </li>
               <li class="nav-item user-only">
-                <a class="nav-link" href="/orders/">Bestellungen</a>
+                <a class="nav-link" href="orders/">Bestellungen</a>
               </li>
               <li class="nav-item dropdown admin-only">
                 <a class="nav-link dropdown-toggle"
@@ -49,10 +50,10 @@
                   Schulden
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="navbar-dropdown-lists">
-                  <li><a href="/debtors/" class="dropdown-item">Schuldnerliste</a></li>
-                  <li><a href="/debt_history/" class="dropdown-item">Schuldenhistorie</a></li>
-                  <li><a href="/enter_debts/" class="dropdown-item">Schulden eintragen</a></li>
-                  <li><a href="/settle_debts/" class="dropdown-item">Schulden begleichen</a></li>
+                  <li><a href="debtors/" class="dropdown-item">Schuldnerliste</a></li>
+                  <li><a href="debt_history/" class="dropdown-item">Schuldenhistorie</a></li>
+                  <li><a href="enter_debts/" class="dropdown-item">Schulden eintragen</a></li>
+                  <li><a href="settle_debts/" class="dropdown-item">Schulden begleichen</a></li>
                 </ul>
               </li>
             </ul>
@@ -67,7 +68,7 @@
                   Mein Profil
                 </a>
                 <ul class="dropdown-menu mb-3" aria-labelledby="navbar-dropdown-profile">
-                  <li><a href="/edit_user/" class="dropdown-item">Profil anzeigen</a></li>
+                  <li><a href="edit_user/" class="dropdown-item">Profil anzeigen</a></li>
                   <li><a href="#" id="navbar-dropdown-debts" class="dropdown-item">Schulden anzeigen</a></li>
                 </ul>
               </li>
@@ -75,10 +76,10 @@
                 <button id="logout-btn" class="btn btn-primary nav-item">Abmelden</button>
               </li>
               <li class="nav-item mt-2 mt-lg-0 guest-only">
-                <a class="nav-link" href="/login/">Anmelden</a>
+                <a class="nav-link" href="login/">Anmelden</a>
               </li>
               <li class="nav-item mt-2 mt-lg-0 guest-only">
-                <a class="btn btn-primary nav-item" href="/create_user/">Benutzer erstellen</a>
+                <a class="btn btn-primary nav-item" href="create_user/">Benutzer erstellen</a>
               </li>
             </ul>
           </div>
@@ -96,16 +97,16 @@
         
         <div class="row text-center d-flex justify-content-center mb-3">
           <div class="col-auto mb-3">
-            <a href="/impressum/">Impressum</a>
+            <a href="impressum/">Impressum</a>
           </div>
           <div class="col-auto mb-3">
-           <a href="/about_us/">Über uns</a>
+           <a href="about_us/">Über uns</a>
           </div>
           <div class="col-auto mb-3">
-            <a href="/help/">Hilfe</a>
+            <a href="help/">Hilfe</a>
           </div>
           <div class="col-auto mb-3">
-            <a href="/contact/">Kontakt</a>
+            <a href="contact/">Kontakt</a>
           </div>
         </div>
         <hr>

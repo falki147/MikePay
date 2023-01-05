@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       item => {
         let orderTitle = "Keine Bestellung";
         if(item.order_id) {
-          orderTitle = link(`/order/?order_id=${item.order_id}`, `${item.order_title} (${item.order_id})`);
+          orderTitle = link(`order/?order_id=${item.order_id}`, `${item.order_title} (${item.order_id})`);
         }
 
         let itemTitle = item.item;

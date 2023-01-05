@@ -73,7 +73,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         Alert.success("Der Artikel wurde erfolgreich entfernt.");
 
         // Redirect to order after deletion
-        window.location = `/order/?order_id=${orderId}`;
+        window.location = `order/?order_id=${orderId}`;
       }
       catch (e) {
         console.error(e);
@@ -96,7 +96,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         orderId = data.order_id;
 
         const anchor = document.getElementById("order-link");
-        anchor.href = `/order/?order_id=${orderId}`;
+        anchor.href = `order/?order_id=${orderId}`;
       }
       catch (e) {
         console.error(e);

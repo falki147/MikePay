@@ -6,6 +6,6 @@ import Session from "../api/session";
 document.addEventListener("DOMContentLoaded", async () => {
   const debtLink = document.getElementById("startpage-debts-link");
   if (debtLink && await Session.isLoggedIn()) {
-    debtLink.href = `/debtor/?user_id=${await Session.id()}`;
+    debtLink.href = `debtor/?user_id=${await Session.id()}`;
   }
 });

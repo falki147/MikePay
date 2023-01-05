@@ -125,7 +125,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const gotoOrder = document.getElementById("goto-order-btn");
         if (gotoOrder) {
-          gotoOrder.href = `/order/?order_id=${data.id}`;
+          gotoOrder.href = `order/?order_id=${data.id}`;
         }
         
         const description = document.getElementById("description");

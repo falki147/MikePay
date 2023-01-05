@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
       debtorTable, pagination,
       async (page, sort, asc) => await Api.orders(page, sort, asc),
       item => [
-        link("/order/?order_id=" + item.id, item.title),
+        link("order/?order_id=" + item.id, item.title),
         encode(item.total),
         encode(getShortDate(item.date))
       ]

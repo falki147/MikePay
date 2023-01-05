@@ -36,7 +36,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         // Update add product link href
         const shareLink = document.getElementById("order-add-product-link");
         // TODO: Add prefix
-        shareLink.href = `/place_order/?order_id=${orderId}`;
+        shareLink.href = `place_order/?order_id=${orderId}`;
 
         if (locked) {
           shareLink.classList.add("d-none");
@@ -94,7 +94,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         // Add edit link to order position when item is owned by user and order is not locked
         if (!locked && ownsItem) {
           title = link(
-            `/edit_order_position/?order_position_id=${item.id}`,
+            `edit_order_position/?order_position_id=${item.id}`,
             `${title}<i class="bi bi-pencil" aria-label="Artikel bearbeiten"></i>`, true
           );
         }
@@ -103,7 +103,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
         // Only allow admin and user itself to view transactions
         if (ownsItem) {
-          user = link(`/debtor/?user_id=${item.user_id}`, user, true);
+          user = link(`debtor/?user_id=${item.user_id}`, user, true);
         }
 
         return [

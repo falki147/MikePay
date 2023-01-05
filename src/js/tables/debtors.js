@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", () => {
       debtorTable, pagination,
       async (page, sort, asc) => await Api.debts(page, sort, asc, queryString),
       item => [
-        link(`/debtor/?user_id=${item.id}`, `${item.firstname} ${item.lastname}`),
+        link(`debtor/?user_id=${item.id}`, `${item.firstname} ${item.lastname}`),
         encode(item.debt),
         encode(item.paid),
         encode(item.total)

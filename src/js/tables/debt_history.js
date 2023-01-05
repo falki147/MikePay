@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", () => {
       item => {
         let orderTitle = "Keine Bestellung";
         if(item.order_id) {
-          orderTitle = link(`/order/?order_id=${item.order_id}`, `${item.order_title} (${item.order_id})`);
+          orderTitle = link(`order/?order_id=${item.order_id}`, `${item.order_title} (${item.order_id})`);
         }
 
         let itemTitle = item.item;
@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         return [
-          link(`/debtor/?user_id=${item.user_id}`, `${item.firstname} ${item.lastname}`),
+          link(`debtor/?user_id=${item.user_id}`, `${item.firstname} ${item.lastname}`),
           orderTitle,
           encode(itemTitle),
           encode(item.amount),
